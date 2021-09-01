@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sides_margin">16dp</dimen>
+    <dimen name="button_top_bottom_padding">15.5dp</dimen>
+    <dimen name="border_width">2.5dp</dimen>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Profile</string>
+    <string name="settings_button">Settings</string>
+    <string name="user_name">Lucile Alvarado</string>
+    <string name="career">Career</string>
+    <string name="home_address">Home address</string>
+    <string name="settings_invitation">Go to settings and fill out the profile</string>
+    <string name="edit_profile_button">Edit profile</string>
+    <string name="view_my_contacts_button">View my contacts</string>
+</resources>

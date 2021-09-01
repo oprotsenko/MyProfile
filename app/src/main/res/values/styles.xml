@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Text" parent="@style/TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text.LightGray">
+        <item name="android:textColor">@color/light_grey_text</item>
+    </style>
+
+    <style name="Text.Blue">
+        <item name="android:textColor">@color/main_blue_color</item>
+        <item name="android:layout_marginBottom">@dimen/sides_margin</item>
+    </style>
+
+    <style name="MainButton" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/orange_button</item>
+        <item name="colorButtonNormal">@color/orange</item>
+        <item name="colorControlHighlight">@color/main_blue_color</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.2</item>
+        <item name="android:paddingTop">@dimen/button_top_bottom_padding</item>
+        <item name="android:paddingBottom">@dimen/button_top_bottom_padding</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:layout_marginStart">@dimen/sides_margin</item>
+        <item name="android:layout_marginEnd">@dimen/sides_margin</item>
+    </style>
+
+    <style name="MainButton.EditProfile">
+        <item name="android:background">@drawable/white_button</item>
+        <item name="colorButtonNormal">@color/white</item>
+        <item name="colorControlHighlight">@color/main_blue_color</item>
+        <item name="android:textColor">@color/grey_text</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+</resources>
