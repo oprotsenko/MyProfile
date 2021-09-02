@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/InnerLayout"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideLineHorizontalCenter"
+        android:layout_marginBottom="@dimen/between_elements_margin"
+        app:layout_constraintBottom_toTopOf="@id/guideLineHorizontalCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -19,38 +19,37 @@
             style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/between_text_margin"
             android:text="@string/register_invitation"
-            android:textSize="24sp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/appCompatTextView3"
+            android:textSize="@dimen/h1"
+            app:layout_constraintBottom_toTopOf="@id/textViewFillOutDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView3"
+            android:id="@+id/textViewFillOutDescription"
             style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="@dimen/between_elements_margin"
             android:text="@string/fill_out_description"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/TextViewEmailText"
+            android:textSize="@dimen/h4"
+            app:layout_constraintBottom_toTopOf="@id/TextViewEmailSign"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/TextViewEmailText"
+            android:id="@+id/TextViewEmailSign"
             style="@style/Text.LightGray"
             android:text="@string/email"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+            android:textSize="@dimen/h3"
+            app:layout_constraintBottom_toTopOf="@id/editTextEmailAddressField"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/editTextEmailAddressField"
             style="@style/EditTextField"
-            android:ems="10"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,36 +67,36 @@
         style="@style/InnerLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideLineHorizontalCenter">
+        app:layout_constraintTop_toTopOf="@id/guideLineHorizontalCenter">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/TextViewPasswordText"
+            android:id="@+id/TextViewPasswordSign"
             style="@style/Text.LightGray"
             android:text="@string/password"
-            android:textSize="14sp"
+            android:textSize="@dimen/h3"
             tools:ignore="MissingConstraints" />
 
 
         <androidx.appcompat.widget.AppCompatEditText
-            style="@style/EditTextField"
             android:id="@+id/editTextPasswordField"
+            style="@style/EditTextField"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewPasswordText" />
+            app:layout_constraintTop_toBottomOf="@id/TextViewPasswordSign" />
 
 
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkBox"
             style="@style/Text.LightGray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="-6dp"
             android:buttonTint="@color/white"
-            android:minHeight="0dp"
+            android:minHeight="@dimen/zero"
             android:text="@string/remember_me"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordField" />
+            app:layout_constraintTop_toBottomOf="@id/editTextPasswordField" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,22 +104,20 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRegister"
         style="@style/MainButton.Blue"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="@dimen/between_buttons_margin"
         android:text="@string/register_button"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
+        app:layout_constraintBottom_toTopOf="@id/textViewTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/appCompatTextView"
+        android:id="@+id/textViewTermsAndConditions"
         style="@style/Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="@dimen/between_buttons_margin"
         android:text="@string/terms_and_conditions"
         android:textFontWeight="400"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        android:textSize="@dimen/h4"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -136,31 +133,26 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewHaveAccount"
             style="@style/Text.LightGray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="@dimen/between_buttons_margin"
             android:text="@string/already_have_account"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/textViewSignIn"
+            android:textSize="@dimen/h3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewSignIn"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewSignIn"
             style="@style/Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
             android:text="@string/sign_in"
-            android:textSize="14sp"
+            android:textSize="@dimen/h3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textViewHaveAccount"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toEndOf="@id/textViewHaveAccount"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
