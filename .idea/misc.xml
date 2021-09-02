@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/blue_button.xml" value="0.2703125" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/gray_line.xml" value="0.2703125" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/orange_button.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/round_corners_rect.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_button.xml" value="0.2703125" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth.xml" value="0.2" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>

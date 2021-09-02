@@ -7,4 +7,13 @@
     <string name="settings_invitation">Go to settings and fill out the profile</string>
     <string name="edit_profile_button">Edit profile</string>
     <string name="view_my_contacts_button">View my contacts</string>
+    <string name="register_invitation">Let\'s get acquainted</string>
+    <string name="fill_out_description">Fill out the profile and go to the application!</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="register_button">register</string>
+    <string name="terms_and_conditions">By clicking Register you agree to our Terms\nand Conditions</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
 </resources>

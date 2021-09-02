@@ -9,35 +9,33 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/zero"
         android:background="@color/main_blue_color"
-        app:layout_constraintBottom_toTopOf="@+id/guideLine"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toTopOf="@id/guideLineHorizontalCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewSettings"
-            style="@style/Text"
-            android:layout_marginStart="17dp"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSettings"
+            style="@style/BorderlessButton"
+            android:layout_marginStart="@dimen/sides_margin"
             android:layout_marginTop="@dimen/sides_margin"
-            android:clickable="true"
-            android:focusable="true"
             android:text="@string/settings_button"
-            android:textSize="24sp"
+            android:textSize="@dimen/h1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewProfilePhoto"
-            android:layout_width="113dp"
-            android:layout_height="113dp"
+            android:layout_width="@dimen/photo_diameter"
+            android:layout_height="@dimen/photo_diameter"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="113dp"
+            android:layout_marginTop="@dimen/between_elements_margin"
+            app:cardCornerRadius="@dimen/photo_diameter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSettings">
+            app:layout_constraintTop_toBottomOf="@id/buttonSettings">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewProfilePhoto"
@@ -50,40 +48,37 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewUserName"
             style="@style/Text"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/between_elements_margin"
             android:text="@string/user_name"
-            android:textSize="18sp"
+            android:textSize="@dimen/h2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewProfilePhoto" />
+            app:layout_constraintTop_toBottomOf="@id/cardViewProfilePhoto" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewCareer"
             style="@style/Text.LightGray"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/between_text_margin"
             android:text="@string/career"
-            android:textSize="14sp"
+            android:textSize="@dimen/h3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
+            app:layout_constraintTop_toBottomOf="@id/textViewUserName" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewHomeAddress"
             style="@style/Text.LightGray"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/sides_margin"
             android:text="@string/home_address"
-            android:textSize="14sp"
+            android:textSize="@dimen/h3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCareer" />
+            app:layout_constraintTop_toBottomOf="@id/textViewCareer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLine"
+        android:id="@+id/guideLineHorizontalCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -91,20 +86,18 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/Text.Blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/settings_invitation"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEditProfile"
+        app:layout_constraintBottom_toTopOf="@id/buttonEditProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonEditProfile"
         style="@style/MainButton.EditProfile"
+        android:layout_marginBottom="@dimen/between_buttons_margin"
         android:text="@string/edit_profile_button"
         android:textAllCaps="false"
-        android:layout_marginBottom="13dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonViewContacts"
+        app:layout_constraintBottom_toTopOf="@id/buttonViewContacts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
