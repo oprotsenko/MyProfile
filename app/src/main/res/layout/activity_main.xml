@@ -85,45 +85,44 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+        android:id="@+id/buttonSocialFacebook"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="65dp"
         android:background="@drawable/facebook_icon"
-
         app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
         app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatButton2"
+        app:layout_constraintEnd_toStartOf="@id/buttonSocialLinkedIn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton2"
+        android:id="@+id/buttonSocialLinkedIn"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
         android:layout_marginBottom="64dp"
         android:background="@drawable/linkedin_icon"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
+        app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
         app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatButton3"
+        app:layout_constraintEnd_toStartOf="@id/buttonSocialVK"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/appCompatButton" />
+        app:layout_constraintStart_toEndOf="@id/buttonSocialFacebook" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton3"
+        android:id="@+id/buttonSocialVK"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
         android:layout_marginBottom="64dp"
         android:background="@drawable/vk_icon"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
+        app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
         app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/appCompatButton2" />
+        app:layout_constraintStart_toEndOf="@id/buttonSocialLinkedIn" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView"
