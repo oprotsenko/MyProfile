@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 
 import android.content.Intent
+import android.widget.EditText
+import android.widget.Toast
 
 
 class AuthActivity : AppCompatActivity() {
@@ -16,16 +18,24 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setListeners() {
         val buttonRegister = findViewById<Button>(R.id.buttonRegister)
-        buttonRegister.setOnClickListener {
-        sendMessage()
-        }
+        buttonRegister.setOnClickListener { register() }
     }
 
-    private fun sendMessage() {
+    private fun register() {
         val intent = Intent(this, MainActivity::class.java)
-        val message = "name"
-        intent.putExtra("message", message)
+        val emailData = findViewById<EditText>(R.id.editTextEmailAddressField)
+        if (!validator(emailData)) {
+            Toast.makeText(this, "e-mail not valid", Toast.LENGTH_SHORT).show()
+            setListeners()
+        }
+        intent.putExtra("name", emailData.text.toString())
         startActivity(intent)
         finish()
+    }
+
+    private fun validator(emailData: EditText): Boolean {
+        if (emailData.text.isEmpty() || !emailData.text.matches(Regex("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$")))
+            return false
+        return true
     }
 }

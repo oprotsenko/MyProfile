@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">My Profile</string>
     <string name="settings_button">Settings</string>
-    <string name="user_name">Lucile Alvarado</string>
+    <string name="user_name">User Name</string>
     <string name="career">Career</string>
     <string name="home_address">Home address</string>
     <string name="settings_invitation">Go to settings and fill out the profile</string>
