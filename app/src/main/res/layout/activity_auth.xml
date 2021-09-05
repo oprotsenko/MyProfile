@@ -106,6 +106,7 @@
         style="@style/MainButton.Blue"
         android:layout_marginBottom="@dimen/between_buttons_margin"
         android:text="@string/register_button"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@id/textViewTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
