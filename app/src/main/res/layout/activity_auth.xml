@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -51,6 +52,7 @@
             android:id="@+id/editTextEmailAddressField"
             style="@style/EditTextField"
             android:inputType="textEmailAddress"
+            app:hintEnable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -105,8 +107,8 @@
         android:id="@+id/buttonRegister"
         style="@style/MainButton.Blue"
         android:layout_marginBottom="@dimen/between_buttons_margin"
-        android:text="@string/register_button"
         android:enabled="false"
+        android:text="@string/register_button"
         app:layout_constraintBottom_toTopOf="@id/textViewTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -149,9 +151,9 @@
             android:focusable="true"
             android:text="@string/sign_in"
             android:textSize="@dimen/h3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textViewHaveAccount"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/textViewHaveAccount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

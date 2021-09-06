@@ -2,35 +2,59 @@ package com.protsolo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 
 import android.content.Intent
-import android.widget.EditText
+import android.icu.text.IDNA
+import android.util.Patterns
 import androidx.core.widget.doOnTextChanged
-
+import com.protsolo.databinding.ActivityAuthBinding
+import java.lang.Error
+import kotlin.Error
 
 class AuthActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityAuthBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
-        val emailData = findViewById<EditText>(R.id.editTextEmailAddressField)
-        val buttonRegister = findViewById<Button>(R.id.buttonRegister)
-        emailData.doOnTextChanged { text, start, before, count ->
-            if (android.util.Patterns.EMAIL_ADDRESS.matcher(emailData.toString()).matches())
-                buttonRegister.isEnabled = true
-        }
+        binding = ActivityAuthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setListeners()
     }
 
     private fun setListeners() {
-        val buttonRegister = findViewById<Button>(R.id.buttonRegister)
-        buttonRegister.setOnClickListener { register() }
+        binding.apply {
+            editTextEmailAddressField.doOnTextChanged { text, start, before, count ->
+                if (validMail(text)) {
+                    buttonRegister.isEnabled = true
+                } else {
+                    buttonRegister.isEnabled = false
+                    editTextEmailAddressField.error = "wrong"
+                }
+            }
+            editTextPasswordField.doOnTextChanged { text, start, before, count ->
+                if (validPassword(text)) {
+                    buttonRegister.isEnabled = true
+                } else {
+                    buttonRegister.isEnabled = false
+                    editTextPasswordField.error = "wrong"
+                }
+            }
+            buttonRegister.setOnClickListener {
+                buttonRegister.isEnabled = false
+                register() }
+        }
     }
+
+    private fun validPassword(text: CharSequence?) =
+        Regex("[a-z0-9?:!#$%&]{8,}").matches(text.toString())
+
+    private fun validMail(text: CharSequence?) =
+        Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
 
     private fun register() {
         val intent = Intent(this, MainActivity::class.java)
-        val emailData = findViewById<EditText>(R.id.editTextEmailAddressField)
-        intent.putExtra("name", emailData.text.toString())
+        intent.putExtra("name", binding.editTextEmailAddressField.text.toString())
         startActivity(intent)
         finish()
     }
