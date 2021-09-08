@@ -77,4 +77,5 @@
         <item name="android:layout_marginStart">@dimen/sides_margin</item>
         <item name="android:layout_marginEnd">@dimen/sides_margin</item>
     </style>
+
 </resources>

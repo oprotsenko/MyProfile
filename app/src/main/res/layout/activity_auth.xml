@@ -9,54 +9,97 @@
     app:layoutDescription="@xml/activity_auth_scene"
     tools:context=".AuthActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/InnerLayout"
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        style="@style/InnerLayout"-->
+    <!--        android:layout_marginBottom="@dimen/between_elements_margin"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/guideLineHorizontalCenter"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent">-->
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/between_text_margin"
+        android:text="@string/register_invitation"
+        android:textSize="@dimen/h1"
+        app:layout_constraintBottom_toTopOf="@id/textViewFillOutDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewFillOutDescription"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/between_elements_margin"
-        app:layout_constraintBottom_toTopOf="@id/guideLineHorizontalCenter"
+        android:text="@string/fill_out_description"
+        android:textSize="@dimen/h4"
+        app:layout_constraintBottom_toTopOf="@id/textLayoutEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textLayoutEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sides_margin"
+        android:layout_marginEnd="@dimen/sides_margin"
+        android:layout_marginBottom="@dimen/between_elements_margin"
+        android:textColorHint="@color/light_gray_text"
+        app:boxBackgroundColor="@color/light_gray_text"
+        app:boxCollapsedPaddingTop="0dp"
+        app:boxStrokeColor="@color/light_gray_text"
+        app:boxStrokeWidth="2.5dp"
+        app:errorEnabled="false"
+        android:textSize="@dimen/h3"
+        app:errorTextColor="@color/error_color"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/guideLineHorizontalCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/between_text_margin"
-            android:text="@string/register_invitation"
-            android:textSize="@dimen/h1"
-            app:layout_constraintBottom_toTopOf="@id/textViewFillOutDescription"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewFillOutDescription"
-            style="@style/Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/between_elements_margin"
-            android:text="@string/fill_out_description"
-            android:textSize="@dimen/h4"
-            app:layout_constraintBottom_toTopOf="@id/TextViewEmailSign"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/TextViewEmailSign"
-            style="@style/Text.LightGray"
-            android:text="@string/email"
-            android:textSize="@dimen/h3"
-            app:layout_constraintBottom_toTopOf="@id/editTextEmailAddressField"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.appcompat.widget.AppCompatEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmailAddressField"
-            style="@style/EditTextField"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_blue_color"
+            android:backgroundTintMode="multiply"
+            android:ems="10"
+            android:foregroundTint="@color/light_gray_text"
+            android:foregroundTintMode="multiply"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
-            app:hintEnable="true"
+            android:paddingStart="0dp"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="textStart"
+            android:textColorHint="@color/light_gray_text"
+            android:textSize="@dimen/h2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="RtlSymmetry" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--        <androidx.appcompat.widget.AppCompatTextView-->
+    <!--            android:id="@+id/TextViewEmailSign"-->
+    <!--            style="@style/Text.LightGray"-->
+    <!--            android:text="@string/email"-->
+    <!--            android:textSize="@dimen/h3"-->
+    <!--            app:layout_constraintBottom_toTopOf="@id/editTextEmailAddressField"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            tools:ignore="MissingConstraints" />-->
+
+    <!--        <androidx.appcompat.widget.AppCompatEditText-->
+    <!--            android:id="@+id/editTextEmailAddressField"-->
+    <!--            style="@style/EditTextField"-->
+    <!--            android:inputType="textEmailAddress"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineHorizontalCenter"

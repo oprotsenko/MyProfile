@@ -1,19 +1,24 @@
 package com.protsolo
 
+import PreferenceStorage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.content.Intent
-import android.icu.text.IDNA
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.Patterns
 import androidx.core.widget.doOnTextChanged
 import com.protsolo.databinding.ActivityAuthBinding
-import java.lang.Error
-import kotlin.Error
+
 
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthBinding
+
+    val preferencesStorage: PreferenceStorage = PreferenceStorage(this)
+    val appPreferencesEmail = "email"
+    val appPreferencesPass = "password"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,25 +29,26 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.apply {
-            editTextEmailAddressField.doOnTextChanged { text, start, before, count ->
+            textLayoutEmail.editText?.doOnTextChanged { text, start, before, count ->
                 if (validMail(text)) {
-                    buttonRegister.isEnabled = true
+                    textLayoutEmail.isErrorEnabled = false
                 } else {
-                    buttonRegister.isEnabled = false
-                    editTextEmailAddressField.error = "wrong"
+                    textLayoutEmail.error = "Email is not valid"
+                    textLayoutEmail.isErrorEnabled = true
                 }
+                buttonRegister.isEnabled = validMail(textLayoutEmail.editText!!.text) && validPassword(editTextPasswordField.text)
             }
             editTextPasswordField.doOnTextChanged { text, start, before, count ->
                 if (validPassword(text)) {
-                    buttonRegister.isEnabled = true
                 } else {
-                    buttonRegister.isEnabled = false
                     editTextPasswordField.error = "wrong"
                 }
+                buttonRegister.isEnabled = validMail(textLayoutEmail.editText!!.text) && validPassword(editTextPasswordField.text)
             }
             buttonRegister.setOnClickListener {
                 buttonRegister.isEnabled = false
-                register() }
+                register()
+            }
         }
     }
 
@@ -54,6 +60,8 @@ class AuthActivity : AppCompatActivity() {
 
     private fun register() {
         val intent = Intent(this, MainActivity::class.java)
+        preferencesStorage.save(appPreferencesEmail, binding.editTextEmailAddressField.text.toString())
+        preferencesStorage.save(appPreferencesPass, binding.editTextPasswordField.text.toString())
         intent.putExtra("name", binding.editTextEmailAddressField.text.toString())
         startActivity(intent)
         finish()

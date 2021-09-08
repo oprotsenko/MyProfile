@@ -13,4 +13,5 @@
     <color name="gray_text">#18181F</color>
     <color name="orange">#FB5E06</color>
     <color name="gray_line">#BDBDBD</color>
+    <color name="error_color">#F93E3E</color>
 </resources>
