@@ -31,8 +31,6 @@
         <item name="android:paddingTop">@dimen/button_top_bottom_padding</item>
         <item name="android:paddingBottom">@dimen/button_top_bottom_padding</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:layout_marginStart">@dimen/sides_margin</item>
-        <item name="android:layout_marginEnd">@dimen/sides_margin</item>
     </style>
 
     <style name="BorderlessButton" parent="TextAppearance.AppCompat.Widget.Button.Borderless.Colored">

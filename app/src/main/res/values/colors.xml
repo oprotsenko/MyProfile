@@ -14,4 +14,5 @@
     <color name="orange">#FB5E06</color>
     <color name="gray_line">#BDBDBD</color>
     <color name="error_color">#F93E3E</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#B2B2B3</color>
 </resources>

@@ -1,13 +1,10 @@
 package com.protsolo
 
 import PreferenceStorage
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
+import android.os.Bundle
 import android.util.Patterns
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.protsolo.databinding.ActivityAuthBinding
 
@@ -29,21 +26,27 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.apply {
-            textLayoutEmail.editText?.doOnTextChanged { text, start, before, count ->
+            textInputLayoutEmail.editText?.doOnTextChanged { text, start, before, count ->
                 if (validMail(text)) {
-                    textLayoutEmail.isErrorEnabled = false
+                    textInputLayoutEmail.isErrorEnabled = false
                 } else {
-                    textLayoutEmail.error = "Email is not valid"
-                    textLayoutEmail.isErrorEnabled = true
+                    textInputLayoutEmail.error = "Email is not valid"
+                    textInputLayoutEmail.isErrorEnabled = true
                 }
-                buttonRegister.isEnabled = validMail(textLayoutEmail.editText!!.text) && validPassword(editTextPasswordField.text)
+                buttonRegister.isEnabled =
+                    validMail(textInputLayoutEmail.editText!!.text) && validPassword(
+                        editTextPasswordField.text
+                    )
             }
             editTextPasswordField.doOnTextChanged { text, start, before, count ->
                 if (validPassword(text)) {
                 } else {
                     editTextPasswordField.error = "Use at last 8 symbols"
                 }
-                buttonRegister.isEnabled = validMail(textLayoutEmail.editText!!.text) && validPassword(editTextPasswordField.text)
+                buttonRegister.isEnabled =
+                    validMail(textInputLayoutEmail.editText!!.text) && validPassword(
+                        editTextPasswordField.text
+                    )
             }
             buttonRegister.setOnClickListener {
                 buttonRegister.isEnabled = false

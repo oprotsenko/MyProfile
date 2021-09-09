@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         android:background="@color/main_blue_color"
@@ -85,69 +86,78 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSocialFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="65dp"
-        android:background="@drawable/facebook_icon"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
-        app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintEnd_toStartOf="@id/buttonSocialLinkedIn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSocialLinkedIn"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/linkedin_icon"
-        app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
-        app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintEnd_toStartOf="@id/buttonSocialVK"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/buttonSocialFacebook" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSocialVK"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/vk_icon"
-        app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
-        app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/buttonSocialLinkedIn" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/appCompatTextView"
-        style="@style/Text.Blue"
-        android:text="@string/settings_invitation"
-        app:layout_constraintBottom_toTopOf="@id/buttonEditProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonEditProfile"
-        style="@style/MainButton.EditProfile"
-        android:layout_marginBottom="@dimen/between_buttons_margin"
-        android:text="@string/edit_profile_button"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@id/buttonViewContacts"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonViewContacts"
-        style="@style/MainButton"
-        android:layout_marginBottom="@dimen/sides_margin"
-        android:text="@string/view_my_contacts_button"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/InnerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSocialFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="65dp"
+            android:background="@drawable/facebook_icon"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toStartOf="@id/buttonSocialLinkedIn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSocialLinkedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/linkedin_icon"
+            app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toStartOf="@id/buttonSocialVK"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/buttonSocialFacebook" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSocialVK"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/vk_icon"
+            app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/buttonSocialLinkedIn" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            style="@style/Text.Blue"
+            android:text="@string/settings_invitation"
+            app:layout_constraintBottom_toTopOf="@id/buttonEditProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonEditProfile"
+            style="@style/MainButton.EditProfile"
+            android:layout_marginBottom="@dimen/between_buttons_margin"
+            android:text="@string/edit_profile_button"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@id/buttonViewContacts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonViewContacts"
+            style="@style/MainButton"
+            android:layout_marginBottom="@dimen/sides_margin"
+            android:text="@string/view_my_contacts_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
