@@ -35,16 +35,18 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/between_elements_margin"
             app:cardCornerRadius="@dimen/photo_diameter"
+            android:backgroundTint="@color/light_gray_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonSettings">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewProfilePhoto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                tools:srcCompat="@drawable/default_profile_icon" />
+                tools:srcCompat="@drawable/ic_add_profile_photo" />
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -99,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="65dp"
-            android:background="@drawable/facebook_icon"
+            android:background="@drawable/ic_facebook"
             app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintEnd_toStartOf="@id/buttonSocialLinkedIn"
@@ -112,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/linkedin_icon"
+            android:background="@drawable/ic_linkedin"
             app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintEnd_toStartOf="@id/buttonSocialVK"
@@ -124,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/vk_icon"
+            android:background="@drawable/ic_vk"
             app:layout_constraintBottom_toTopOf="@id/appCompatTextView"
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -151,7 +153,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonViewContacts"
-            style="@style/MainButton"
+            style="@style/MainButton.Orange"
             android:layout_marginBottom="@dimen/sides_margin"
             android:text="@string/view_my_contacts_button"
             app:layout_constraintBottom_toBottomOf="parent"

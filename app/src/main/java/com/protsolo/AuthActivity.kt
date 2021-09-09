@@ -26,7 +26,7 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.apply {
-            textInputLayoutEmail.editText?.doOnTextChanged { text, start, before, count ->
+            editTextEmailAddressField.doOnTextChanged { text, start, before, count ->
                 if (validMail(text)) {
                     textInputLayoutEmail.isErrorEnabled = false
                 } else {
@@ -40,8 +40,10 @@ class AuthActivity : AppCompatActivity() {
             }
             editTextPasswordField.doOnTextChanged { text, start, before, count ->
                 if (validPassword(text)) {
+                    textInputLayoutPassword.isErrorEnabled = false
                 } else {
-                    editTextPasswordField.error = "Use at last 8 symbols"
+                    textInputLayoutPassword.error = "Use at last 8 symbols"
+                    textInputLayoutPassword.isErrorEnabled = true
                 }
                 buttonRegister.isEnabled =
                     validMail(textInputLayoutEmail.editText!!.text) && validPassword(
