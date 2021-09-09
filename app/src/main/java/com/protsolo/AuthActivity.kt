@@ -41,7 +41,7 @@ class AuthActivity : AppCompatActivity() {
             editTextPasswordField.doOnTextChanged { text, start, before, count ->
                 if (validPassword(text)) {
                 } else {
-                    editTextPasswordField.error = "wrong"
+                    editTextPasswordField.error = "Use at last 8 symbols"
                 }
                 buttonRegister.isEnabled = validMail(textLayoutEmail.editText!!.text) && validPassword(editTextPasswordField.text)
             }

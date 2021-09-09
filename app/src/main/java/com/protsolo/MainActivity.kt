@@ -19,15 +19,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setListeners()
-        setObtainedData()
+        setName()
     }
 
-    private fun setObtainedData() {
+    /**
+     * Gets the email from the app base, calls the method to
+     * parse it for the name and soname.
+     */
+    private fun setName() {
         val name = preferencesStorage.getString(appPreferencesEmail, "none")
         val parsedUserName: String? = parseName(name)
         binding.textViewUserName.text = parsedUserName
     }
 
+    /**
+     * Parse the obtained string to the user name.
+     */
     private fun parseName(name: String?): String? {
         val res = StringBuilder()
         if (name == null)
@@ -46,11 +53,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.buttonEditProfile.setOnClickListener {
-            editProfile()
+            startEditProfileActivity()
         }
     }
 
-    private fun editProfile() {
+    private fun startEditProfileActivity() {
         val intent = Intent(this, AuthActivity::class.java)
         startActivity(intent)
         finish()
