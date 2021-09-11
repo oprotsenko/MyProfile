@@ -9,153 +9,129 @@
     tools:context=".AuthActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineHorizontal0.3"
+        android:id="@+id/guideLineAuthHorizontal0.3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        style="@style/InnerLayout"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewAuthTitle"
+        style="@style/Text"
+        android:text="@string/auth_acquaint"
+        android:textSize="@dimen/text_size_h1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontal0.3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewAuthFillOutDescription"
+        style="@style/Text"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="@dimen/margin_24"
+        android:text="@string/auth_fill_out_description"
+        android:textSize="@dimen/text_size_h4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAuthTitle" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutAuthEmail"
+        style="@style/TextInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAuthFillOutDescription">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAuthEmailAddressField"
+            style="@style/EditTextField"
+            android:hint="@string/auth_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutAuthPassword"
+        style="@style/TextInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAuthPasswordField"
+            style="@style/EditTextField"
+            android:gravity="bottom"
+            android:hint="@string/auth_password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkBoxAuthRememberMe"
+        style="@style/Text.LightGray"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/guideLineHorizontal0.3"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        android:buttonTint="@color/white"
+        android:minHeight="@dimen/zero"
+        android:text="@string/auth_remember_me"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthPassword" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewTitle"
-            style="@style/Text"
-            android:text="@string/register_invitation"
-            android:textSize="@dimen/h1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonAuthRegister"
+        style="@style/MainButton.BorderOrange"
+        android:layout_marginTop="147dp"
+        android:layout_marginBottom="@dimen/margin_12"
+        android:enabled="false"
+        android:text="@string/auth_register"
+        app:layout_constraintBottom_toTopOf="@id/textViewAuthTermsAndConditions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxAuthRememberMe" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewFillOutDescription"
-            style="@style/Text"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="@dimen/between_elements_margin"
-            android:text="@string/fill_out_description"
-            android:textSize="@dimen/h4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewAuthTermsAndConditions"
+        style="@style/Text"
+        android:layout_marginBottom="@dimen/margin_12"
+        android:text="@string/auth_terms_and_conditions"
+        android:textFontWeight="400"
+        android:textSize="@dimen/text_size_h4"
+        app:layout_constraintBottom_toTopOf="@id/textViewAuthHaveAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputLayout"
-            android:id="@+id/textInputLayoutEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewFillOutDescription">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewAuthHaveAccount"
+        style="@style/Text.LightGray"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:layout_marginBottom="@dimen/margin_16"
+        android:text="@string/auth_already_have_account"
+        android:textSize="@dimen/text_size_h3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textViewAuthSignIn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmailAddressField"
-                style="@style/EditTextField"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlSymmetry" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputLayout"
-            android:id="@+id/textInputLayoutPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPasswordField"
-                style="@style/EditTextField"
-                android:hint="@string/password"
-                android:inputType="textEmailAddress"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlSymmetry" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/checkBox"
-            style="@style/Text.LightGray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-6dp"
-            android:layout_marginTop="18dp"
-            android:buttonTint="@color/white"
-            android:minHeight="@dimen/zero"
-            android:text="@string/remember_me"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/InnerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewAuthSignIn"
+        style="@style/Text"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="@dimen/margin_16"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/auth_sign_in"
+        android:textSize="@dimen/text_size_h3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonRegister"
-            style="@style/MainButton.Blue"
-            android:layout_marginBottom="@dimen/between_buttons_margin"
-            android:enabled="false"
-            android:text="@string/register_button"
-            app:layout_constraintBottom_toTopOf="@id/textViewTermsAndConditions"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewTermsAndConditions"
-            style="@style/Text"
-            android:layout_marginBottom="@dimen/between_buttons_margin"
-            android:text="@string/terms_and_conditions"
-            android:textFontWeight="400"
-            android:textSize="@dimen/h4"
-            app:layout_constraintBottom_toTopOf="@id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/sides_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewHaveAccount"
-                style="@style/Text.LightGray"
-                android:layout_marginEnd="@dimen/between_buttons_margin"
-                android:text="@string/already_have_account"
-                android:textSize="@dimen/h3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/textViewSignIn"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewSignIn"
-                style="@style/Text"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/sign_in"
-                android:textSize="@dimen/h3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/textViewHaveAccount" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        app:layout_constraintStart_toEndOf="@id/textViewAuthHaveAccount"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAuthTermsAndConditions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

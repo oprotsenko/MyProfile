@@ -7,15 +7,14 @@ import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.protsolo.databinding.ActivityAuthBinding
+import com.protsolo.utils.Constants
 
 
 class AuthActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAuthBinding
+    private val preferencesStorage: PreferenceStorage = PreferenceStorage(this)
 
-    val preferencesStorage: PreferenceStorage = PreferenceStorage(this)
-    val appPreferencesEmail = "email"
-    val appPreferencesPass = "password"
+    private lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,48 +25,46 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.apply {
-            editTextEmailAddressField.doOnTextChanged { text, start, before, count ->
-                if (validMail(text)) {
-                    textInputLayoutEmail.isErrorEnabled = false
+            editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
+                if (isValidMail(text)) {
+                    textInputLayoutAuthEmail.isErrorEnabled = false
                 } else {
-                    textInputLayoutEmail.error = "Email is not valid"
-                    textInputLayoutEmail.isErrorEnabled = true
+                    textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
+                    textInputLayoutAuthEmail.isErrorEnabled = true
                 }
-                buttonRegister.isEnabled =
-                    validMail(textInputLayoutEmail.editText!!.text) && validPassword(
-                        editTextPasswordField.text
-                    )
+                buttonAuthRegister.isEnabled =
+                    isValidMail(textInputLayoutAuthEmail.editText?.text)
+                            && isValidPassword(editTextAuthPasswordField.text)
             }
-            editTextPasswordField.doOnTextChanged { text, start, before, count ->
-                if (validPassword(text)) {
-                    textInputLayoutPassword.isErrorEnabled = false
+            editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
+                if (isValidPassword(text)) {
+                    textInputLayoutAuthPassword.isErrorEnabled = false
                 } else {
-                    textInputLayoutPassword.error = "Use at last 8 symbols"
-                    textInputLayoutPassword.isErrorEnabled = true
+                    textInputLayoutAuthPassword.error = getString(R.string.authMessagePasswordError)
+                    textInputLayoutAuthPassword.isErrorEnabled = true
                 }
-                buttonRegister.isEnabled =
-                    validMail(textInputLayoutEmail.editText!!.text) && validPassword(
-                        editTextPasswordField.text
-                    )
+                buttonAuthRegister.isEnabled =
+                    isValidMail(textInputLayoutAuthEmail.editText?.text)
+                            && isValidPassword(editTextAuthPasswordField.text)
             }
-            buttonRegister.setOnClickListener {
-                buttonRegister.isEnabled = false
+            buttonAuthRegister.setOnClickListener {
+                buttonAuthRegister.isEnabled = false
                 register()
             }
         }
     }
 
-    private fun validPassword(text: CharSequence?) =
-        Regex("[a-z0-9?:!#$%&]{8,}").matches(text.toString())
+    private fun isValidPassword(text: CharSequence?) =
+        Regex(Constants.PASSWORD_PATTERN).matches(text.toString())
 
-    private fun validMail(text: CharSequence?) =
+    private fun isValidMail(text: CharSequence?) =
         Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
 
     private fun register() {
         val intent = Intent(this, MainActivity::class.java)
-        preferencesStorage.save(appPreferencesEmail, binding.editTextEmailAddressField.text.toString())
-        preferencesStorage.save(appPreferencesPass, binding.editTextPasswordField.text.toString())
-        intent.putExtra("name", binding.editTextEmailAddressField.text.toString())
+        preferencesStorage.save(Constants.PREFERENCE_EMAIL_KEY, binding.editTextAuthEmailAddressField.text.toString())
+        preferencesStorage.save(Constants.PREFERENCE_PASSWORD_KEY, binding.editTextAuthPasswordField.text.toString())
+        intent.putExtra(Constants.MESSAGE, binding.editTextAuthEmailAddressField.text.toString())
         startActivity(intent)
         finish()
     }

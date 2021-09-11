@@ -1,19 +1,21 @@
 <resources>
     <string name="app_name">My Profile</string>
-    <string name="settings_button">Settings</string>
-    <string name="user_name">User Name</string>
-    <string name="career">Career</string>
-    <string name="home_address">Home address</string>
-    <string name="settings_invitation">Go to settings and fill out the profile</string>
-    <string name="edit_profile_button">Edit profile</string>
-    <string name="view_my_contacts_button">View my contacts</string>
-    <string name="register_invitation">Let\'s get acquainted</string>
-    <string name="fill_out_description">Fill out the profile and go to the application!</string>
-    <string name="email">E-mail</string>
-    <string name="password">Password</string>
-    <string name="remember_me">Remember me</string>
-    <string name="register_button">register</string>
-    <string name="terms_and_conditions">By clicking Register you agree to our Terms\nand Conditions</string>
-    <string name="already_have_account">Already have an account?</string>
-    <string name="sign_in">Sign in</string>
+    <string name="main_settings">Settings</string>
+    <string name="main_user_name">User Name</string>
+    <string name="main_career">Career</string>
+    <string name="main_home_address">Home address</string>
+    <string name="main_settings_description">Go to settings and fill out the profile</string>
+    <string name="main_edit_profile">Edit profile</string>
+    <string name="main_view_my_contacts">View my contacts</string>
+    <string name="auth_acquaint">Let\'s get acquainted</string>
+    <string name="auth_fill_out_description">Fill out the profile and go to the application!</string>
+    <string name="auth_email">E-mail</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_remember_me">Remember me</string>
+    <string name="auth_register">register</string>
+    <string name="auth_terms_and_conditions">By clicking Register you agree to our Terms\nand Conditions</string>
+    <string name="auth_already_have_account">Already have an account?</string>
+    <string name="auth_sign_in">Sign in</string>
+    <string name="authMessageEmailError">Incorrect E-Mail address</string>
+    <string name="authMessagePasswordError">Your password must include a minimum of 8 characters.</string>
 </resources>

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="sides_margin">16dp</dimen>
-    <dimen name="between_elements_margin">24dp</dimen>
-    <dimen name="between_buttons_margin">12dp</dimen>
-    <dimen name="between_text_margin">8dp</dimen>
-    <dimen name="button_top_bottom_padding">15.5dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="padding_15.5">15.5dp</dimen>
     <dimen name="border_width">2.5dp</dimen>
     <dimen name="corner_radius">5dp</dimen>
     <dimen name="zero">0dp</dimen>
-    <dimen name="h1">24sp</dimen>
-    <dimen name="h2">18sp</dimen>
-    <dimen name="h3">14sp</dimen>
-    <dimen name="h4">12sp</dimen>
-    <dimen name="button_text_size">16sp</dimen>
-    <dimen name="photo_diameter">113dp</dimen>
+    <dimen name="text_size_h1">24sp</dimen>
+    <dimen name="text_size_h2">18sp</dimen>
+    <dimen name="text_size_h3">14sp</dimen>
+    <dimen name="text_size_h4">12sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="photo_size_113">113dp</dimen>
+    <dimen name="cursor_width">2dp</dimen>
 </resources>
