@@ -30,11 +30,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewMainProfilePhoto"
-            android:layout_width="@dimen/photo_size_113"
-            android:layout_height="@dimen/photo_size_113"
+            android:layout_width="@dimen/profile_photo_size_113"
+            android:layout_height="@dimen/profile_photo_size_113"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_24"
-            app:cardCornerRadius="@dimen/photo_size_113"
+            app:cardCornerRadius="@dimen/profile_photo_size_113"
             android:backgroundTint="@color/light_gray_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

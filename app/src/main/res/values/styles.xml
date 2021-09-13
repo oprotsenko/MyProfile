@@ -19,6 +19,10 @@
         <item name="android:textColor">@color/main_blue_color</item>
         <item name="android:layout_marginBottom">@dimen/margin_16</item>
     </style>
+
+    <style name="Text.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
     <!--Style for button-->
     <style name="MainButton" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">match_parent</item>
@@ -88,11 +92,15 @@
         <item name="boxCollapsedPaddingTop">-16dp</item>
     </style>
 
-
     <style name="WindowAnimations">
         <item name="android:activityOpenEnterAnimation">@anim/enter_activity</item>
         <item name="android:activityOpenExitAnimation">@anim/exit_activity</item>
         <item name="android:activityCloseEnterAnimation">@anim/enter_activity</item>
         <item name="android:activityCloseExitAnimation">@anim/exit_activity</item>
+    </style>
+
+    <style name="ContactsListImageButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>
