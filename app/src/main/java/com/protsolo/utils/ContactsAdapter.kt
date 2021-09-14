@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
-import com.squareup.picasso.Picasso
+
 
 class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>() {
+
+    var usersList: UsersList = UsersList()
 
     class ContactsViewHolder(private val binding: ContactListItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
@@ -16,6 +18,7 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>
             fun bind(userModel: UserModel) {
                 binding.apply {
                     textViewContactsListContactName.text = userModel.contactName
+                    textViewContactsListContactCareer.text = userModel.contactCareer
                 }
             }
     }
@@ -34,7 +37,7 @@ class ContactsAdapter : RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(usersList.usersList[position])
     }
 
     override fun getItemCount(): Int {

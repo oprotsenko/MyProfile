@@ -32,9 +32,7 @@ class AuthActivity : AppCompatActivity() {
                     textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
                     textInputLayoutAuthEmail.isErrorEnabled = true
                 }
-                buttonAuthRegister.isEnabled =
-                    isValidMail(textInputLayoutAuthEmail.editText?.text)
-                            && isValidPassword(editTextAuthPasswordField.text)
+                setButtonStatus(binding)
             }
             editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
                 if (isValidPassword(text)) {
@@ -43,14 +41,20 @@ class AuthActivity : AppCompatActivity() {
                     textInputLayoutAuthPassword.error = getString(R.string.authMessagePasswordError)
                     textInputLayoutAuthPassword.isErrorEnabled = true
                 }
-                buttonAuthRegister.isEnabled =
-                    isValidMail(textInputLayoutAuthEmail.editText?.text)
-                            && isValidPassword(editTextAuthPasswordField.text)
+                setButtonStatus(binding)
             }
             buttonAuthRegister.setOnClickListener {
-                buttonAuthRegister.isEnabled = false
+                buttonAuthRegister.isEnabled = false // to prevent double click
                 register()
             }
+        }
+    }
+
+    private fun setButtonStatus(binding: ActivityAuthBinding) {
+        binding.apply {
+            buttonAuthRegister.isEnabled =
+                isValidMail(textInputLayoutAuthEmail.editText?.text)
+                        && isValidPassword(editTextAuthPasswordField.text)
         }
     }
 

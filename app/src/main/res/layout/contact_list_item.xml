@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/margin_16"
     android:layout_marginTop="@dimen/margin_16"
     android:layout_marginEnd="@dimen/margin_16"
-    android:background="@color/white">
+    android:background="@color/gray_3">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
@@ -16,7 +15,7 @@
         android:layout_marginStart="@dimen/margin_8"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/default_profile_icon"
+        android:src="@drawable/ic_default_profile_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewContactsListContactName"
         app:layout_constraintStart_toStartOf="parent"
