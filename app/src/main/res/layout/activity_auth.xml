@@ -9,11 +9,11 @@
     tools:context=".AuthActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineAuthHorizontal0.3"
+        android:id="@+id/guideLineAuthHorizontal0.23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthTitle"
@@ -22,7 +22,7 @@
         android:textSize="@dimen/text_size_h1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontal0.3" />
+        app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontal0.23" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthFillOutDescription"
@@ -49,8 +49,7 @@
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
+            app:layout_constraintTop_toTopOf="parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,8 +67,7 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
+            app:layout_constraintTop_toTopOf="parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -77,8 +75,8 @@
         style="@style/Text.LightGray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_18"
         android:buttonTint="@color/white"
         android:minHeight="@dimen/zero"
         android:text="@string/auth_remember_me"
@@ -94,8 +92,7 @@
         android:text="@string/auth_register"
         app:layout_constraintBottom_toTopOf="@id/textViewAuthTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxAuthRememberMe" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthTermsAndConditions"
@@ -125,13 +122,11 @@
         style="@style/Text"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="@dimen/margin_16"
-        android:clickable="true"
-        android:focusable="true"
         android:text="@string/auth_sign_in"
         android:textSize="@dimen/text_size_h3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textViewAuthHaveAccount"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAuthTermsAndConditions" />
+        app:layout_constraintTop_toBottomOf="@id/textViewAuthTermsAndConditions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
