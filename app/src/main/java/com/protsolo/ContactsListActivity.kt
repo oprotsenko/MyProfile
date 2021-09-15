@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.databinding.ActivityContactsListBinding
 import com.protsolo.utils.ContactsAdapter
+import com.protsolo.utils.UserModel
 
 class ContactsListActivity : AppCompatActivity() {
 
@@ -17,9 +18,28 @@ class ContactsListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityContactsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         contactsList = binding.recyclerViewContactsList
         contactsList.layoutManager = LinearLayoutManager(this)
 
-        contactsList.adapter = ContactsAdapter()
+        contactsList.adapter = ContactsAdapter(fillList())
+    }
+
+    private fun fillList(): List<UserModel> {
+        val list = mutableListOf<UserModel>()
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        return list
     }
 }
