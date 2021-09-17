@@ -11,6 +11,7 @@
     <dimen name="margin_8">8dp</dimen>
     <dimen name="padding_15.5">15.5dp</dimen>
     <dimen name="border_width">2.5dp</dimen>
+    <dimen name="border_width_1.5">1.5dp</dimen>
     <dimen name="corner_radius">5dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="text_size_h1">24sp</dimen>

@@ -12,7 +12,6 @@ class ContactsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityContactsListBinding
     private lateinit var contactsList: RecyclerView
-    private lateinit var contactsAdapter: ContactsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,19 +26,7 @@ class ContactsListActivity : AppCompatActivity() {
 
     private fun fillList(): List<UserModel> {
         val list = mutableListOf<UserModel>()
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
-        list.add(UserModel(null, "Olena", "student", "Kiev"))
+        (0..30).forEach { i -> list.add(UserModel(null, "$i name", "$i career", "$i address")) }
         return list
     }
 }

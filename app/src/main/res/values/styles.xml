@@ -12,7 +12,7 @@
     </style>
     <!--Style for light-gray text-->
     <style name="Text.LightGray">
-        <item name="android:textColor">@color/light_gray_text</item>
+        <item name="android:textColor">@color/gray_text2</item>
     </style>
     <!--Style for blue text-->
     <style name="Text.Blue">
@@ -81,8 +81,8 @@
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
         <item name="android:textColorHint">@color/gray_line</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
-        <item name="boxStrokeColor">@color/light_gray_text</item>
-        <item name="boxStrokeErrorColor">@color/light_gray_text</item>
+        <item name="boxStrokeColor">@color/gray_text2</item>
+        <item name="boxStrokeErrorColor">@color/gray_text2</item>
         <item name="boxStrokeWidth">1.5dp</item>
         <item name="errorTextColor">@color/error_color</item>
         <item name="android:ems">10</item>

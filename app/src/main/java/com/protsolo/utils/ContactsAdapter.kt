@@ -2,13 +2,15 @@ package com.protsolo.utils
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 
 
 class ContactsAdapter(private val contacts: List<UserModel>) :
-    RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>() {
+    ListAdapter<UserModel, ContactsAdapter.ContactsViewHolder>(UserDiffCallBack()) {
 
     class ContactsViewHolder(private val binding: ContactListItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
@@ -22,6 +24,16 @@ class ContactsAdapter(private val contacts: List<UserModel>) :
                     contactCareer.text = userModel.contactCareer
                 }
             }
+    }
+
+    class UserDiffCallBack : DiffUtil.ItemCallback<UserModel>() {
+        override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
+            return oldItem.equals(newItem)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {

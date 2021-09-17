@@ -35,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_24"
             app:cardCornerRadius="@dimen/profile_photo_size_113"
-            android:backgroundTint="@color/light_gray_text"
+            android:backgroundTint="@color/gray_text2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonMainSettings">
