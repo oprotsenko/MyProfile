@@ -4,6 +4,7 @@ import PreferenceStorage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.protsolo.databinding.ActivityMainBinding
 import com.protsolo.utils.Constants
 import java.lang.StringBuilder
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        var photo = binding.imageViewMainProfilePhoto
+        Glide.with(photo.context)
+            .load("https://scontent.fiev17-2.fna.fbcdn.net/v/t1.6435-9/242289197_4285719178131249_2304531192454725485_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Oxz1lcqMvCkAX8NjPEn&_nc_ht=scontent.fiev17-2.fna&oh=b20254fb6d57b2202f29c63d329da38f&oe=616E2EA4")
+            .into(photo)
         setContentView(binding.root)
         setListeners()
         setName()

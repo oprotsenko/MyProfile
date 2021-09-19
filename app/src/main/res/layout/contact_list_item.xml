@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:clickable="true"
     android:layout_marginStart="@dimen/margin_16"
     android:layout_marginTop="@dimen/margin_16"
     android:layout_marginEnd="@dimen/margin_16"
-    android:background="@drawable/contacts_frame_light_gray"
-    android:focusable="true">
+    android:background="@drawable/contacts_frame_light_gray">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
