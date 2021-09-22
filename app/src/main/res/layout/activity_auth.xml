@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_blue_color"
     app:layoutDescription="@xml/activity_auth_scene"
-    tools:context=".AuthActivity">
+    tools:context=".UI.AuthActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineAuthHorizontal0.23"
@@ -82,6 +82,43 @@
         android:text="@string/auth_remember_me"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthPassword" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutGoogleSignIn"
+        style="@style/MainButton.White"
+        app:layout_constraintBottom_toTopOf="@+id/textViewOr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_google"
+            android:layout_marginEnd="@dimen/margin_16"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text"
+            android:textColor="@color/gray_text"
+            android:textAllCaps="true"
+            android:letterSpacing="0.3"
+            android:textSize="@dimen/text_size_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_google_sign_in"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewOr"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auth_or"
+        android:textSize="@dimen/text_size_h2"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAuthRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonAuthRegister"

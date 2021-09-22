@@ -1,4 +1,4 @@
-package com.protsolo
+package com.protsolo.UI
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.databinding.ActivityContactsListBinding
-import com.protsolo.utils.ContactsAdapter
-import com.protsolo.utils.ContactsViewModel
+import com.protsolo.adapters.ContactsAdapter
+import com.protsolo.adapters.decorations.ContactListItemDecoration
+import com.protsolo.utils.Constants
+import com.protsolo.viewModel.ContactsViewModel
+import android.util.TypedValue
+
+
+
 
 class ContactsListActivity : AppCompatActivity() {
 
@@ -24,8 +30,13 @@ class ContactsListActivity : AppCompatActivity() {
         contactsList.layoutManager = LinearLayoutManager(this)
 
         val contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
+
+        val margin =
+            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, Constants.CONTACTS_ITEM_MARGIN,
+                resources.displayMetrics).toInt()
         contactsViewModel.getContacts().observe(this, Observer {
             it?.let {
+                contactsList.addItemDecoration(ContactListItemDecoration(margin))
                 contactsList.adapter = ContactsAdapter(it)
             }
         })

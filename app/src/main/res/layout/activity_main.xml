@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".UI.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutMainUserInfo"
@@ -28,26 +28,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewMainProfilePhoto"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewMainProfilePhoto"
             android:layout_width="@dimen/profile_photo_size_113"
             android:layout_height="@dimen/profile_photo_size_113"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_24"
-            app:cardCornerRadius="@dimen/profile_photo_size_113"
-            android:backgroundTint="@color/gray_text2"
+            android:background="@color/gray_text2"
+            app:layout_constraintTop_toBottomOf="@+id/buttonMainSettings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonMainSettings">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewMainProfilePhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/ic_default_profile_photo" />
-        </androidx.cardview.widget.CardView>
+            android:src="@drawable/ic_default_profile_photo" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainUserName"
@@ -57,7 +47,7 @@
             android:textSize="@dimen/text_size_h2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardViewMainProfilePhoto" />
+            app:layout_constraintTop_toBottomOf="@id/imageViewMainProfilePhoto" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainCareer"

@@ -1,12 +1,13 @@
-package com.protsolo
+package com.protsolo.UI
 
-import PreferenceStorage
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.protsolo.databinding.ActivityMainBinding
 import com.protsolo.utils.Constants
+import com.protsolo.utils.PreferenceStorage
+import com.protsolo.utils.RoundImageGlide
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         var photo = binding.imageViewMainProfilePhoto
-        Glide.with(photo.context)
-            .load("https://scontent.fiev17-2.fna.fbcdn.net/v/t1.6435-9/242289197_4285719178131249_2304531192454725485_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Oxz1lcqMvCkAX8NjPEn&_nc_ht=scontent.fiev17-2.fna&oh=b20254fb6d57b2202f29c63d329da38f&oe=616E2EA4")
-            .into(photo)
+        RoundImageGlide.makeRoundImage(photo)
+
         setContentView(binding.root)
         setListeners()
         setName()
@@ -56,13 +57,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        binding.buttonMainEditProfile.setOnClickListener {
-            startEditProfileActivity()
+        binding.buttonMainViewContacts.setOnClickListener {
+            startContactsListActivity()
         }
     }
 
-    private fun startEditProfileActivity() {
-        val intent = Intent(this, AuthActivity::class.java)
+    private fun startContactsListActivity() {
+        val intent = Intent(this, ContactsListActivity::class.java)
         startActivity(intent)
         finish()
     }

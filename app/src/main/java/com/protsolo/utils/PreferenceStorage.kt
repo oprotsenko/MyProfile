@@ -1,3 +1,5 @@
+package com.protsolo.utils
+
 import android.content.Context
 
 const val PREFS_FILE_NAME = "myProfileSettings"

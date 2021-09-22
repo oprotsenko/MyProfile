@@ -14,6 +14,8 @@
     <string name="auth_email">E-mail</string>
     <string name="auth_password">Password</string>
     <string name="auth_remember_me">Remember me</string>
+    <string name="auth_google_sign_in">google</string>
+    <string name="auth_or">or</string>
     <string name="auth_register">register</string>
     <string name="auth_terms_and_conditions">By clicking Register you agree to our Terms\nand Conditions</string>
     <string name="auth_already_have_account">Already have an account?</string>

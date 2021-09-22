@@ -1,13 +1,14 @@
-package com.protsolo
+package com.protsolo.UI
 
-import PreferenceStorage
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
+import com.protsolo.R
 import com.protsolo.databinding.ActivityAuthBinding
 import com.protsolo.utils.Constants
+import com.protsolo.utils.PreferenceStorage
 
 
 class AuthActivity : AppCompatActivity() {
