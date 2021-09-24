@@ -1,19 +1,17 @@
-package com.protsolo.UI
+package com.protsolo.ui
 
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.protsolo.databinding.ActivityContactsListBinding
 import com.protsolo.adapters.ContactsAdapter
 import com.protsolo.adapters.decorations.ContactListItemDecoration
+import com.protsolo.databinding.ActivityContactsListBinding
 import com.protsolo.utils.Constants
 import com.protsolo.viewModel.ContactsViewModel
-import android.util.TypedValue
-
-
 
 
 class ContactsListActivity : AppCompatActivity() {

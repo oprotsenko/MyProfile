@@ -3,7 +3,7 @@ package com.protsolo.adapters
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.model.UserModel
-import com.protsolo.utils.RoundImageGlide
+import com.protsolo.utils.loadImage
 
 class ContactsViewHolder(private val binding: ContactListItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
@@ -11,12 +11,13 @@ class ContactsViewHolder(private val binding: ContactListItemBinding)
     var contactName = binding.textViewContactsListContactName
     var contactCareer = binding.textViewContactsListContactCareer
     var image = binding.imageViewContact
+    var deleteButton = binding.imageButtonDeleteContact
 
     fun bind(userModel: UserModel) {
         binding.apply {
-            contactName.text = userModel.contactName
-            contactCareer.text = userModel.contactCareer
-            RoundImageGlide.makeRoundImage(image)
+            contactName.text = userModel.name
+            contactCareer.text = userModel.career
+            image.loadImage(userModel.image)
         }
     }
 }

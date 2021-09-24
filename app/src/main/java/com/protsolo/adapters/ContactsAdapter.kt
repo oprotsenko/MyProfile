@@ -1,14 +1,17 @@
 package com.protsolo.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.model.UserModel
+import com.protsolo.utils.Constants
 
 
-class ContactsAdapter(private val contacts: List<UserModel>) :
+class ContactsAdapter(private val contacts: MutableList<UserModel>) :
     ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
@@ -18,7 +21,27 @@ class ContactsAdapter(private val contacts: List<UserModel>) :
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
-        holder.bind(contacts[position])
+        val element = contacts[position]
+        with(holder) {
+            bind(contacts[position])
+            deleteButton.setOnClickListener {
+                removeItem(position)
+                Snackbar.make(deleteButton, Constants.SNACK_BAR_MESSAGE, 5000)
+                    .setAction(Constants.UNDO, View.OnClickListener {
+                        addItem(element, position)
+                    }).show()
+            }
+        }
+    }
+
+    private fun addItem(element: UserModel, position: Int) {
+        contacts.add(position, element)
+        notifyItemInserted(position)
+    }
+
+    private fun removeItem(position: Int) {
+        contacts.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     override fun getItemCount(): Int = contacts.size

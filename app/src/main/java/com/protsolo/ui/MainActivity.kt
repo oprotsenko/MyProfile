@@ -1,13 +1,12 @@
-package com.protsolo.UI
+package com.protsolo.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.drawee.backends.pipeline.Fresco
 import com.protsolo.databinding.ActivityMainBinding
 import com.protsolo.utils.Constants
+import com.protsolo.utils.DownloadImageFresco
 import com.protsolo.utils.PreferenceStorage
-import com.protsolo.utils.RoundImageGlide
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         var photo = binding.imageViewMainProfilePhoto
-        RoundImageGlide.makeRoundImage(photo)
+        DownloadImageFresco.setImage(photo)
 
         setContentView(binding.root)
         setListeners()

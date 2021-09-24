@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_blue_color"
     app:layoutDescription="@xml/activity_auth_scene"
-    tools:context=".UI.AuthActivity">
+    tools:context=".ui.AuthActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineAuthHorizontal0.23"

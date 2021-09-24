@@ -1,4 +1,4 @@
-package com.protsolo.UI
+package com.protsolo.ui
 
 import android.content.Intent
 import android.os.Bundle
