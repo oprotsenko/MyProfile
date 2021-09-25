@@ -28,8 +28,11 @@ class MainActivity : AppCompatActivity() {
      * parse it for the name and soname.
      */
     private fun setName() {
-        val name = preferencesStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
-        val parsedUserName: String = parseName(name)
+        var name = intent.getStringExtra(Constants.MESSAGE)
+        if (name.isNullOrEmpty()) {
+            name = preferencesStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+        }
+        val parsedUserName: String? = parseName(name)
         binding.textViewMainUserName.text = parsedUserName
     }
 

@@ -8,6 +8,7 @@ object Constants {
     // AuthActivity constants
     const val PASSWORD_PATTERN = "[a-z0-9?:!#$%&]{8,}"
     const val MESSAGE = "message"
+    const val AUTOLOGIN = "autologin"
 
     // MainActivity constants
     const val DEFAULT_NAME = "User Name"
