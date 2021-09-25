@@ -19,9 +19,19 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (preferencesStorage.getBoolean(Constants.AUTOLOGIN)) {
+            autologin()
+        }
         setListeners()
+    }
+
+    private fun autologin() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun setListeners() {
@@ -67,9 +77,20 @@ class AuthActivity : AppCompatActivity() {
 
     private fun register() {
         val intent = Intent(this, MainActivity::class.java)
-        preferencesStorage.save(Constants.PREFERENCE_EMAIL_KEY, binding.editTextAuthEmailAddressField.text.toString())
-        preferencesStorage.save(Constants.PREFERENCE_PASSWORD_KEY, binding.editTextAuthPasswordField.text.toString())
-        intent.putExtra(Constants.MESSAGE, binding.editTextAuthEmailAddressField.text.toString())
+        with(Constants) {
+            preferencesStorage.save(
+                PREFERENCE_EMAIL_KEY,
+                binding.editTextAuthEmailAddressField.text.toString()
+            )
+            preferencesStorage.save(
+                PREFERENCE_PASSWORD_KEY,
+                binding.editTextAuthPasswordField.text.toString()
+            )
+            preferencesStorage.save(
+                AUTOLOGIN, binding.checkBoxAuthRememberMe.isChecked)
+
+            intent.putExtra(MESSAGE, binding.editTextAuthEmailAddressField.text.toString())
+        }
         startActivity(intent)
         finish()
     }
