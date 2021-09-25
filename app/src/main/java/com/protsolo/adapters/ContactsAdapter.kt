@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
@@ -21,15 +22,10 @@ class ContactsAdapter(private val contacts: MutableList<UserModel>) :
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
-        val element = contacts[position]
         with(holder) {
             bind(contacts[position])
             deleteButton.setOnClickListener {
-                removeItem(position)
-                Snackbar.make(deleteButton, Constants.SNACK_BAR_MESSAGE, 5000)
-                    .setAction(Constants.UNDO, View.OnClickListener {
-                        addItem(element, position)
-                    }).show()
+                removeItem(holder)
             }
         }
     }
@@ -39,9 +35,16 @@ class ContactsAdapter(private val contacts: MutableList<UserModel>) :
         notifyItemInserted(position)
     }
 
-    private fun removeItem(position: Int) {
+    fun removeItem(holder: RecyclerView.ViewHolder) {
+        val position = holder.bindingAdapterPosition
+        val element = contacts[position]
         contacts.removeAt(position)
         notifyItemRemoved(position)
+
+        Snackbar.make(holder.itemView, "${element.name}" + Constants.SNACK_BAR_MESSAGE,
+            5000).setAction(Constants.UNDO, View.OnClickListener {
+            addItem(element, position)
+        }).show()
     }
 
     override fun getItemCount(): Int = contacts.size

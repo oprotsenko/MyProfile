@@ -5,9 +5,11 @@ import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.adapters.ContactsAdapter
+import com.protsolo.adapters.SwipeToDelete
 import com.protsolo.adapters.decorations.ContactListItemDecoration
 import com.protsolo.databinding.ActivityContactsListBinding
 import com.protsolo.utils.Constants
@@ -36,6 +38,7 @@ class ContactsListActivity : AppCompatActivity() {
             it?.let {
                 contactsList.addItemDecoration(ContactListItemDecoration(margin))
                 contactsList.adapter = ContactsAdapter(it)
+                ItemTouchHelper(SwipeToDelete(ContactsAdapter(it))).attachToRecyclerView(contactsList)
             }
         })
     }

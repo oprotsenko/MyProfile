@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.protsolo.databinding.ActivityMainBinding
 import com.protsolo.utils.Constants
-import com.protsolo.utils.DownloadImageFresco
 import com.protsolo.utils.PreferenceStorage
+import com.protsolo.utils.loadImageWithFresco
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         var photo = binding.imageViewMainProfilePhoto
-        DownloadImageFresco.setImage(photo)
+        photo.loadImageWithFresco(Constants.DEFAULT_IMAGE)
 
         setContentView(binding.root)
         setListeners()
@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startContactsListActivity() {
-        val intent = Intent(this, ContactsListActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, ContactsListActivity::class.java)
+//        startActivity(intent)
         finish()
     }
 }
