@@ -37,7 +37,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAuthEmail"
-        style="@style/TextInputLayout"
+        style="@style/TextInputLayout.Auth"
+        android:hint="@string/auth_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAuthFillOutDescription">
@@ -45,16 +46,13 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAuthEmailAddressField"
             style="@style/EditTextField"
-            android:hint="@string/auth_email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAuthPassword"
         style="@style/TextInputLayout"
+        android:hint="@string/auth_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthEmail">
@@ -62,12 +60,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAuthPasswordField"
             style="@style/EditTextField"
-            android:gravity="bottom"
-            android:hint="@string/auth_password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -84,9 +77,9 @@
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthPassword" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linearLayoutGoogleSignIn"
+        android:id="@+id/linearLayoutAuthGoogleSignInButton"
         style="@style/MainButton.White"
-        app:layout_constraintBottom_toTopOf="@+id/textViewOr"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -108,7 +101,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewOr"
+        android:id="@+id/textViewAuthOr"
         style="@style/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

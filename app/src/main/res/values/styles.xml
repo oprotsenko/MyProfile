@@ -85,16 +85,21 @@
         <item name="boxCollapsedPaddingTop">@dimen/zero</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="placeholderTextColor">@color/gray_text2</item>
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:layout_marginStart">@dimen/margin_16</item>
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
         <item name="android:textColorHint">@color/gray_line</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
         <item name="boxStrokeColor">@color/gray_text2</item>
-        <item name="boxStrokeErrorColor">@color/gray_text2</item>
         <item name="boxStrokeWidth">1.5dp</item>
-        <item name="errorTextColor">@color/error_color</item>
         <item name="android:ems">10</item>
+    </style>
+
+    <style name="TextInputLayout.Auth">
+        <item name="boxStrokeErrorColor">@color/gray_text2</item>
+        <item name="errorTextColor">@color/error_color</item>
     </style>
 
     <style name="EditTextField" parent="Text">
@@ -102,10 +107,14 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:paddingStart">@dimen/zero</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textSize">@dimen/text_size_h2</item>
         <item name="android:textCursorDrawable">@drawable/auth_white_cursor</item>
         <item name="android:textAlignment">textStart</item>
         <item name="boxCollapsedPaddingTop">-16dp</item>
+    </style>
+
+    <style name="EditTextField.BlackText">
+        <item name="android:textColor">@color/gray_text</item>
     </style>
 
     <style name="WindowAnimations">
@@ -118,5 +127,10 @@
     <style name="ContactsListImageButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ProfilePhotoSize">
+        <item name="android:layout_width">@dimen/profile_photo_size_113</item>
+        <item name="android:layout_height">@dimen/profile_photo_size_113</item>
     </style>
 </resources>

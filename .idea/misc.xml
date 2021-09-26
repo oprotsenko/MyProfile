@@ -32,12 +32,15 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_button.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_button_text.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_cursor.xml" value="0.24027777777777778" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_add_contact_fragment.xml" value="0.16052631578947368" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth.xml" value="0.2" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth1.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth_del.xml" value="0.21203703703703702" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_contacts_list.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/add_contact_fragment.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/contact_list_item.xml" value="0.4" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/egor.xml" value="0.190625" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/test.xml" value="0.22592592592592592" />
       </map>
     </option>

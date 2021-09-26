@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startContactsListActivity() {
-//        val intent = Intent(this, ContactsListActivity::class.java)
-//        startActivity(intent)
+        val intent = Intent(this, ContactsListActivity::class.java)
+        startActivity(intent)
         finish()
     }
 }

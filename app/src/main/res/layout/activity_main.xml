@@ -31,8 +31,7 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/imageViewMainProfilePhoto"
-            android:layout_width="@dimen/profile_photo_size_113"
-            android:layout_height="@dimen/profile_photo_size_113"
+            style="@style/ProfilePhotoSize"
             android:layout_marginTop="@dimen/margin_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonMainSettings"
@@ -45,7 +44,7 @@
             android:id="@+id/textViewMainUserName"
             style="@style/Text"
             android:layout_marginTop="@dimen/margin_24"
-            android:text="@string/main_user_name"
+            android:text="@string/all_username"
             android:textSize="@dimen/text_size_h2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +54,7 @@
             android:id="@+id/textViewMainCareer"
             style="@style/Text.LightGray"
             android:layout_marginTop="@dimen/margin_8"
-            android:text="@string/main_career"
+            android:text="@string/all_career"
             android:textSize="@dimen/text_size_h3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

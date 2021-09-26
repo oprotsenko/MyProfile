@@ -7,12 +7,18 @@
     android:background="@color/white"
     tools:context=".ui.ContactsListActivity">
 
+    <FrameLayout
+        android:id="@+id/frameLayoutFragment"
+        android:name="com/protsolo/ui/AddContactFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraintLayoutContactsListContactsOptions"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         android:background="@color/main_blue_color"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal0.15"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineContactsListHorizontal0.177"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,14 +34,14 @@
             app:srcCompat="@drawable/ic_arrow_back_24px" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView"
+            android:id="@+id/textViewContactsListContacts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
             android:text="@string/contacts_list_contacts"
             android:textSize="@dimen/text_size_h1"
-            app:layout_constraintEnd_toStartOf="@+id/buttonContactsListSearch"
-            app:layout_constraintStart_toEndOf="@+id/buttonContactsListBack"
+            app:layout_constraintEnd_toStartOf="@id/buttonContactsListSearch"
+            app:layout_constraintStart_toEndOf="@id/buttonContactsListBack"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -49,6 +55,7 @@
             app:srcCompat="@drawable/ic_search" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewContactsListAddContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_16"
@@ -56,17 +63,16 @@
             android:layout_marginBottom="@dimen/margin_26"
             android:text="@string/contacts_list_add_contacts"
             android:textSize="@dimen/text_size_h3"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewContactsListContacts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal0.15"
+        android:id="@+id/guidelineContactsListHorizontal0.177"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.177" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContactsList"
@@ -76,5 +82,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutContactsListContactsOptions" />
 </androidx.constraintlayout.widget.ConstraintLayout>

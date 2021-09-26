@@ -1,13 +1,16 @@
 package com.protsolo.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.protsolo.R
 import com.protsolo.adapters.ContactsAdapter
 import com.protsolo.adapters.SwipeToDelete
 import com.protsolo.adapters.decorations.ContactListItemDecoration
@@ -20,6 +23,7 @@ class ContactsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityContactsListBinding
     private lateinit var contactsList: RecyclerView
+    private lateinit var addContactFragment: AddContactFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,5 +45,13 @@ class ContactsListActivity : AppCompatActivity() {
                 ItemTouchHelper(SwipeToDelete(ContactsAdapter(it))).attachToRecyclerView(contactsList)
             }
         })
+        addContactFragment = AddContactFragment()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.textViewContactsListAddContact.setOnClickListener {
+            addContactFragment.show(supportFragmentManager, "add")
+        }
     }
 }

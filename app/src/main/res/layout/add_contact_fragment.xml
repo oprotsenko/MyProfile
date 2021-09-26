@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:theme="@style/Theme.AppCompat.Dialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_blue_color"
+        android:paddingBottom="@dimen/margin_28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonAddContactBack"
+            style="@style/ContactsListImageButton"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAddContact"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:text="@string/add_contacts_fragment_add_contact"
+            android:textSize="@dimen/text_size_h2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewAddContactFragmentContactPhoto"
+            style="@style/ProfilePhotoSize"
+            android:layout_marginTop="@dimen/margin_28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewAddContact"
+            tools:src="@drawable/ic_default_profile_photo" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="@dimen/button_add_photo_size_55"
+            android:layout_height="@dimen/button_add_photo_size_55"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/all_round_background"
+            android:cropToPadding="true"
+            android:padding="@dimen/margin_14"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewAddContactFragmentContactPhoto"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_photo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewContactDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddContactsFragmentUsername"
+                style="@style/TextInputLayout"
+                android:hint="@string/all_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scrollViewContactDetails">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAddContactsFragmentUsername"
+                    style="@style/EditTextField.BlackText"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddContactsFragmentCareer"
+                style="@style/TextInputLayout"
+                android:hint="@string/all_career"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentUsername">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAddContactsFragmentCareer"
+                    style="@style/EditTextField.BlackText"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddContactsFragmentEmail"
+                style="@style/TextInputLayout"
+                android:hint="@string/add_contacts_fragment_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentCareer"
+                app:placeholderText="@string/add_contacts_fragment_email_sample">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAddContactsFragmentEmail"
+                    style="@style/EditTextField.BlackText"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddContactsFragmentPhone"
+                style="@style/TextInputLayout"
+                android:hint="@string/add_contacts_fragment_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentEmail"
+                app:placeholderText="@string/add_contacts_fragment_phone_sample">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAddContactsFragmentPhone"
+                    style="@style/EditTextField.BlackText"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddContactsFragmentAddress"
+                style="@style/TextInputLayout"
+                android:hint="@string/add_contacts_fragment_address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentPhone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAddContactsFragmentAddress"
+                    style="@style/EditTextField.BlackText"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddContactsFragmentBirthDay"
+                style="@style/TextInputLayout"
+                android:hint="@string/add_contacts_fragment_date_of_birth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentAddress"
+                app:placeholderText="@string/add_contacts_fragment_date_of_birth_sample">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAddContactsFragmentBirthDay"
+                    style="@style/EditTextField.BlackText"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/MainButton.Orange"
+                android:layout_marginTop="@dimen/margin_24"
+                android:text="@string/add_contacts_fragment_button_save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutAddContactsFragmentBirthDay" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
