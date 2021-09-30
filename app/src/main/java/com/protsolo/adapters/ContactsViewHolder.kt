@@ -8,6 +8,8 @@ import com.protsolo.utils.loadCircleImageWithGlide
 class ContactsViewHolder(private val binding: ContactListItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
+    val userDiffCallBack = UserDiffCallBack()
+
     var contactName = binding.textViewContactsListContactName
     var contactCareer = binding.textViewContactsListContactCareer
     var image = binding.imageViewContact

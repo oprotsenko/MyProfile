@@ -115,6 +115,7 @@
 
     <style name="EditTextField.BlackText">
         <item name="android:textColor">@color/gray_text</item>
+        <item name="android:textCursorDrawable">@drawable/all_gray_cursor</item>
     </style>
 
     <style name="WindowAnimations">

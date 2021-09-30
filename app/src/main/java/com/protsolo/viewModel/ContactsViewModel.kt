@@ -7,11 +7,17 @@ import com.protsolo.utils.ContactsData
 
 class ContactsViewModel : ViewModel() {
 
-    private var contactsData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
+    var contactsData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
 
     init {
         contactsData.value = ContactsData.loadContacts()
     }
 
-    fun getContacts() = contactsData
+    fun removeItem(position: Int) {
+        contactsData.value?.removeAt(position)
+    }
+
+    fun addItem(position: Int, userModel: UserModel) {
+        contactsData.value?.add(position, userModel)
+    }
 }
