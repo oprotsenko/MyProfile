@@ -1,13 +1,13 @@
 package com.protsolo.utils
 
-import com.protsolo.model.UserModel
+import com.protsolo.itemModel.UserModel
 
 object ContactsData {
 
     fun loadContacts(): MutableList<UserModel> {
         val list = mutableListOf<UserModel>()
-        (0..4).forEach { i -> list.add(
-            UserModel("https://scontent.fiev17-2.fna.fbcdn.net/v/t1.6435-9/60336113_2169614983075023_4549265995994234880_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=e3f864&_nc_ohc=iX7fG3rbI2QAX8dAVdp&_nc_oc=AQl6JBi7KU-x66EVpQynuxMYVEF7X_ELwgyLLhhRHDHsg_ZZkt5kzZ5LAF_cH3gpTio&_nc_ht=scontent.fiev17-2.fna&oh=2f7de9659dfc36eb2a0b50181bc3030e&oe=61746942",
+        (0..15).forEach { i -> list.add(
+            UserModel(i.toLong(), "https://scontent.fiev17-2.fna.fbcdn.net/v/t1.6435-9/60336113_2169614983075023_4549265995994234880_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=e3f864&_nc_ohc=iX7fG3rbI2QAX8dAVdp&_nc_oc=AQl6JBi7KU-x66EVpQynuxMYVEF7X_ELwgyLLhhRHDHsg_ZZkt5kzZ5LAF_cH3gpTio&_nc_ht=scontent.fiev17-2.fna&oh=2f7de9659dfc36eb2a0b50181bc3030e&oe=61746942",
                 "$i name", "$i career", "$i address")) }
         return list
     }

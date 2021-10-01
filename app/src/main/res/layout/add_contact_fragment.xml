@@ -57,7 +57,7 @@
                 android:layout_width="@dimen/button_add_photo_size_55"
                 android:layout_height="@dimen/button_add_photo_size_55"
                 android:layout_marginTop="100dp"
-                android:background="@drawable/all_round_background"
+                android:background="@drawable/all_round_orange_button_background"
                 android:cropToPadding="true"
                 android:padding="@dimen/margin_14"
                 android:scaleType="fitCenter"

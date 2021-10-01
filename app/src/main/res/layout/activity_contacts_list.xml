@@ -7,12 +7,6 @@
     android:background="@color/white"
     tools:context=".ui.ContactsListActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayoutFragment"
-        android:name="com/protsolo/ui/AddContactFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutContactsListContactsOptions"
         android:layout_width="match_parent"
@@ -74,6 +68,18 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.177" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonContactsListUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_41"
+        android:backgroundTint="@color/orange"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_up_arrow" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContactsList"
         android:layout_width="match_parent"
@@ -83,4 +89,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutContactsListContactsOptions" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

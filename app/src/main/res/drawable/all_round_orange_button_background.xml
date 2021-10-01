@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/gray_text2"/>
-            <size android:width="@dimen/profile_photo_size_113"
-                android:height="@dimen/profile_photo_size_113"/>
+            <solid android:color="@color/orange"/>
+            <size android:width="@dimen/button_up_contacts_size_60"
+                android:height="@dimen/button_up_contacts_size_60"/>
         </shape>
     </item>
 </selector>
