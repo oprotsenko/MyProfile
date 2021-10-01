@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
-import kotlinx.coroutines.delay
 
 
 class ContactsAdapter(private val onIContactClickListener: IContactListener) :
@@ -33,36 +32,11 @@ class ContactsAdapter(private val onIContactClickListener: IContactListener) :
         }
     }
 
-    fun setItem(position: Int): Unit {
-        onIContactClickListener.removeItem(position)
+    override fun submitList(list: MutableList<UserModel>?) {
+        super.submitList(list?.let { ArrayList(it) })
     }
 
-//    private fun setListeners(holder: ContactsViewHolder) {
-//        with(holder) {
-//            val position = bindingAdapterPosition
-//            deleteButton.setOnClickListener {
-//                setItem(position)
-//            }
-//        }
-//    }
-
-//    fun setItem(position: Int) : Unit {
-//        val element = contacts[position]
-//        onIContactClickListener.removeItem(position)
-//        this.submitList(contacts)
-////        notifyItemRemoved(position)
-//
-//        Snackbar.make(viewGroup, "${element.name}" + Constants.SNACK_BAR_MESSAGE,
-//            5000).setAction(Constants.UNDO, View.OnClickListener {
-//            addItem(element, position)
-//            this.submitList(contacts)
-////            notifyItemInserted(position)
-//        }).show()
-//    }
-
-//    fun addItem(element: UserModel, position: Int) {
-//        onIContactClickListener.addItem(element, position)
-//    }
-
-//    override fun getItemCount(): Int = contacts.size
+    fun setItem(position: Int) {
+        onIContactClickListener.removeItem(position)
+    }
 }

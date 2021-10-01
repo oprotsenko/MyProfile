@@ -45,7 +45,7 @@ class AddContactFragment(private val adapter: ContactsAdapter) : DialogFragment(
 
     override fun onResume() {
         super.onResume()
-        var params: WindowManager.LayoutParams? = dialog?.window?.attributes
+        val params: WindowManager.LayoutParams? = dialog?.window?.attributes
         params?.width = WindowManager.LayoutParams.MATCH_PARENT
         params?.height = WindowManager.LayoutParams.MATCH_PARENT
         dialog?.onWindowAttributesChanged(params)

@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        var photo = binding.imageViewMainProfilePhoto
+        val photo = binding.imageViewMainProfilePhoto
         photo.loadImageWithFresco(Constants.DEFAULT_IMAGE)
 
         setContentView(binding.root)
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         if (name.isNullOrEmpty()) {
             name = preferencesStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
         }
-        val parsedUserName: String? = parseName(name)
+        val parsedUserName: String = parseName(name)
         binding.textViewMainUserName.text = parsedUserName
     }
 

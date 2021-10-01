@@ -17,7 +17,7 @@
 
         <activity
             android:name=".ui.ContactsListActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".ui.AuthActivity"
             android:exported="true">
@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -3,7 +3,6 @@ package com.protsolo.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -35,28 +34,19 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         binding = ActivityContactsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
         contactsListRecycleView = binding.recyclerViewContactsList
         contactsListRecycleView.layoutManager = LinearLayoutManager(this)
-        contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
         contactsAdapter = ContactsAdapter(onIContactClickListener = this)
         contactsListRecycleView.adapter = contactsAdapter
 
         addItemDecoration()
         setObserver()
         initSwipeToDelete()
+        setListeners()
+
         addContactFragment = AddContactFragment(contactsAdapter)
 //        addContactFragment = AddContactFragment()
-        setListeners()
-    }
-
-    override fun showFloatButton() {
-        val showButton = AnimationUtils.loadAnimation(this, R.anim.fab_show)
-        binding.floatingActionButtonContactsListUp.startAnimation(showButton)
-    }
-
-    override fun hideFloatButton() {
-        val hideButton = AnimationUtils.loadAnimation(this, R.anim.fab_hide)
-        binding.floatingActionButtonContactsListUp.startAnimation(hideButton)
     }
 
     private fun setObserver() {
@@ -65,15 +55,6 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
                 contactsAdapter.submitList(it)
             }
         })
-    }
-
-    private fun addItemDecoration() {
-        val margin =
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, Constants.CONTACTS_ITEM_MARGIN,
-                resources.displayMetrics
-            ).toInt()
-        contactsListRecycleView.addItemDecoration(ContactListItemDecoration(margin))
     }
 
     private fun setListeners() {
@@ -90,32 +71,48 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
     override fun removeItem(position: Int) {
         val element = contactsViewModel.contactsData.value?.get(position)
         contactsViewModel.removeItem(position)
-//        contactsAdapter.notifyItemRemoved(position)
-//        setObserver()
+        setObserver()
 
         Snackbar.make(
             contactsListRecycleView, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
             5000
-        ).setAction(Constants.UNDO, View.OnClickListener {
+        ).setAction(Constants.UNDO) {
             if (element != null) {
                 addItem(element, position)
             }
-        }).show()
+        }.show()
     }
 
     override fun addItem(element: UserModel, position: Int) {
         contactsViewModel.addItem(position, element)
-//        contactsAdapter.notifyItemInserted(position)
-//        setObserver()
+        setObserver()
     }
 
     private fun initSwipeToDelete() {
         val onItemDelete = { position: Int ->
-                contactsAdapter.setItem(position)
+            contactsAdapter.setItem(position)
         }
         ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(contactsListRecycleView)
     }
 
+    private fun addItemDecoration() {
+        val margin =
+            TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, Constants.CONTACTS_ITEM_MARGIN,
+                resources.displayMetrics
+            ).toInt()
+        contactsListRecycleView.addItemDecoration(ContactListItemDecoration(margin))
+    }
+
+    override fun showFloatButton() {
+        val showButton = AnimationUtils.loadAnimation(this, R.anim.fab_show)
+        binding.floatingActionButtonContactsListUp.startAnimation(showButton)
+    }
+
+    override fun hideFloatButton() {
+        val hideButton = AnimationUtils.loadAnimation(this, R.anim.fab_hide)
+        binding.floatingActionButtonContactsListUp.startAnimation(hideButton)
+    }
 }
 
 
