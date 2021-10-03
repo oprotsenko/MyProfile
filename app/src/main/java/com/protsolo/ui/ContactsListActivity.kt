@@ -1,6 +1,5 @@
 package com.protsolo.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.animation.AnimationUtils
@@ -28,7 +27,7 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
     private lateinit var contactsAdapter: ContactsAdapter
     private lateinit var addContactFragment: AddContactFragment
 
-    @SuppressLint("ResourceType")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityContactsListBinding.inflate(layoutInflater)
@@ -37,7 +36,7 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
         contactsListRecycleView = binding.recyclerViewContactsList
         contactsListRecycleView.layoutManager = LinearLayoutManager(this)
-        contactsAdapter = ContactsAdapter(onIContactClickListener = this)
+        contactsAdapter = ContactsAdapter(onIContactListener = this)
         contactsListRecycleView.adapter = contactsAdapter
 
         addItemDecoration()

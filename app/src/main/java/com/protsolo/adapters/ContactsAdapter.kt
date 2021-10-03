@@ -8,7 +8,7 @@ import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
 
 
-class ContactsAdapter(private val onIContactClickListener: IContactListener) :
+class ContactsAdapter(private val onIContactListener: IContactListener) :
     ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
 
@@ -22,9 +22,9 @@ class ContactsAdapter(private val onIContactClickListener: IContactListener) :
         with(holder) {
             bind(getItem(position))
             if (getItem(position).userId == getItem(itemCount - 1).userId) {
-                onIContactClickListener.showFloatButton()
+                onIContactListener.showFloatButton()
             } else {
-                onIContactClickListener.hideFloatButton()
+                onIContactListener.hideFloatButton()
             }
             deleteButton.setOnClickListener {
                 setItem(position)
@@ -37,6 +37,10 @@ class ContactsAdapter(private val onIContactClickListener: IContactListener) :
     }
 
     fun setItem(position: Int) {
-        onIContactClickListener.removeItem(position)
+        onIContactListener.removeItem(position)
+    }
+
+    fun addNewItem(element: UserModel, position: Int) {
+        onIContactListener.addItem(element, position)
     }
 }

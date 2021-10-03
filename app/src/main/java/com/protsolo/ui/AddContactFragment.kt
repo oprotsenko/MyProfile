@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.protsolo.R
 import com.protsolo.adapters.ContactsAdapter
 import com.protsolo.databinding.AddContactFragmentBinding
+import com.protsolo.itemModel.UserModel
 import com.protsolo.utils.Constants
 import com.protsolo.utils.loadCircleImageWithGlide
 
-class AddContactFragment(private val adapter: ContactsAdapter) : DialogFragment(),
-    View.OnClickListener {
+class AddContactFragment(private val contactsAdapter: ContactsAdapter) : DialogFragment() {
 
     private lateinit var binding: AddContactFragmentBinding
 
@@ -21,48 +20,34 @@ class AddContactFragment(private val adapter: ContactsAdapter) : DialogFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        binding = AddContactFragmentBinding.inflate(layoutInflater)
+    ): View {
+        binding = AddContactFragmentBinding.inflate(layoutInflater, container,false)
         binding.imageViewAddContactFragmentContactPhoto.loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
         setListeners()
-
-        return inflater.inflate(R.layout.add_contact_fragment, null)
+        return binding.root
     }
 
     private fun setListeners() {
         binding.apply {
             buttonAddContactSave.setOnClickListener {
-//                var message = StringBuilder()
-//                message.append(editTextAddContactsFragmentUsername.text).append(",")
-//                    .append(editTextAddContactsFragmentCareer.text).append(",")
-//                    .append(editTextAddContactsFragmentAddress.text)
-//                adapter.addItem(UserModel(0, Constants.DEFAULT_IMAGE, editTextAddContactsFragmentUsername.text.toString(),
-//                    editTextAddContactsFragmentCareer.text.toString(), editTextAddContactsFragmentAddress.text.toString()), 0)
+                contactsAdapter.addNewItem(
+                    UserModel(0, Constants.DEFAULT_IMAGE, editTextAddContactsFragmentUsername.text.toString(),
+                    editTextAddContactsFragmentCareer.text.toString(), editTextAddContactsFragmentAddress.text.toString()), 0)
+                dialog?.dismiss()
+            }
+            buttonAddContactBack.setOnClickListener {
+                dismiss()
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
+        binding.imageViewAddContactFragmentContactPhoto.loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
         val params: WindowManager.LayoutParams? = dialog?.window?.attributes
         params?.width = WindowManager.LayoutParams.MATCH_PARENT
         params?.height = WindowManager.LayoutParams.MATCH_PARENT
         dialog?.onWindowAttributesChanged(params)
-        binding.imageViewAddContactFragmentContactPhoto.loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
+        setListeners()
     }
-
-    override fun onClick(v: View?) {
-        binding.apply {
-            buttonAddContactSave.setOnClickListener {
-//                var message = StringBuilder()
-//                message.append(editTextAddContactsFragmentUsername.text).append(",")
-//                    .append(editTextAddContactsFragmentCareer.text).append(",")
-//                    .append(editTextAddContactsFragmentAddress.text)
-//                adapter.addItem(UserModel(Constants.DEFAULT_IMAGE, editTextAddContactsFragmentUsername.text.toString(),
-//                    editTextAddContactsFragmentCareer.text.toString(), editTextAddContactsFragmentAddress.text.toString()), 0)
-            }
-        }
-    }
-
 }
