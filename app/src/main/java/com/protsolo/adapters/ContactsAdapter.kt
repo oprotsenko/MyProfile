@@ -8,9 +8,8 @@ import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
 
 
-class ContactsAdapter(private val onIContactListener: IContactListener) :
-    ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
-
+class ContactsAdapter(private val onIContactListener: IContactListener)
+    : ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context)

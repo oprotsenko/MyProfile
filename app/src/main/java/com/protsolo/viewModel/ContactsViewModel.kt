@@ -3,7 +3,7 @@ package com.protsolo.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.protsolo.itemModel.UserModel
-import com.protsolo.utils.ContactsData
+import com.protsolo.data.ContactsData
 
 class ContactsViewModel : ViewModel() {
 

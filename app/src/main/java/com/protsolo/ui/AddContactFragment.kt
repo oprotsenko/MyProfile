@@ -22,7 +22,8 @@ class AddContactFragment(private val contactsAdapter: ContactsAdapter) : DialogF
         savedInstanceState: Bundle?
     ): View {
         binding = AddContactFragmentBinding.inflate(layoutInflater, container,false)
-        binding.imageViewAddContactFragmentContactPhoto.loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
+        binding.imageViewAddContactFragmentContactPhoto
+            .loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
         setListeners()
         return binding.root
     }
@@ -31,8 +32,12 @@ class AddContactFragment(private val contactsAdapter: ContactsAdapter) : DialogF
         binding.apply {
             buttonAddContactSave.setOnClickListener {
                 contactsAdapter.addNewItem(
-                    UserModel(0, Constants.DEFAULT_IMAGE, editTextAddContactsFragmentUsername.text.toString(),
-                    editTextAddContactsFragmentCareer.text.toString(), editTextAddContactsFragmentAddress.text.toString()), 0)
+                    UserModel(0,
+                        Constants.DEFAULT_IMAGE,
+                        editTextAddContactsFragmentUsername.text.toString(),
+                        editTextAddContactsFragmentCareer.text.toString(),
+                        editTextAddContactsFragmentAddress.text.toString()),
+                    0)
                 dialog?.dismiss()
             }
             buttonAddContactBack.setOnClickListener {
@@ -43,11 +48,9 @@ class AddContactFragment(private val contactsAdapter: ContactsAdapter) : DialogF
 
     override fun onResume() {
         super.onResume()
-        binding.imageViewAddContactFragmentContactPhoto.loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
         val params: WindowManager.LayoutParams? = dialog?.window?.attributes
         params?.width = WindowManager.LayoutParams.MATCH_PARENT
         params?.height = WindowManager.LayoutParams.MATCH_PARENT
         dialog?.onWindowAttributesChanged(params)
-        setListeners()
     }
 }

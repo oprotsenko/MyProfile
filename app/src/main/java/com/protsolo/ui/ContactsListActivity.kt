@@ -45,7 +45,6 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         setListeners()
 
         addContactFragment = AddContactFragment(contactsAdapter)
-//        addContactFragment = AddContactFragment()
     }
 
     private fun setObserver() {
@@ -59,7 +58,9 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
     private fun setListeners() {
         binding.apply {
             textViewContactsListAddContact.setOnClickListener {
-                addContactFragment.show(supportFragmentManager, "add")
+                addContactFragment.show(
+                    supportFragmentManager,
+                    Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE)
             }
             floatingActionButtonContactsListUp.setOnClickListener {
                 contactsListRecycleView.smoothScrollToPosition(0)
