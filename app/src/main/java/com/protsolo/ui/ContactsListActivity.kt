@@ -1,5 +1,6 @@
 package com.protsolo.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.animation.AnimationUtils
@@ -64,6 +65,10 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
             }
             floatingActionButtonContactsListUp.setOnClickListener {
                 contactsListRecycleView.smoothScrollToPosition(0)
+            }
+            buttonContactsListBack.setOnClickListener {
+                startActivity(Intent(baseContext, MainActivity::class.java))
+                finish()
             }
         }
     }
