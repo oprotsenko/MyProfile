@@ -1,16 +1,16 @@
-package com.protsolo.viewModel
+package com.protsolo.ui.contactsList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.protsolo.itemModel.UserModel
-import com.protsolo.data.ContactsData
+import com.protsolo.database.ContactsDataFake
 
 class ContactsViewModel : ViewModel() {
 
     var contactsData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
 
     init {
-        contactsData.value = ContactsData.loadContacts()
+        contactsData.value = ContactsDataFake.loadContacts()
     }
 
     fun removeItem(position: Int) {

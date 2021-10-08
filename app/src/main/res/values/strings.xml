@@ -19,7 +19,7 @@
     <string name="auth_already_have_account">Already have an account?</string>
     <string name="auth_sign_in">Sign in</string>
     <string name="authMessageEmailError">Incorrect E-Mail address</string>
-    <string name="authMessagePasswordError">Your password must include a minimum of 8 characters.</string>
+    <string name="authMessagePasswordError">Your password must include minimum of 8 characters.</string>
     <!--    ContactsList activity   -->
     <string name="contacts_list_contacts">Contacts</string>
     <string name="contacts_list_add_contacts">Add contacts</string>

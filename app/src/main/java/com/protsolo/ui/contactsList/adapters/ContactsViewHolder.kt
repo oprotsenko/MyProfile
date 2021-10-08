@@ -1,4 +1,4 @@
-package com.protsolo.adapters
+package com.protsolo.ui.contactsList.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.databinding.ContactListItemBinding

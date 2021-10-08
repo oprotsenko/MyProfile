@@ -2,69 +2,46 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/ParentLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
+        style="@style/ParentLayout.White"
         android:paddingBottom="@dimen/margin_16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main_blue_color"
-            android:paddingBottom="@dimen/margin_28"
+            android:id="@+id/layoutAddContactHeader"
+            style="@style/ChildrenLayout.AddContactHeader"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/buttonAddContactBack"
-                style="@style/ContactsListImageButton"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginTop="@dimen/margin_20"
-                android:background="@android:color/transparent"
+                style="@style/ImageButton.AddContactBack"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_arrow_back_24px" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewAddContact"
-                style="@style/Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_20"
-                android:text="@string/add_contacts_fragment_add_contact"
-                android:textSize="@dimen/text_size_h2"
+                style="@style/Text.AddContact"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewAddContactFragmentContactPhoto"
-                style="@style/ProfilePhotoSize"
-                android:layout_marginTop="@dimen/margin_28"
+                style="@style/ProfilePhotoSize.AddContactFragment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewAddContact"
                 tools:src="@drawable/ic_default_profile_photo" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="@dimen/button_add_photo_size_55"
-                android:layout_height="@dimen/button_add_photo_size_55"
-                android:layout_marginTop="100dp"
-                android:background="@drawable/all_round_orange_button_background"
-                android:cropToPadding="true"
-                android:padding="@dimen/margin_14"
-                android:scaleType="fitCenter"
+                android:id="@+id/buttonAddContactFragmentAddPhoto"
+                style="@style/ImageButton.AddPhoto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewAddContactFragmentContactPhoto"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_add_photo" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,8 +50,7 @@
             android:hint="@string/all_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayout">
-
+            app:layout_constraintTop_toBottomOf="@id/layoutAddContactHeader">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentUsername"
@@ -157,7 +133,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonAddContactSave"
-            style="@style/MainButton.Orange"
+            style="@style/FullWidthButton.Orange"
             android:layout_marginTop="@dimen/margin_24"
             android:text="@string/add_contacts_fragment_button_save"
             app:layout_constraintEnd_toEndOf="parent"

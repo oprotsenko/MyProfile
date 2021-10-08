@@ -19,12 +19,16 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/gray_line.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_add_photo.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_arrow_back_24px.xml" value="0.24027777777777778" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_arrow_back_black.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_default_profile_photo.xml" value="0.202734375" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_facebook.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_group_11.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_linkedin.xml" value="0.24027777777777778" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_search.xml" value="0.2703125" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_search_black.xml" value="0.2703125" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_up_arrow.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/ic_vk.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/linkedin_icon.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/main_frame_grey.xml" value="0.2703125" />
@@ -36,11 +40,11 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_button_text.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_cursor.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_add_contact_fragment.xml" value="0.16052631578947368" />
-        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth.xml" value="0.2" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth1.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth_del.xml" value="0.21203703703703702" />
-        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_contacts_list.xml" value="0.1" />
-        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_contacts_list.xml" value="0.264" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/add_contact_fragment.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/contact_list_item.xml" value="0.4" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/egor.xml" value="0.190625" />

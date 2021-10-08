@@ -2,83 +2,55 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.ContactsListActivity">
+    style="@style/ParentLayout.White.ContactsListLayout"
+    tools:context=".ui.contactsList.ContactsListActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutContactsListContactsOptions"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/zero"
-        android:background="@color/main_blue_color"
+        style="@style/ChildrenLayout.ContactsListOptionsLayout"
         app:layout_constraintBottom_toTopOf="@+id/guidelineContactsListHorizontal0.177"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/buttonContactsListBack"
-            style="@style/ContactsListImageButton"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_16"
-            android:background="@android:color/transparent"
+            style="@style/ImageButton.ContactListBack"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_arrow_back_24px" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewContactsListContacts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_10"
-            android:text="@string/contacts_list_contacts"
-            android:textSize="@dimen/text_size_h1"
+            style="@style/Text.ContactsTitle"
             app:layout_constraintEnd_toStartOf="@id/buttonContactsListSearch"
             app:layout_constraintStart_toEndOf="@id/buttonContactsListBack"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/buttonContactsListSearch"
-            style="@style/ContactsListImageButton"
-            android:layout_marginTop="@dimen/margin_16"
-            android:layout_marginEnd="@dimen/margin_16"
-            android:background="@android:color/transparent"
+            style="@style/ImageButton.Search"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_search" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewContactsListAddContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="@dimen/margin_26"
-            android:text="@string/contacts_list_add_contacts"
-            android:textSize="@dimen/text_size_h3"
+            style="@style/Text.AddContactButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewContactsListContacts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineContactsListHorizontal0.177"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        style="@style/GuideLine.Horizontal"
         app:layout_constraintGuide_percent="0.177" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonContactsListUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_16"
-        android:layout_marginBottom="@dimen/margin_41"
-        android:backgroundTint="@color/orange"
-        app:tint="@color/white"
+        style="@style/FloatingButton.Up"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_up_arrow" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContactsList"

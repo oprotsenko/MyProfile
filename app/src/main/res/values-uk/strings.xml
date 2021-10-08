@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Main activity   -->
+    <string name="main_settings">Налаштування</string>
+    <string name="main_home_address">Домашня адреса</string>
+    <string name="main_settings_description">Щоб заповнити свій профіль, відкрийте налаштування</string>
+    <string name="main_edit_profile">Змінити профіль</string>
+    <string name="main_view_my_contacts">Переглянути мої контакти</string>
+    <!--    Auth activity   -->
+    <string name="auth_acquaint">Давайте знайомитися</string>
+    <string name="auth_fill_out_description">Заповніть профіль, та переходьте до додатку!</string>
+    <string name="auth_email">E-mail</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_remember_me">Запам\'ятати мене</string>
+    <string name="auth_google_sign_in">google</string>
+    <string name="auth_or">або</string>
+    <string name="auth_register">зареєструватися</string>
+    <string name="auth_terms_and_conditions">Реєструючись, ви погоджуєтеся з нашими Правилами\nта Умовами користування додатком</string>
+    <string name="auth_already_have_account">Вже зареєстровані?</string>
+    <string name="auth_sign_in">Увійти</string>
+    <string name="authMessageEmailError">Невірна E-Mail адреса</string>
+    <string name="authMessagePasswordError">Ваш пароль має містит мінімум 8 символів.</string>
+    <!--    ContactsList activity   -->
+    <string name="contacts_list_contacts">Контакти</string>
+    <string name="contacts_list_add_contacts">Додати контакти</string>
+    <!--    Add contacts fragment   -->
+    <string name="add_contacts_fragment_add_contact">Додати контакт</string>
+    <string name="add_contacts_fragment_address">Адреса</string>
+    <string name="add_contacts_fragment_email">Email</string>
+    <string name="add_contacts_fragment_email_sample">name@gmail.com</string>
+    <string name="add_contacts_fragment_phone">Телефон</string>
+    <string name="add_contacts_fragment_phone_sample">(264)-654-3762</string>
+    <string name="add_contacts_fragment_username">Ім\'я</string>
+    <string name="add_contacts_fragment_date_of_birth">Дата народження</string>
+    <string name="add_contacts_fragment_date_of_birth_sample">01/01/1900</string>
+    <string name="add_contacts_fragment_button_save">зберегти</string>
+    <!--    All   -->
+    <string name="all_username">Ім\'я</string>
+    <string name="all_career">Вид зайнятості</string>
+</resources>

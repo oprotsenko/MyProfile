@@ -1,9 +1,9 @@
-package com.protsolo.data
+package com.protsolo.database
 
 import com.protsolo.itemModel.UserModel
 import com.protsolo.utils.Constants
 
-object ContactsData {
+object ContactsDataFake {
 
     fun loadContacts(): MutableList<UserModel> {
         val list = mutableListOf<UserModel>()

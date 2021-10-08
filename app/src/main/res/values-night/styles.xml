@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!--    Parent layout patterns   -->
+
+    <!--    Check box   -->
+    <style name="Text.LightGray.CheckBox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@style/Text.LightGray</item>
+        <item name="android:layout_marginStart">@dimen/margin_10</item>
+        <item name="android:layout_marginTop">@dimen/margin_18</item>
+        <item name="android:buttonTint">@color/main_blue_color</item>
+        <item name="android:minHeight">@dimen/zero</item>
+    </style>
+
+        <!--    Parent layout patterns   -->
     <style name="ParentLayout">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
@@ -11,7 +23,7 @@
     </style>
 
     <style name="ParentLayout.Blue">
-        <item name="android:background">@color/main_blue_color</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <!--    Children layout pattern   -->
@@ -36,7 +48,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/main_blue_color</item>
     </style>
 
     <style name="Text.LightGray">
@@ -109,7 +121,7 @@
     <style name="ParentLayout.White.Main" />
 
     <style name="ChildrenLayout.MainUserInfo">
-        <item name="android:background">@color/main_blue_color</item>
+        <item name="android:background">@color/gray_text2</item>
     </style>
 
     <style name="Text.MainSettings">
@@ -123,7 +135,7 @@
     <style name="ProfilePhotoSize.MainUserPhoto">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="roundAsCircle">true</item>
-        <item name="placeholderImage">@color/gray_text2</item>
+        <item name="placeholderImage">@color/white</item>
         <item name="failureImage">@drawable/ic_default_profile_photo</item>
     </style>
 
@@ -137,12 +149,14 @@
         <item name="android:layout_marginTop">@dimen/margin_8</item>
         <item name="android:text">@string/all_career</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/gray_text</item>
     </style>
 
     <style name="Text.LightGray.MainHomeAddress">
         <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:text">@string/main_home_address</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:textColor">@color/gray_text</item>
     </style>
 
     <style name="ImageButton.MainSocial">
@@ -243,12 +257,12 @@
         <item name="android:text">@style/Text.LightGray</item>
         <item name="android:layout_marginStart">@dimen/margin_10</item>
         <item name="android:layout_marginTop">@dimen/margin_18</item>
-        <item name="android:buttonTint">@color/white</item>
+        <item name="android:buttonTint">@color/main_blue_color</item>
         <item name="android:minHeight">@dimen/zero</item>
     </style>
 
     <style name="FullWidthButton.GoogleRegister">
-        <item name="android:background">@drawable/auth_white_button</item>
+        <item name="android:background">@drawable/main_frame_gray</item>
         <item name="android:textColor">@color/gray_text</item>
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:letterSpacing">0.5</item>
@@ -277,7 +291,7 @@
 
     <style name="FullWidthButton.BorderOrange.Register">
         <item name="android:letterSpacing">0.1</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/main_blue_color</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
         <item name="android:enabled">false</item>
         <item name="android:text">@string/auth_register</item>
@@ -309,14 +323,14 @@
     <style name="ParentLayout.White.ContactsListLayout"/>
 
     <style name="ChildrenLayout.ContactsListOptionsLayout">
-        <item name="android:background">@color/main_blue_color</item>
+        <item name="android:background">@color/gray_text2</item>
     </style>
 
     <style name="ImageButton.ContactListBack">
         <item name="android:layout_marginStart">@dimen/margin_20</item>
         <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="srcCompat">@drawable/ic_arrow_back_24px</item>
+        <item name="srcCompat">@drawable/ic_arrow_back_black</item>
     </style>
 
     <style name="Text.ContactsTitle">
@@ -330,7 +344,7 @@
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
         <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="srcCompat">@drawable/ic_search</item>
+        <item name="srcCompat">@drawable/ic_search_black</item>
     </style>
 
     <style name="Text.AddContactButton">
@@ -354,7 +368,7 @@
 
 <!--    Add contact fragment   -->
     <style name="ChildrenLayout.AddContactHeader">
-        <item name="android:background">@color/main_blue_color</item>
+        <item name="android:background">@color/gray_text2</item>
         <item name="android:paddingBottom">@dimen/margin_28</item>
     </style>
 
@@ -362,7 +376,7 @@
         <item name="android:layout_marginStart">@dimen/margin_20</item>
         <item name="android:layout_marginTop">@dimen/margin_20</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="srcCompat">@drawable/ic_arrow_back_24px</item>
+        <item name="srcCompat">@drawable/ic_arrow_back_black</item>
     </style>
 
     <style name="Text.AddContact">

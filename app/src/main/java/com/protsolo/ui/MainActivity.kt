@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.protsolo.databinding.ActivityMainBinding
+import com.protsolo.ui.contactsList.ContactsListActivity
 import com.protsolo.utils.Constants
 import com.protsolo.utils.PreferenceStorage
 import com.protsolo.utils.loadImageWithFresco

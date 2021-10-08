@@ -1,4 +1,4 @@
-package com.protsolo.adapters
+package com.protsolo.ui.contactsList.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.protsolo.itemModel.UserModel

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.protsolo.adapters.ContactsAdapter
+import com.protsolo.ui.contactsList.adapters.ContactsAdapter
 import com.protsolo.databinding.AddContactFragmentBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.utils.Constants
@@ -28,6 +28,14 @@ class AddContactFragment(private val contactsAdapter: ContactsAdapter) : DialogF
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        val params: WindowManager.LayoutParams? = dialog?.window?.attributes
+        params?.width = WindowManager.LayoutParams.MATCH_PARENT
+        params?.height = WindowManager.LayoutParams.MATCH_PARENT
+        dialog?.onWindowAttributesChanged(params)
+    }
+
     private fun setListeners() {
         binding.apply {
             buttonAddContactSave.setOnClickListener {
@@ -44,13 +52,5 @@ class AddContactFragment(private val contactsAdapter: ContactsAdapter) : DialogF
                 dismiss()
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val params: WindowManager.LayoutParams? = dialog?.window?.attributes
-        params?.width = WindowManager.LayoutParams.MATCH_PARENT
-        params?.height = WindowManager.LayoutParams.MATCH_PARENT
-        dialog?.onWindowAttributesChanged(params)
     }
 }

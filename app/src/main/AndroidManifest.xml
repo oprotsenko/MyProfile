@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MyProfile">
 
         <activity
-            android:name=".ui.ContactsListActivity"
+            android:name=".ui.contactsList.ContactsListActivity"
             android:exported="true"/>
         <activity
             android:name=".ui.AuthActivity"

@@ -1,4 +1,4 @@
-package com.protsolo.adapters
+package com.protsolo.ui.contactsList.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
