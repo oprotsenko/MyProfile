@@ -8,7 +8,7 @@
         <item name="android:text">@style/Text.LightGray</item>
         <item name="android:layout_marginStart">@dimen/margin_10</item>
         <item name="android:layout_marginTop">@dimen/margin_18</item>
-        <item name="android:buttonTint">@color/main_blue_color</item>
+        <item name="android:buttonTint">@color/blue</item>
         <item name="android:minHeight">@dimen/zero</item>
     </style>
 
@@ -48,7 +48,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:textColor">@color/main_blue_color</item>
+        <item name="android:textColor">@color/blue</item>
     </style>
 
     <style name="Text.LightGray">
@@ -60,7 +60,7 @@
     </style>
 
     <style name="Text.Blue">
-        <item name="android:textColor">@color/main_blue_color</item>
+        <item name="android:textColor">@color/blue</item>
     </style>
 
     <style name="Text.Black">
@@ -257,7 +257,7 @@
         <item name="android:text">@style/Text.LightGray</item>
         <item name="android:layout_marginStart">@dimen/margin_10</item>
         <item name="android:layout_marginTop">@dimen/margin_18</item>
-        <item name="android:buttonTint">@color/main_blue_color</item>
+        <item name="android:buttonTint">@color/blue</item>
         <item name="android:minHeight">@dimen/zero</item>
     </style>
 
@@ -291,7 +291,7 @@
 
     <style name="FullWidthButton.BorderOrange.Register">
         <item name="android:letterSpacing">0.1</item>
-        <item name="android:textColor">@color/main_blue_color</item>
+        <item name="android:textColor">@color/blue</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
         <item name="android:enabled">false</item>
         <item name="android:text">@string/auth_register</item>
@@ -392,7 +392,6 @@
     <style name="ImageButton.AddPhoto">
         <item name="android:layout_width">@dimen/button_add_photo_size_55</item>
         <item name="android:layout_height">@dimen/button_add_photo_size_55</item>
-        <item name="android:layout_marginTop">@dimen/margin_100</item>
         <item name="android:background">@drawable/all_round_orange_button_background</item>
         <item name="android:cropToPadding">true</item>
         <item name="android:padding">@dimen/margin_14</item>

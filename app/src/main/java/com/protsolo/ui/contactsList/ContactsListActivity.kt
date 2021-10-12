@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.protsolo.R
 import com.protsolo.ui.contactsList.adapters.ContactsAdapter
@@ -24,7 +23,6 @@ import com.protsolo.utils.Constants
 class ContactsListActivity : AppCompatActivity(), IContactListener {
 
     private lateinit var binding: ActivityContactsListBinding
-    private lateinit var contactsListRecycleView: RecyclerView
     private lateinit var contactsViewModel: ContactsViewModel
     private lateinit var contactsAdapter: ContactsAdapter
     private lateinit var addContactFragment: AddContactFragment
@@ -36,17 +34,15 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         setContentView(binding.root)
 
         contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
-        contactsListRecycleView = binding.recyclerViewContactsList
-        contactsListRecycleView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewContactsList.layoutManager = LinearLayoutManager(this)
         contactsAdapter = ContactsAdapter(onIContactListener = this)
-        contactsListRecycleView.adapter = contactsAdapter
+        binding.recyclerViewContactsList.adapter = contactsAdapter
+        addContactFragment = AddContactFragment(onIContactListener = this)
 
         addItemDecoration()
-        setObserver()
         initSwipeToDelete()
+        setObserver()
         setListeners()
-
-        addContactFragment = AddContactFragment(contactsAdapter)
     }
 
     override fun removeItem(position: Int) {
@@ -55,7 +51,7 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         contactsAdapter.submitList(contactsViewModel.contactsData.value)
 
         Snackbar.make(
-            contactsListRecycleView, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
+            binding.recyclerViewContactsList, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
             Snackbar.LENGTH_LONG
         ).setAction(Constants.UNDO) {
             if (element != null) {
@@ -79,12 +75,28 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         binding.floatingActionButtonContactsListUp.startAnimation(hideButton)
     }
 
+    private fun addItemDecoration() {
+        val margin =
+            TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, Constants.CONTACTS_ITEM_MARGIN,
+                resources.displayMetrics
+            ).toInt()
+        binding.recyclerViewContactsList.addItemDecoration(ContactListItemDecoration(margin))
+    }
+
     private fun setObserver() {
         contactsViewModel.contactsData.observe(this, {
             it?.let {
                 contactsAdapter.submitList(it)
             }
         })
+    }
+
+    private fun initSwipeToDelete() {
+        val onItemDelete = { position: Int ->
+            contactsAdapter.deleteItem(position)
+        }
+        ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(binding.recyclerViewContactsList)
     }
 
     private fun setListeners() {
@@ -95,29 +107,13 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
                     Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE)
             }
             floatingActionButtonContactsListUp.setOnClickListener {
-                contactsListRecycleView.smoothScrollToPosition(0)
+                recyclerViewContactsList.smoothScrollToPosition(0)
             }
             buttonContactsListBack.setOnClickListener {
                 startActivity(Intent(baseContext, MainActivity::class.java))
                 finish()
             }
         }
-    }
-
-    private fun initSwipeToDelete() {
-        val onItemDelete = { position: Int ->
-            contactsAdapter.setItem(position)
-        }
-        ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(contactsListRecycleView)
-    }
-
-    private fun addItemDecoration() {
-        val margin =
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, Constants.CONTACTS_ITEM_MARGIN,
-                resources.displayMetrics
-            ).toInt()
-        contactsListRecycleView.addItemDecoration(ContactListItemDecoration(margin))
     }
 }
 

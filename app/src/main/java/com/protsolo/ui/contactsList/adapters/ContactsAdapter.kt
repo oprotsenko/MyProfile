@@ -1,5 +1,6 @@
 package com.protsolo.ui.contactsList.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -19,14 +20,15 @@ class ContactsAdapter(private val onIContactListener: IContactListener)
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         with(holder) {
-            bind(getItem(position))
-            if (getItem(position).userId == getItem(itemCount - 1).userId) {
-                onIContactListener.showFloatButton()
-            } else {
-                onIContactListener.hideFloatButton()
+            bind(getItem(bindingAdapterPosition))
+            Log.d("count", itemCount.toString())
+            Log.d("current", bindingAdapterPosition.toString())
+            when(currentList[itemCount - 1]) {
+                getItem(bindingAdapterPosition) -> onIContactListener.showFloatButton()
+                else -> onIContactListener.hideFloatButton()
             }
             deleteButton.setOnClickListener {
-                setItem(position)
+                deleteItem(bindingAdapterPosition)
             }
         }
     }
@@ -35,11 +37,7 @@ class ContactsAdapter(private val onIContactListener: IContactListener)
         super.submitList(list?.let { ArrayList(it) })
     }
 
-    fun setItem(position: Int) {
+    fun deleteItem(position: Int) {
         onIContactListener.removeItem(position)
-    }
-
-    fun addNewItem(element: UserModel, position: Int) {
-        onIContactListener.addItem(element, position)
     }
 }

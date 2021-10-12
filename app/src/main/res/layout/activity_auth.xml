@@ -2,17 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ParentLayout.Blue.AuthLayout"
+    style="@style/ParentLayout.Blue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_auth_scene"
     tools:context=".ui.AuthActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineAuthHorizontal0.23"
-        style="@style/GuideLine.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.23" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.AuthTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +26,8 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthFillOutDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.AuthDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +35,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAuthEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/TextInputLayout.Auth"
         android:hint="@string/auth_email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,12 +45,16 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAuthEmailAddressField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             style="@style/EditTextField.Auth"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAuthPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/TextInputLayout.Auth"
         android:hint="@string/auth_password"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,12 +63,16 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAuthPasswordField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             style="@style/EditTextField.Auth"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkBoxAuthRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.LightGray.AuthCheckBox"
         android:text="@string/auth_remember_me"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,20 +80,28 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutAuthGoogleSignInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/FullWidthButton.GoogleRegister"
         app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/GoogleIcon" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             style="@style/Text.Gray.Google" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.AuthOr"
         app:layout_constraintBottom_toTopOf="@+id/buttonAuthRegister"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,6 +109,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonAuthRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         style="@style/FullWidthButton.BorderOrange.Register"
         app:layout_constraintBottom_toTopOf="@id/textViewAuthTermsAndConditions"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +118,8 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthTermsAndConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.AuthTermsAndConditions"
         app:layout_constraintBottom_toTopOf="@id/textViewAuthHaveAccount"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +127,8 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.LightGray.AuthHaveAccount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/textViewAuthSignIn"
@@ -105,6 +137,8 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewAuthSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/Text.SignIn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,15 +2,20 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ParentLayout">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         style="@style/ParentLayout.White"
         android:paddingBottom="@dimen/margin_16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutAddContactHeader"
             style="@style/ChildrenLayout.AddContactHeader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -18,19 +23,26 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/buttonAddContactBack"
                 style="@style/ImageButton.AddContactBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewAddContact"
                 style="@style/Text.AddContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/buttonAddContactBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/buttonAddContactBack" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewAddContactFragmentContactPhoto"
-                style="@style/ProfilePhotoSize.AddContactFragment"
+                style="@style/AddContactFragment"
+                android:layout_width="@dimen/profile_photo_size_113"
+                android:layout_height="@dimen/profile_photo_size_113"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewAddContact"
@@ -39,14 +51,19 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/buttonAddContactFragmentAddPhoto"
                 style="@style/ImageButton.AddPhoto"
+                android:layout_width="@dimen/button_add_photo_size_55"
+                android:layout_height="@dimen/button_add_photo_size_55"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewAddContactFragmentContactPhoto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewAddContactFragmentContactPhoto"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/imageViewAddContactFragmentContactPhoto" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAddContactsFragmentUsername"
-            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayout.Fragment"
             android:hint="@string/all_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,13 +71,17 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/EditTextField.BlackText"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAddContactsFragmentCareer"
-            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayout.Fragment"
             android:hint="@string/all_career"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,13 +89,17 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentCareer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/EditTextField.BlackText"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAddContactsFragmentEmail"
-            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayout.Fragment"
             android:hint="@string/add_contacts_fragment_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,13 +108,17 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/EditTextField.BlackText"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAddContactsFragmentPhone"
-            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayout.Fragment"
             android:hint="@string/add_contacts_fragment_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,13 +127,17 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/EditTextField.BlackText"
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAddContactsFragmentAddress"
-            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayout.Fragment"
             android:hint="@string/add_contacts_fragment_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,13 +145,17 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/EditTextField.BlackText"
                 android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAddContactsFragmentBirthDay"
-            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayout.Fragment"
             android:hint="@string/add_contacts_fragment_date_of_birth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,14 +164,20 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentBirthDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/EditTextField.BlackText"
                 android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonAddContactSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             style="@style/FullWidthButton.Orange"
             android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
             android:text="@string/add_contacts_fragment_button_save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

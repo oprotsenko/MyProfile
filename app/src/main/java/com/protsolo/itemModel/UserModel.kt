@@ -8,5 +8,4 @@ data class UserModel(
     var name: String = "User Name",
     var career: String = "User career",
     var address: String = "User address"
-) {
-}
+)

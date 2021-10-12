@@ -7,7 +7,7 @@ import com.protsolo.database.ContactsDataFake
 
 class ContactsViewModel : ViewModel() {
 
-    var contactsData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
+    val contactsData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
 
     init {
         contactsData.value = ContactsDataFake.loadContacts()

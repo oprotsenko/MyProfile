@@ -2,52 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ParentLayout.White.ContactsListLayout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    style="@style/ParentLayout.White"
     tools:context=".ui.contactsList.ContactsListActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutContactsListContactsOptions"
         style="@style/ChildrenLayout.ContactsListOptionsLayout"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineContactsListHorizontal0.177"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/buttonContactsListBack"
             style="@style/ImageButton.ContactListBack"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewContactsListContacts"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/textViewContactsListContacts" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewContactsListContacts"
             style="@style/Text.ContactsTitle"
-            app:layout_constraintEnd_toStartOf="@id/buttonContactsListSearch"
-            app:layout_constraintStart_toEndOf="@id/buttonContactsListBack"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonContactsListSearch"
+            app:layout_constraintEnd_toStartOf="@+id/buttonContactsListSearch"
+            app:layout_constraintStart_toEndOf="@+id/buttonContactsListBack"
+            app:layout_constraintTop_toTopOf="@+id/buttonContactsListSearch" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/buttonContactsListSearch"
             style="@style/ImageButton.Search"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewContactsListAddContact"
             style="@style/Text.AddContactButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewContactsListContacts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineContactsListHorizontal0.177"
-        style="@style/GuideLine.Horizontal"
-        app:layout_constraintGuide_percent="0.177" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonContactsListUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         style="@style/FloatingButton.Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -56,10 +65,16 @@
         android:id="@+id/recyclerViewContactsList"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
-        tools:listitem="@layout/contact_list_item"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutContactsListContactsOptions" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutContactsListContactsOptions"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/contact_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

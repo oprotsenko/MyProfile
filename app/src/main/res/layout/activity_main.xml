@@ -3,12 +3,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ParentLayout.White.Main"
+    style="@style/ParentLayout.White"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutMainUserInfo"
         style="@style/ChildrenLayout.MainUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
         app:layout_constraintBottom_toTopOf="@id/guideLineMainHorizontalCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,19 +21,25 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/buttonMainSettings"
             style="@style/Text.MainSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/imageViewMainProfilePhoto"
-            style="@style/ProfilePhotoSize.MainUserPhoto"
+            style="@style/MainUserPhoto"
+            android:layout_width="@dimen/profile_photo_size_113"
+            android:layout_height="@dimen/profile_photo_size_113"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonMainSettings"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonMainSettings" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainUserName"
             style="@style/Text.MainUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageViewMainProfilePhoto" />
@@ -37,6 +47,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainCareer"
             style="@style/Text.LightGray.MainCareer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewMainUserName" />
@@ -44,6 +56,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainHomeAddress"
             style="@style/Text.LightGray.MainHomeAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewMainCareer" />
@@ -51,37 +65,49 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineMainHorizontalCenter"
-        style="@style/GuideLine.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMainSocialFacebook"
         style="@style/ImageButton.MainSocial.Facebook"
-        app:layout_constraintBottom_toTopOf="@id/textViewMainSettingsDescription"
-        app:layout_constraintEnd_toStartOf="@id/buttonMainSocialLinkedIn"
-        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMainSettingsDescription"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMainSocialLinkedIn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideLineMainHorizontalCenter" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutMainUserInfo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMainSocialLinkedIn"
         style="@style/ImageButton.MainSocial.LinkedIn"
-        app:layout_constraintBottom_toTopOf="@id/textViewMainSettingsDescription"
-        app:layout_constraintEnd_toStartOf="@id/buttonMainSocialVK"
-        app:layout_constraintStart_toEndOf="@id/buttonMainSocialFacebook"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMainSettingsDescription"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMainSocialVK"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMainSocialFacebook"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutMainUserInfo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMainSocialVK"
         style="@style/ImageButton.MainSocial.VK"
-        app:layout_constraintBottom_toTopOf="@id/textViewMainSettingsDescription"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMainSettingsDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonMainSocialLinkedIn"
-        app:layout_constraintTop_toTopOf="@+id/guideLineMainHorizontalCenter" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMainSocialLinkedIn"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutMainUserInfo" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewMainSettingsDescription"
         style="@style/Text.Blue.SettingsDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/buttonMainEditProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -89,6 +115,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMainEditProfile"
         style="@style/FullWidthButton.EditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/buttonMainViewContacts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -96,6 +124,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMainViewContacts"
         style="@style/FullWidthButton.Orange.MyContacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

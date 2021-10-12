@@ -18,9 +18,9 @@ class ContactListItemDecoration(private val margin: Int) : RecyclerView.ItemDeco
         super.getItemOffsets(outRect, view, parent, state)
 
         with(outRect) {
-            left = margin
-            right = margin
-            top = margin
+            val middle = margin / 2
+            top = middle
+            bottom = middle
         }
     }
 }

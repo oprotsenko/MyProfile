@@ -8,12 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FAFAFA</color>
     <color name="background_color">#E7E7E7</color>
-    <color name="main_blue_color">#242235</color>
-    <color name="gray_text2">#B2B2B3</color>
+    <color name="blue">#242235</color>
     <color name="gray_text">#18181F</color>
-    <color name="orange">#FB5E06</color>
-    <color name="gray_line">#BDBDBD</color>
+    <color name="gray_text2">#B2B2B3</color>
     <color name="gray_3">#828282</color>
+    <color name="gray_line">#BDBDBD</color>
+    <color name="orange">#FB5E06</color>
     <color name="error_color">#F93E3E</color>
     <color name="mtrl_textinput_default_box_stroke_color">#B2B2B3</color>
 </resources>
