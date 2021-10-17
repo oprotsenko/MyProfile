@@ -1,6 +1,7 @@
 package com.protsolo.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
@@ -57,6 +58,9 @@ class AuthActivity : AppCompatActivity() {
             buttonAuthRegister.setOnClickListener {
                 buttonAuthRegister.isEnabled = false // to prevent double click
                 register()
+            }
+            customButtonGoogle.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/")))
             }
         }
     }

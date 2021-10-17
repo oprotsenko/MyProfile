@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/ContactListItemLayout">
+    style="@style/ContactListItemLayoutStyle">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewContact"
@@ -21,7 +21,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewContactsListContactName"
-        style="@style/Text.Black"
+        style="@style/GrayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
@@ -34,7 +34,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewContactsListContactCareer"
-        style="@style/Text.LightGray"
+        style="@style/LightGrayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"

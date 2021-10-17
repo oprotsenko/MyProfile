@@ -8,12 +8,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/ParentLayout.White"
         android:paddingBottom="@dimen/margin_16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutAddContactHeader"
-            style="@style/ChildrenLayout.AddContactHeader"
+            style="@style/AddContactHeaderLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,7 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/buttonAddContactBack"
-                style="@style/ImageButton.AddContactBack"
+                style="@style/ImageButtonBackStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +29,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewAddContact"
-                style="@style/Text.AddContact"
+                style="@style/AddContactTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/buttonAddContactBack"
@@ -40,9 +39,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewAddContactFragmentContactPhoto"
-                style="@style/AddContactFragment"
                 android:layout_width="@dimen/profile_photo_size_113"
                 android:layout_height="@dimen/profile_photo_size_113"
+                android:layout_marginTop="@dimen/margin_28"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewAddContact"
@@ -50,7 +49,7 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/buttonAddContactFragmentAddPhoto"
-                style="@style/ImageButton.AddPhoto"
+                style="@style/ImageButtonAddPhotoStyle"
                 android:layout_width="@dimen/button_add_photo_size_55"
                 android:layout_height="@dimen/button_add_photo_size_55"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewAddContactFragmentContactPhoto"
@@ -63,7 +62,7 @@
             android:id="@+id/textInputLayoutAddContactsFragmentUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayout.Fragment"
+            style="@style/TextInputLayoutStyle.FragmentMargin"
             android:hint="@string/all_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +72,7 @@
                 android:id="@+id/editTextAddContactsFragmentUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextField.BlackText"
+                style="@style/EditTextFieldStyle.DarkText"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +80,7 @@
             android:id="@+id/textInputLayoutAddContactsFragmentCareer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayout.Fragment"
+            style="@style/TextInputLayoutStyle.FragmentMargin"
             android:hint="@string/all_career"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +90,7 @@
                 android:id="@+id/editTextAddContactsFragmentCareer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextField.BlackText"
+                style="@style/EditTextFieldStyle.DarkText"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +98,7 @@
             android:id="@+id/textInputLayoutAddContactsFragmentEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayout.Fragment"
+            style="@style/TextInputLayoutStyle.FragmentMargin"
             android:hint="@string/add_contacts_fragment_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +109,7 @@
                 android:id="@+id/editTextAddContactsFragmentEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextField.BlackText"
+                style="@style/EditTextFieldStyle.DarkText"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +117,7 @@
             android:id="@+id/textInputLayoutAddContactsFragmentPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayout.Fragment"
+            style="@style/TextInputLayoutStyle.FragmentMargin"
             android:hint="@string/add_contacts_fragment_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +128,7 @@
                 android:id="@+id/editTextAddContactsFragmentPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextField.BlackText"
+                style="@style/EditTextFieldStyle.DarkText"
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,7 +136,7 @@
             android:id="@+id/textInputLayoutAddContactsFragmentAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayout.Fragment"
+            style="@style/TextInputLayoutStyle.FragmentMargin"
             android:hint="@string/add_contacts_fragment_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +146,7 @@
                 android:id="@+id/editTextAddContactsFragmentAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextField.BlackText"
+                style="@style/EditTextFieldStyle.DarkText"
                 android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,7 +154,7 @@
             android:id="@+id/textInputLayoutAddContactsFragmentBirthDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayout.Fragment"
+            style="@style/TextInputLayoutStyle.FragmentMargin"
             android:hint="@string/add_contacts_fragment_date_of_birth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +165,7 @@
                 android:id="@+id/editTextAddContactsFragmentBirthDay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextField.BlackText"
+                style="@style/EditTextFieldStyle.DarkText"
                 android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,11 +173,7 @@
             android:id="@+id/buttonAddContactSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/FullWidthButton.Orange"
-            android:layout_marginTop="@dimen/margin_24"
-            android:layout_marginStart="@dimen/margin_16"
-            android:layout_marginEnd="@dimen/margin_16"
-            android:text="@string/add_contacts_fragment_button_save"
+            style="@style/OrangeButtonStyle.Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutAddContactsFragmentBirthDay" />

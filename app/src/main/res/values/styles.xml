@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!--    Parent layout patterns   -->
-    <style name="ParentLayout.White">
-        <item name="android:background">@color/white</item>
-    </style>
 
-    <style name="ParentLayout.Blue">
-        <item name="android:background">@color/blue</item>
-        <item name="android:padding">@dimen/margin_16</item>
-    </style>
-
-    <!--   All text colors   -->
-    <style name="Text" parent="Widget.AppCompat.TextView">
-        <item name="android:fontFamily">@font/open_sans</item>
-        <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="Text.LightGray">
+    <style name="LightGrayText" parent="TextStyle">
         <item name="android:textColor">@color/gray_text2</item>
     </style>
 
-    <style name="Text.Gray">
-        <item name="android:textColor">@color/gray_text</item>
+    <style name="GrayText" parent="TextStyle">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 
-    <style name="Text.Blue">
-        <item name="android:textColor">@color/blue</item>
+    <style name="BlueText" parent="TextStyle">
+        <item name="android:textColor">?android:attr/colorPrimary</item>
     </style>
 
-    <style name="Text.Black">
-        <item name="android:textColor">@color/black</item>
+    <style name="ParentLayoutMarginStyle">
+        <item name="android:background">?android:attr/colorPrimary</item>
+        <item name="android:padding">@dimen/margin_16</item>
     </style>
 
-    <!--Style for button-->
-    <style name="FullWidthButton" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:fontFamily">@font/open_sans</item>
-        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxCollapsedPaddingTop">@dimen/zero</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="placeholderTextColor">?android:attr/textColorHint</item>
+        <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="android:textColorHint">?android:attr/textColorHint</item>
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="boxStrokeColor">?android:attr/textColorHint</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="android:ems">10</item>
+        <item name="boxStrokeErrorColor">?android:attr/textColorHint</item>
+        <item name="errorTextColor">?android:attr/colorError</item>
+        <item name="android:padding">@dimen/zero</item>
     </style>
 
-    <style name="FullWidthButton.Orange">
+    <style name="EditTextFieldStyle" parent="TextStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingStart">@dimen/zero</item>
+        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="android:gravity">start</item>
+        <item name="boxCollapsedPaddingTop">-16dp</item>
+    </style>
+
+    <!-- Button styles -->
+    <style name="BorderOrangeButtonStyle">
+        <item name="android:background">@drawable/auth_frame_orange</item>
+    </style>
+
+    <style name="OrangeButtonStyle">
         <item name="android:background">@drawable/all_orange_button</item>
         <item name="android:textColor">@drawable/all_orange_button_text_color</item>
         <item name="android:textSize">@dimen/text_size_16</item>
@@ -49,87 +55,176 @@
         <item name="android:paddingBottom">@dimen/padding_15.5</item>
     </style>
 
-    <style name="FullWidthButton.BorderOrange">
-        <item name="android:background">@drawable/auth_frame_orange</item>
+    <!--    Auth activity   -->
+    <style name="AuthTitle">
+        <item name="android:text">@string/auth_acquaint</item>
+        <item name="android:textSize">@dimen/text_size_h1</item>
     </style>
 
-    <style name="FloatingButton">
+    <style name="AuthDescription">
+        <item name="android:text">@string/auth_fill_out_description</item>
+        <item name="android:textSize">@dimen/text_size_h4</item>
+        <item name="android:layout_marginTop">@dimen/margin_4</item>
+        <item name="android:layout_marginBottom">@dimen/margin_24</item>
+    </style>
+
+    <style name="EditTextFieldStyle.Auth">
+        <item name="android:textCursorDrawable">@drawable/auth_white_cursor</item>
+    </style>
+
+    <style name="AuthCheckBoxStyle" parent="LightGrayText">
+        <item name="checkedTextViewStyle">@style/TextStyle</item>
+        <item name="android:layout_marginTop">@dimen/margin_18</item>
+        <item name="android:layout_marginStart">-6dp</item>
+        <item name="android:buttonTint">?android:attr/textColorPrimary</item>
+        <item name="android:minHeight">@dimen/zero</item>
+    </style>
+
+    <style name="CustomButtonStyle" parent="FullWidthButton">
+        <item name="background">@drawable/auth_white_button</item>
+        <item name="android:padding">@dimen/margin_12</item>
+        <item name="textAppearanceButton">@style/GrayText</item>
+        <item name="android:letterSpacing">0.3</item>
+    </style>
+
+    <style name="AuthOr">
+        <item name="android:layout_marginTop">@dimen/margin_8</item>
+        <item name="android:layout_marginBottom">@dimen/margin_8</item>
+        <item name="android:text">@string/auth_or</item>
+        <item name="android:textSize">@dimen/text_size_h2</item>
+    </style>
+
+    <style name="BorderOrangeButtonStyle.Register">
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+        <item name="android:enabled">false</item>
+        <item name="android:text">@string/auth_register</item>
+    </style>
+
+    <style name="AuthTermsAndConditions">
+        <item name="android:text">@string/auth_terms_and_conditions</item>
+        <item name="android:textSize">@dimen/text_size_h4</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+
+    <style name="LightGrayText.AuthHaveAccount">
+        <item name="android:layout_marginEnd">@dimen/margin_12</item>
+        <item name="android:text">@string/auth_already_have_account</item>
+        <item name="android:textSize">@dimen/text_size_h3</item>
+    </style>
+
+    <style name="SignIn">
+        <item name="android:layout_marginTop">@dimen/margin_12</item>
+        <item name="android:text">@string/auth_sign_in</item>
+        <item name="android:textSize">@dimen/text_size_h3</item>
+    </style>
+
+    <!--    Contacts list activity   -->
+    <style name="ContactsListOptionsLayoutMarginStyle">
+        <item name="android:background">?android:attr/colorPrimary</item>
+        <item name="android:paddingStart">@dimen/margin_20</item>
+        <item name="android:paddingTop">@dimen/margin_16</item>
+        <item name="android:paddingEnd">@dimen/margin_20</item>
+        <item name="android:paddingBottom">@dimen/margin_26</item>
+    </style>
+
+    <style name="ImageButtonBackStyle">
+        <item name="srcCompat">@drawable/ic_arrow_back_24px</item>
+    </style>
+
+    <style name="ImageButtonSearchStyle">
+        <item name="srcCompat">@drawable/ic_search</item>
+    </style>
+
+    <style name="ContactsTitleStyle">
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:text">@string/contacts_list_contacts</item>
+    </style>
+
+    <style name="AddContactButtonStyle">
+        <item name="android:layout_marginTop">@dimen/margin_32</item>
+        <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:text">@string/contacts_list_add_contacts</item>
+    </style>
+
+    <style name="FloatingButtonUp">
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
         <item name="android:layout_marginBottom">@dimen/margin_41</item>
-        <item name="android:backgroundTint">@color/orange</item>
-        <item name="tint">@color/white</item>
+        <item name="srcCompat">@drawable/ic_up_arrow</item>
     </style>
 
-    <style name="WindowAnimations">
-        <item name="android:activityOpenEnterAnimation">@anim/enter_activity</item>
-        <item name="android:activityOpenExitAnimation">@anim/exit_activity</item>
-        <item name="android:activityCloseEnterAnimation">@anim/enter_activity</item>
-        <item name="android:activityCloseExitAnimation">@anim/exit_activity</item>
+    <style name="RecyclerViewStyle">
+        <item name="android:paddingStart">@dimen/margin_16</item>
+        <item name="android:paddingEnd">@dimen/margin_16</item>
+        <item name="android:paddingTop">@dimen/margin_8</item>
+        <item name="android:paddingBottom">@dimen/margin_8</item>
     </style>
 
     <!--    Main activity   -->
-     <style name="ChildrenLayout.MainUserInfo">
-        <item name="android:background">@color/blue</item>
+    <style name="LayoutMainUserInfoStyle">
+        <item name="android:background">?android:attr/colorPrimary</item>
         <item name="android:padding">@dimen/margin_16</item>
     </style>
 
-    <style name="Text.MainSettings">
+    <style name="MainSettingsStyle">
         <item name="android:text">@string/main_settings</item>
         <item name="android:textSize">@dimen/text_size_h1</item>
         <item name="android:letterSpacing">0.05</item>
     </style>
 
-    <style name="MainUserPhoto">
+    <style name="MainUserPhotoStyle">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="roundAsCircle">true</item>
         <item name="placeholderImage">@color/gray_text2</item>
         <item name="failureImage">@drawable/ic_default_profile_photo</item>
     </style>
 
-    <style name="Text.MainUserName">
+    <style name="MainUserNameStyle">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:text">@string/all_username</item>
         <item name="android:textSize">@dimen/text_size_h2</item>
     </style>
 
-    <style name="Text.LightGray.MainCareer">
+    <style name="LightGrayText.MainCareerStyle">
         <item name="android:layout_marginTop">@dimen/margin_8</item>
         <item name="android:text">@string/all_career</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
     </style>
 
-    <style name="Text.LightGray.MainHomeAddress">
+    <style name="LightGrayText.MainHomeAddressStyle">
         <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:text">@string/main_home_address</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
     </style>
 
-    <style name="ImageButton.MainSocial">
+    <style name="MainSocialButtonStyle" parent="ImageButtonStyle">
         <item name="layout_constraintDimensionRatio">h,1:1</item>
         <item name="layout_constraintHorizontal_bias">0.5</item>
     </style>
 
-    <style name="ImageButton.MainSocial.Facebook">
+    <style name="MainSocialButtonStyle.Facebook">
         <item name="android:background">@drawable/ic_facebook</item>
     </style>
 
-    <style name="ImageButton.MainSocial.LinkedIn">
+    <style name="MainSocialButtonStyle.LinkedIn">
         <item name="android:background">@drawable/ic_linkedin</item>
     </style>
 
-    <style name="ImageButton.MainSocial.VK">
+    <style name="MainSocialButtonStyle.VK">
         <item name="android:background">@drawable/ic_vk</item>
     </style>
 
-    <style name="Text.Blue.SettingsDescription">
+    <style name="BlueText.SettingsDescriptionStyle">
         <item name="android:layout_marginBottom">@dimen/margin_16</item>
         <item name="android:text">@string/main_settings_description</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
     </style>
 
-    <style name="FullWidthButton.EditProfile">
+    <style name="EditProfile">
         <item name="android:background">@drawable/main_frame_gray</item>
-        <item name="android:textColor">@color/gray_text</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:paddingTop">@dimen/margin_8</item>
         <item name="android:paddingBottom">@dimen/margin_8</item>
@@ -140,187 +235,27 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="FullWidthButton.Orange.MyContacts">
+    <style name="OrangeButtonStyle.MyContacts">
         <item name="android:layout_marginStart">@dimen/margin_16</item>
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
         <item name="android:layout_marginBottom">@dimen/margin_16</item>
-         <item name="android:text">@string/main_view_my_contacts</item>
+        <item name="android:text">@string/main_view_my_contacts</item>
     </style>
 
-    <!--    Auth activity   -->
-    <style name="Text.AuthTitle">
-        <item name="android:textAlignment">center</item>
-        <item name="android:text">@string/auth_acquaint</item>
-        <item name="android:textSize">@dimen/text_size_h1</item>
-    </style>
-
-    <style name="Text.AuthDescription">
-        <item name="android:textAlignment">center</item>
-        <item name="android:text">@string/auth_fill_out_description</item>
-        <item name="android:textSize">@dimen/text_size_h4</item>
-        <item name="android:layout_marginTop">@dimen/margin_4</item>
-        <item name="android:layout_marginBottom">@dimen/margin_24</item>
-    </style>
-
-    <style name="TextInputLayout" parent="TextAppearance.AppCompat.Medium">
-        <item name="boxCollapsedPaddingTop">@dimen/zero</item>
-        <item name="expandedHintEnabled">false</item>
-        <item name="placeholderTextColor">@color/gray_text2</item>
-        <item name="android:layout_marginTop">@dimen/margin_24</item>
-        <item name="android:textColorHint">@color/gray_line</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
-        <item name="boxStrokeColor">@color/gray_text2</item>
-        <item name="boxStrokeWidth">1.5dp</item>
-        <item name="android:ems">10</item>
-    </style>
-
-    <style name="TextInputLayout.Auth">
-        <item name="boxStrokeErrorColor">@color/gray_text2</item>
-        <item name="errorTextColor">@color/error_color</item>
-        <item name="android:padding">@dimen/zero</item>
-    </style>
-
-    <style name="EditTextField" parent="Text">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:paddingStart">@dimen/zero</item>
-        <item name="android:textSize">@dimen/text_size_h2</item>
-        <item name="android:textAlignment">textStart</item>
-        <item name="boxCollapsedPaddingTop">-16dp</item>
-    </style>
-
-    <style name="EditTextField.Auth">
-        <item name="android:textCursorDrawable">@drawable/auth_white_cursor</item>
-    </style>
-
-    <style name="Text.LightGray.AuthCheckBox">
-        <item name="android:text">@style/Text.LightGray</item>
-        <item name="android:layout_marginStart">-6dp</item>
-        <item name="android:layout_marginTop">@dimen/margin_18</item>
-        <item name="android:buttonTint">@color/white</item>
-        <item name="android:minHeight">@dimen/zero</item>
-    </style>
-
-    <style name="FullWidthButton.GoogleRegister">
-        <item name="android:background">@drawable/auth_white_button</item>
-        <item name="android:textColor">@color/gray_text</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:letterSpacing">0.5</item>
-    </style>
-
-    <style name="GoogleIcon">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">@dimen/margin_16</item>
-        <item name="android:background">@drawable/ic_google</item>
-    </style>
-
-    <style name="Text.Gray.Google">
-        <item name="android:letterSpacing">0.3</item>
-        <item name="android:text">@string/auth_google_sign_in</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
-    </style>
-
-    <style name="Text.AuthOr">
-        <item name="android:layout_marginTop">@dimen/margin_8</item>
-        <item name="android:layout_marginBottom">@dimen/margin_8</item>
-        <item name="android:text">@string/auth_or</item>
-        <item name="android:textSize">@dimen/text_size_h2</item>
-    </style>
-
-    <style name="FullWidthButton.BorderOrange.Register">
-        <item name="android:letterSpacing">0.1</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_marginBottom">@dimen/margin_12</item>
-        <item name="android:enabled">false</item>
-        <item name="android:text">@string/auth_register</item>
-    </style>
-
-    <style name="Text.AuthTermsAndConditions">
-        <item name="android:textAlignment">center</item>
-        <item name="android:text">@string/auth_terms_and_conditions</item>
-        <item name="android:textSize">@dimen/text_size_h4</item>
-        <item name="android:layout_marginBottom">@dimen/margin_12</item>
-        <item name="android:textFontWeight" tools:targetApi="p">400</item>
-    </style>
-
-    <style name="Text.LightGray.AuthHaveAccount">
-        <item name="android:layout_marginEnd">@dimen/margin_12</item>
-        <item name="android:text">@string/auth_already_have_account</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
-    </style>
-
-    <style name="Text.SignIn">
-        <item name="android:layout_marginTop">@dimen/margin_12</item>
-        <item name="android:text">@string/auth_sign_in</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
-    </style>
-
-<!--    Contacts list activity   -->
-    <style name="ChildrenLayout.ContactsListOptionsLayout">
-        <item name="android:background">@color/blue</item>
-        <item name="android:paddingStart">@dimen/margin_20</item>
-        <item name="android:paddingTop">@dimen/margin_16</item>
-        <item name="android:paddingEnd">@dimen/margin_20</item>
-        <item name="android:paddingBottom">@dimen/margin_26</item>
-    </style>
-
-    <style name="ImageButton.ContactListBack">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="srcCompat">@drawable/ic_arrow_back_24px</item>
-    </style>
-
-    <style name="Text.ContactsTitle">
-        <item name="android:letterSpacing">0.05</item>
-        <item name="android:textSize">@dimen/text_size_h1</item>
-        <item name="android:text">@string/contacts_list_contacts</item>
-    </style>
-
-    <style name="ImageButton.Search">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="srcCompat">@drawable/ic_search</item>
-    </style>
-
-    <style name="Text.AddContactButton">
-        <item name="android:layout_marginTop">@dimen/margin_32</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
-        <item name="android:text">@string/contacts_list_add_contacts</item>
-    </style>
-
-    <style name="FloatingButton.Up">
-        <item name="srcCompat">@drawable/ic_up_arrow</item>
-    </style>
-
-<!--    Contact list item   -->
-    <style name="ContactListItemLayout">
-        <item name="android:background">@drawable/contacts_frame_light_gray</item>
-        <item name="android:padding">@dimen/margin_8</item>
-        <item name="android:paddingEnd">@dimen/margin_12</item>
-    </style>
-
-<!--    Add contact fragment   -->
-    <style name="ChildrenLayout.AddContactHeader">
-        <item name="android:background">@color/blue</item>
+    <!--    Add contact fragment   -->
+    <style name="AddContactHeaderLayoutStyle">
+        <item name="android:background">?android:attr/colorPrimary</item>
         <item name="android:paddingStart">@dimen/margin_20</item>
         <item name="android:paddingTop">@dimen/margin_24</item>
         <item name="android:paddingBottom">@dimen/margin_28</item>
     </style>
 
-    <style name="ImageButton.AddContactBack">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="srcCompat">@drawable/ic_arrow_back_24px</item>
-    </style>
-
-    <style name="Text.AddContact">
+    <style name="AddContactTitleStyle">
         <item name="android:text">@string/add_contacts_fragment_add_contact</item>
         <item name="android:textSize">@dimen/text_size_h2</item>
     </style>
 
-    <style name="AddContactFragment">
-        <item name="android:layout_marginTop">@dimen/margin_28</item>
-    </style>
-
-    <style name="ImageButton.AddPhoto">
+    <style name="ImageButtonAddPhotoStyle">
         <item name="android:background">@drawable/all_round_orange_button_background</item>
         <item name="android:cropToPadding">true</item>
         <item name="android:padding">@dimen/margin_14</item>
@@ -328,13 +263,27 @@
         <item name="srcCompat">@drawable/ic_add_photo</item>
     </style>
 
-    <style name="TextInputLayout.Fragment">
+    <style name="TextInputLayoutStyle.FragmentMargin">
         <item name="android:layout_marginStart">@dimen/margin_16</item>
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
     </style>
 
-    <style name="EditTextField.BlackText">
-        <item name="android:textColor">@color/gray_text</item>
+    <style name="EditTextFieldStyle.DarkText">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textCursorDrawable">@drawable/all_gray_cursor</item>
+    </style>
+
+    <style name="OrangeButtonStyle.Save">
+        <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="android:layout_marginStart">@dimen/margin_16</item>
+        <item name="android:layout_marginEnd">@dimen/margin_16</item>
+        <item name="android:text">@string/add_contacts_fragment_button_save</item>
+    </style>
+
+    <!--    Contact list item   -->
+    <style name="ContactListItemLayoutStyle">
+        <item name="android:background">@drawable/contacts_frame_light_gray</item>
+        <item name="android:padding">@dimen/margin_8</item>
+        <item name="android:paddingEnd">@dimen/margin_12</item>
     </style>
 </resources>
