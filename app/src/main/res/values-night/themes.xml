@@ -1,17 +1,31 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.MyProfile" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/gray_text2</item>
-        <item name="colorPrimaryVariant">@color/gray_text2</item>
-        <item name="colorOnPrimary">@color/gray_text2</item>
+        <item name="colorPrimary">@color/gray_text</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
+        <item name="android:windowBackground">@color/blue</item>
+        <item name="android:textColorSecondary">@color/gray_4</item>
+        <item name="errorTextColor">@color/design_default_color_error</item>
+        <item name="colorButtonNormal">@color/orange</item>
+        <item name="android:textColorHint">@color/gray_4</item>
+
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/gray_text2</item>
+        <item name="colorSecondary">@color/background</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?android:attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?android:attr/statusBarColor</item>
+
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/WindowAnimationsStyle</item>
+        <item name="android:textViewStyle">@style/TextStyle</item>
+        <item name="buttonStyle">@style/FullWidthButton</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
+        <item name="imageButtonStyle">@style/ImageButtonStyle</item>
+        <item name="floatingActionButtonStyle">@style/FloatingButtonStyle</item>
+        <!--        <item name="textInputStyle">@style/TextInputLayoutStyle</item>-->
+        <!--        <item name="editTextStyle">@style/EditTextField</item>-->
     </style>
 </resources>

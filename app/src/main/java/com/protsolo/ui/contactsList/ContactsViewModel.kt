@@ -15,9 +15,11 @@ class ContactsViewModel : ViewModel() {
 
     fun removeItem(position: Int) {
         contactsData.value?.removeAt(position)
+        contactsData.value = contactsData.value
     }
 
     fun addItem(position: Int, userModel: UserModel) {
         contactsData.value?.add(position, userModel)
+        contactsData.value = contactsData.value
     }
 }

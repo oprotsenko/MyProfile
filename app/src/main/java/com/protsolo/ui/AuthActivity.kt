@@ -10,6 +10,7 @@ import com.protsolo.R
 import com.protsolo.databinding.ActivityAuthBinding
 import com.protsolo.utils.Constants
 import com.protsolo.utils.PreferenceStorage
+import com.protsolo.utils.extensions.hideKeyboard
 
 
 class AuthActivity : AppCompatActivity() {
@@ -27,6 +28,8 @@ class AuthActivity : AppCompatActivity() {
         if (preferencesStorage.getBoolean(Constants.AUTOLOGIN)) {
             autologin()
         }
+
+        binding.root.hideKeyboard() // todo not working
         setListeners()
     }
 
@@ -37,23 +40,27 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setListeners() {
         binding.apply {
-            editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
-                if (isValidMail(text)) {
-                    textInputLayoutAuthEmail.isErrorEnabled = false
-                } else {
-                    textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
-                    textInputLayoutAuthEmail.isErrorEnabled = true
+            editTextAuthEmailAddressField.post {
+                editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
+                    if (isValidMail(text)) {
+                        textInputLayoutAuthEmail.isErrorEnabled = false
+                    } else {
+                        textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
+                        textInputLayoutAuthEmail.isErrorEnabled = true
+                    }
+                    setButtonStatus(binding)
                 }
-                setButtonStatus(binding)
             }
-            editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
-                if (isValidPassword(text)) {
-                    textInputLayoutAuthPassword.isErrorEnabled = false
-                } else {
-                    textInputLayoutAuthPassword.error = getString(R.string.authMessagePasswordError)
-                    textInputLayoutAuthPassword.isErrorEnabled = true
+            editTextAuthPasswordField.post {
+                editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
+                    if (isValidPassword(text)) {
+                        textInputLayoutAuthPassword.isErrorEnabled = false
+                    } else {
+                        textInputLayoutAuthPassword.error = getString(R.string.authMessagePasswordError)
+                        textInputLayoutAuthPassword.isErrorEnabled = true
+                    }
+                    setButtonStatus(binding)
                 }
-                setButtonStatus(binding)
             }
             buttonAuthRegister.setOnClickListener {
                 buttonAuthRegister.isEnabled = false // to prevent double click

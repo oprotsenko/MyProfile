@@ -1,4 +1,4 @@
-package com.protsolo.utils
+package com.protsolo.utils.extensions
 
 import android.net.Uri
 import android.widget.ImageView

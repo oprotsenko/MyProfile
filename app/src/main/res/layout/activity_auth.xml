@@ -81,13 +81,20 @@
 
     <com.protsolo.ui.customViews.CustomButton
         android:id="@+id/customButtonGoogle"
-        style="@style/CustomButtonStyle"
+        app:style="@style/CustomButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/margin_12"
+        android:background="@drawable/auth_white_button"
         android:text="@string/auth_google_sign_in"
+        android:textSize="@dimen/text_size_16"
+        android:textAllCaps="true"
+        android:fontFamily="@font/open_sans_semibold"
+        android:letterSpacing="0.3"
+        app:spaceBetween="@dimen/margin_16"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_google" />
 
     <androidx.appcompat.widget.AppCompatTextView

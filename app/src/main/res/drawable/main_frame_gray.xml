@@ -11,7 +11,11 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@android:color/transparent"/>
+            <stroke android:color="@color/gray_text"
+                android:width="@dimen/border_width"/>
+            <gradient android:startColor="@color/gray_text"
+                android:endColor="@color/gray_text"
+                android:centerColor="@color/gray_4"/>
             <corners android:radius="@dimen/corner_radius"/>
         </shape>
     </item>

@@ -1,32 +1,26 @@
 package com.protsolo.ui.contactsList
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.protsolo.R
-import com.protsolo.ui.contactsList.adapters.ContactsAdapter
-import com.protsolo.ui.contactsList.adapters.IContactListener
-import com.protsolo.ui.contactsList.adapters.SwipeToDelete
-import com.protsolo.ui.contactsList.adapters.decorations.ContactListItemDecoration
 import com.protsolo.databinding.ActivityContactsListBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.AddContactFragment
-import com.protsolo.ui.MainActivity
+import com.protsolo.ui.AddContactDialogFragment
+import com.protsolo.ui.contactsList.adapters.ContactsAdapter
+import com.protsolo.ui.contactsList.adapters.IContactListener
+import com.protsolo.ui.contactsList.adapters.decorations.ContactListItemDecoration
 import com.protsolo.utils.Constants
+import com.protsolo.utils.extensions.dpToPx
 
 class ContactsListActivity : AppCompatActivity(), IContactListener {
 
     private lateinit var binding: ActivityContactsListBinding
     private lateinit var contactsViewModel: ContactsViewModel
     private lateinit var contactsAdapter: ContactsAdapter
-    private lateinit var addContactFragment: AddContactFragment
-
+    private lateinit var addContactDialogFragment: AddContactDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,21 +28,25 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         setContentView(binding.root)
 
         contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
-        binding.recyclerViewContactsList.layoutManager = LinearLayoutManager(this)
+
+        recyclerInit()
+        setObserver()
+        addContactDialogFragment = AddContactDialogFragment(onIContactListener = this)
+        setListeners()
+    }
+
+    private fun recyclerInit() {
+        binding.recyclerViewContactsList.layoutManager =
+            LinearLayoutManager(this@ContactsListActivity)
         contactsAdapter = ContactsAdapter(onIContactListener = this)
         binding.recyclerViewContactsList.adapter = contactsAdapter
-        addContactFragment = AddContactFragment(onIContactListener = this)
-
         addItemDecoration()
-        initSwipeToDelete()
-        setObserver()
-        setListeners()
+        setFabButton()
     }
 
     override fun removeItem(position: Int) {
         val element = contactsViewModel.contactsData.value?.get(position)
         contactsViewModel.removeItem(position)
-        contactsAdapter.submitList(contactsViewModel.contactsData.value)
 
         Snackbar.make(
             binding.recyclerViewContactsList, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
@@ -62,26 +60,47 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
 
     override fun addItem(element: UserModel, position: Int) {
         contactsViewModel.addItem(position, element)
-        contactsAdapter.submitList(contactsViewModel.contactsData.value)
     }
 
-    override fun showFloatButton() {
-        val showButton = AnimationUtils.loadAnimation(this, R.anim.fab_show)
-        binding.floatingActionButtonContactsListUp.startAnimation(showButton)
-    }
-
-    override fun hideFloatButton() {
-        val hideButton = AnimationUtils.loadAnimation(this, R.anim.fab_hide)
-        binding.floatingActionButtonContactsListUp.startAnimation(hideButton)
-    }
+//    override fun showFloatButton() {
+//        val showButton = AnimationUtils.loadAnimation(this, R.anim.fab_show)
+//        binding.floatingActionButtonContactsListUp.startAnimation(showButton)
+//    }
+//
+//    override fun hideFloatButton() {
+//        val hideButton = AnimationUtils.loadAnimation(this, R.anim.fab_hide)
+//        binding.floatingActionButtonContactsListUp.startAnimation(hideButton)
+//    }
 
     private fun addItemDecoration() {
-        val margin =
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, Constants.CONTACTS_ITEM_MARGIN,
-                resources.displayMetrics
-            ).toInt()
-        binding.recyclerViewContactsList.addItemDecoration(ContactListItemDecoration(margin))
+        binding.recyclerViewContactsList.addItemDecoration(
+            ContactListItemDecoration(
+                this.dpToPx(Constants.CONTACTS_ITEM_MARGIN)
+            )
+        )
+    }
+
+    private fun setFabButton() {
+        with(binding) {
+            recyclerViewContactsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val positionView =
+                        (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                    if (positionView > 0) {
+                        if (!floatingActionButtonContactsListUp.isShown) {
+                            floatingActionButtonContactsListUp.show()
+                        }
+                    } else {
+                        if (floatingActionButtonContactsListUp.isShown) {
+                            floatingActionButtonContactsListUp.hide()
+                        }
+                    }
+                }
+            })
+        }
     }
 
     private fun setObserver() {
@@ -92,29 +111,20 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
         })
     }
 
-    private fun initSwipeToDelete() {
-        val onItemDelete = { position: Int ->
-            contactsAdapter.deleteItem(position)
-        }
-        ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(binding.recyclerViewContactsList)
-    }
-
     private fun setListeners() {
         binding.apply {
             textViewContactsListAddContact.setOnClickListener {
-                addContactFragment.show(
+                addContactDialogFragment.show(
                     supportFragmentManager,
-                    Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE)
+                    Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
+                )
             }
             floatingActionButtonContactsListUp.setOnClickListener {
                 recyclerViewContactsList.smoothScrollToPosition(0)
             }
             buttonContactsListBack.setOnClickListener {
-                startActivity(Intent(baseContext, MainActivity::class.java))
                 finish()
             }
         }
     }
 }
-
-

@@ -1,9 +1,10 @@
 package com.protsolo.ui.contactsList.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
@@ -21,23 +22,25 @@ class ContactsAdapter(private val onIContactListener: IContactListener)
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         with(holder) {
             bind(getItem(bindingAdapterPosition))
-            Log.d("count", itemCount.toString())
-            Log.d("current", bindingAdapterPosition.toString())
-            when(currentList[itemCount - 1]) {
-                getItem(bindingAdapterPosition) -> onIContactListener.showFloatButton()
-                else -> onIContactListener.hideFloatButton()
-            }
             deleteButton.setOnClickListener {
                 deleteItem(bindingAdapterPosition)
             }
         }
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        val onItemDelete = { position: Int ->
+            deleteItem(position)
+        }
+        ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(recyclerView)
+    }
+
     override fun submitList(list: MutableList<UserModel>?) {
         super.submitList(list?.let { ArrayList(it) })
     }
 
-    fun deleteItem(position: Int) {
+    private fun deleteItem(position: Int) {
         onIContactListener.removeItem(position)
     }
 }

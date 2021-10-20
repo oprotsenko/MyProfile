@@ -7,7 +7,7 @@ import com.protsolo.databinding.ActivityMainBinding
 import com.protsolo.ui.contactsList.ContactsListActivity
 import com.protsolo.utils.Constants
 import com.protsolo.utils.PreferenceStorage
-import com.protsolo.utils.loadImageWithFresco
+import com.protsolo.utils.extensions.loadImageWithFresco
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,18 +18,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val photo = binding.imageViewMainProfilePhoto
         photo.loadImageWithFresco(Constants.DEFAULT_IMAGE)
 
-        setContentView(binding.root)
         setListeners()
         setName()
     }
 
     /**
-     * Gets the email from the app base, calls the method to
+     * Gets the email from the intent message, if it is nothing there,
+     * gets the email from the app base, calls the method to
      * parse it for the name and soname.
      */
     private fun setName() {
@@ -68,6 +70,5 @@ class MainActivity : AppCompatActivity() {
     private fun startContactsListActivity() {
         val intent = Intent(this, ContactsListActivity::class.java)
         startActivity(intent)
-        finish()
     }
 }

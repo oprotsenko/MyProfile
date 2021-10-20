@@ -3,30 +3,25 @@
     <style name="Theme.MyProfile" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">#616161</item>
-        <item name="colorOnPrimary">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
-
-        <item name="colorOnError">@color/error_color</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorSecondary">@color/gray_text</item>
+        <item name="errorTextColor">@color/error_color</item>
+        <item name="colorButtonNormal">@color/orange</item>
         <item name="android:textColorHint">@color/gray_4</item>
-        <item name="android:windowBackground">?attr/colorOnPrimary</item>
 
         <!-- Secondary brand color. -->
-        <item name="color">@color/white</item>
-        <item name="colorSecondary">@color/white</item>
-        <item name="colorSecondaryVariant">#616161</item>
-        <item name="colorOnSecondary">@color/gray_text2</item>
-        <item name="android:textColorSecondary">@color/gray_text</item>
+        <item name="colorSecondary">@color/background</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/gray_4</item>
+        <item name="android:statusBarColor">?android:attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?android:attr/statusBarColor</item>
 
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">?android:attr/statusBarColor</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationsStyle</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
         <item name="buttonStyle">@style/FullWidthButton</item>
-        <item name="fontFamily">@font/open_sans</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
         <item name="imageButtonStyle">@style/ImageButtonStyle</item>
         <item name="floatingActionButtonStyle">@style/FloatingButtonStyle</item>
 <!--        <item name="textInputStyle">@style/TextInputLayoutStyle</item>-->
@@ -43,7 +38,6 @@
 
     <style name="TextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">?android:attr/fontFamily</item>
-        <item name="android:textFontWeight" tools:targetApi="p">600</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:gravity">center</item>
     </style>
@@ -51,7 +45,6 @@
     <style name="TextAppearanceStyle" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:fontFamily">?android:attr/fontFamily</item>
-        <item name="android:textFontWeight" tools:targetApi="p">600</item>
         <item name="android:letterSpacing">0.5</item>
         <!--        <item name="android:textColor">@color/gray_text</item>-->
     </style>
@@ -59,7 +52,6 @@
     <style name="FullWidthButton" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:fontFamily">?android:attr/fontFamily</item>
-        <item name="android:textFontWeight" tools:targetApi="p">600</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
@@ -68,7 +60,7 @@
     </style>
 
     <style name="FloatingButtonStyle" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="android:backgroundTint">@color/orange</item>
-        <item name="tint">@color/white</item>
+        <item name="android:backgroundTint">?android:attr/colorButtonNormal</item>
+        <item name="tint">?android:attr/windowBackground</item>
     </style>
 </resources>

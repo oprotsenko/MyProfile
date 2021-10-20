@@ -6,26 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.protsolo.databinding.AddContactFragmentBinding
+import com.protsolo.databinding.AddContactDialogFragmentBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.contactsList.adapters.IContactListener
 import com.protsolo.utils.Constants
-import com.protsolo.utils.loadCircleImageWithGlide
+import com.protsolo.utils.extensions.loadCircleImageWithGlide
 
-class AddContactFragment(private val onIContactListener: IContactListener) : DialogFragment() {
+class AddContactDialogFragment(private val onIContactListener: IContactListener) : DialogFragment() {
 
-    private lateinit var binding: AddContactFragmentBinding
+    private lateinit var binding: AddContactDialogFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = AddContactFragmentBinding.inflate(layoutInflater, container, false)
+        binding = AddContactDialogFragmentBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.imageViewAddContactFragmentContactPhoto
             .loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
         setListeners()
-        return binding.root
     }
 
     override fun onResume() {

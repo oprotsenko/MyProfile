@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="LightGrayText" parent="TextStyle">
-        <item name="android:textColor">@color/gray_text2</item>
+        <item name="android:textColor">?android:attr/textColorHint</item>
     </style>
 
     <style name="GrayText" parent="TextStyle">
@@ -18,9 +18,10 @@
         <item name="android:padding">@dimen/margin_16</item>
     </style>
 
-    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxCollapsedPaddingTop">@dimen/zero</item>
         <item name="expandedHintEnabled">false</item>
+        <item name="hintTextColor">?android:attr/textColorHint</item>
         <item name="placeholderTextColor">?android:attr/textColorHint</item>
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:textColorHint">?android:attr/textColorHint</item>
@@ -29,7 +30,7 @@
         <item name="boxStrokeWidth">1.5dp</item>
         <item name="android:ems">10</item>
         <item name="boxStrokeErrorColor">?android:attr/textColorHint</item>
-        <item name="errorTextColor">?android:attr/colorError</item>
+        <item name="errorTextColor">?attr/errorTextColor</item>
         <item name="android:padding">@dimen/zero</item>
     </style>
 
@@ -69,7 +70,7 @@
     </style>
 
     <style name="EditTextFieldStyle.Auth">
-        <item name="android:textCursorDrawable">@drawable/auth_white_cursor</item>
+        <item name="android:textCursorDrawable">@drawable/all_cursor_white</item>
     </style>
 
     <style name="AuthCheckBoxStyle" parent="LightGrayText">
@@ -85,6 +86,7 @@
         <item name="android:padding">@dimen/margin_12</item>
         <item name="textAppearanceButton">@style/GrayText</item>
         <item name="android:letterSpacing">0.3</item>
+        <item name="spaceBetween">@dimen/margin_16</item>
     </style>
 
     <style name="AuthOr">
@@ -105,7 +107,7 @@
         <item name="android:text">@string/auth_terms_and_conditions</item>
         <item name="android:textSize">@dimen/text_size_h4</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
-        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+        <item name="android:fontFamily">@font/open_sans</item>
     </style>
 
     <style name="LightGrayText.AuthHaveAccount">
@@ -150,8 +152,7 @@
     </style>
 
     <style name="FloatingButtonUp">
-        <item name="android:layout_marginEnd">@dimen/margin_16</item>
-        <item name="android:layout_marginBottom">@dimen/margin_41</item>
+        <item name="android:layout_margin">@dimen/margin_16</item>
         <item name="srcCompat">@drawable/ic_up_arrow</item>
     </style>
 
@@ -177,7 +178,7 @@
     <style name="MainUserPhotoStyle">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="roundAsCircle">true</item>
-        <item name="placeholderImage">@color/gray_text2</item>
+        <item name="placeholderImage">?android:attr/textColorHint</item>
         <item name="failureImage">@drawable/ic_default_profile_photo</item>
     </style>
 
@@ -242,7 +243,7 @@
         <item name="android:text">@string/main_view_my_contacts</item>
     </style>
 
-    <!--    Add contact fragment   -->
+    <!--    Add contact dialog-fragment   -->
     <style name="AddContactHeaderLayoutStyle">
         <item name="android:background">?android:attr/colorPrimary</item>
         <item name="android:paddingStart">@dimen/margin_20</item>
@@ -270,7 +271,7 @@
 
     <style name="EditTextFieldStyle.DarkText">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
-        <item name="android:textCursorDrawable">@drawable/all_gray_cursor</item>
+        <item name="android:textCursorDrawable">@drawable/all_cursor_gray</item>
     </style>
 
     <style name="OrangeButtonStyle.Save">

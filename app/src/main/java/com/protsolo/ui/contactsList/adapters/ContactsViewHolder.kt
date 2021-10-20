@@ -3,7 +3,7 @@ package com.protsolo.ui.contactsList.adapters
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.utils.loadCircleImageWithGlide
+import com.protsolo.utils.extensions.loadCircleImageWithGlide
 
 class ContactsViewHolder(private val binding: ContactListItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
