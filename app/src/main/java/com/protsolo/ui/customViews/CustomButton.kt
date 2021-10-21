@@ -24,14 +24,14 @@ class CustomButton @JvmOverloads constructor(
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    private var mImage: Bitmap
-    private var text: String
-    private var textSize: Float
-
     private val spaceBetween: Float
     private val letterSpacing: Float
     private val chars: List<Char>
     private val lettersWidth: FloatArray
+
+    private var mImage: Bitmap
+    private var text: String
+    private var textSize: Float
     private var textWidth: Float
     private var multicolor = true
     private var startDrawableX: Float = 0f

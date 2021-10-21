@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <item android:state_pressed="false">
         <shape>
             <solid android:color="@color/white"/>
+            <corners android:radius="@dimen/corner_radius"/>
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <gradient android:centerColor="@color/white"
+                android:endColor="@color/gray_4"
+                android:startColor="@color/gray_4"/>
             <corners android:radius="@dimen/corner_radius"/>
         </shape>
     </item>
