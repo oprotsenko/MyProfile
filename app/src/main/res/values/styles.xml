@@ -81,7 +81,7 @@
         <item name="android:minHeight">@dimen/zero</item>
     </style>
 
-    <style name="CustomButtonStyle" parent="FullWidthButton">
+    <style name="CustomButtonStyle">
         <item name="background">@drawable/auth_white_button</item>
         <item name="android:padding">@dimen/margin_12</item>
         <item name="textAppearanceButton">@style/GrayText</item>

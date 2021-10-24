@@ -16,8 +16,8 @@ fun View.hideKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }
 
-fun Context.dpToPx(dp: Int): Int {
-    return (dp.toFloat() * this.resources.displayMetrics.density).toInt()
+fun View.dpToPx(dp: Int): Int {
+    return (dp.toFloat() * resources.displayMetrics.density).toInt()
 }
 
 fun getVectorBitmap(context: Context, drawableId: Int): Bitmap? {

@@ -75,7 +75,7 @@ class ContactsListActivity : AppCompatActivity(), IContactListener {
     private fun addItemDecoration() {
         binding.recyclerViewContactsList.addItemDecoration(
             ContactListItemDecoration(
-                this.dpToPx(Constants.CONTACTS_ITEM_MARGIN)
+                binding.root.dpToPx(Constants.CONTACTS_ITEM_MARGIN)
             )
         )
     }

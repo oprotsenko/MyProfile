@@ -23,7 +23,7 @@
         <shape>
             <solid android:color="@color/gray_3"/>
             <stroke android:color="@color/gray_3"
-                android:width="@dimen/border_width"/>>
+                android:width="@dimen/border_width"/>
             <corners android:radius="@dimen/corner_radius"/>
         </shape>
     </item>
