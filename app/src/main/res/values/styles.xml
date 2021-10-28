@@ -37,7 +37,7 @@
     <style name="EditTextFieldStyle" parent="TextStyle">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:paddingStart">@dimen/zero</item>
-        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:gravity">start</item>
         <item name="boxCollapsedPaddingTop">-16dp</item>
     </style>
@@ -54,6 +54,9 @@
         <item name="android:letterSpacing">0.2</item>
         <item name="android:paddingTop">@dimen/padding_15.5</item>
         <item name="android:paddingBottom">@dimen/padding_15.5</item>
+        <item name="android:layout_marginStart">@dimen/margin_16</item>
+        <item name="android:layout_marginEnd">@dimen/margin_16</item>
+        <item name="android:layout_marginBottom">@dimen/margin_16</item>
     </style>
 
     <!--    Auth activity   -->
@@ -93,7 +96,7 @@
         <item name="android:layout_marginTop">@dimen/margin_8</item>
         <item name="android:layout_marginBottom">@dimen/margin_8</item>
         <item name="android:text">@string/auth_or</item>
-        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
     </style>
 
     <style name="BorderOrangeButtonStyle.Register">
@@ -175,29 +178,29 @@
         <item name="android:letterSpacing">0.05</item>
     </style>
 
-    <style name="MainUserPhotoStyle">
+    <style name="UserPhotoStyle">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="roundAsCircle">true</item>
         <item name="placeholderImage">?android:attr/textColorHint</item>
         <item name="failureImage">@drawable/ic_default_profile_photo</item>
     </style>
 
-    <style name="MainUserNameStyle">
+    <style name="UserNameStyle">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:text">@string/all_username</item>
-        <item name="android:textSize">@dimen/text_size_h2</item>
     </style>
 
-    <style name="LightGrayText.MainCareerStyle">
+    <style name="LightGrayText.CareerStyle">
         <item name="android:layout_marginTop">@dimen/margin_8</item>
-        <item name="android:text">@string/all_career</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:text">@string/all_career</item>
     </style>
 
-    <style name="LightGrayText.MainHomeAddressStyle">
+    <style name="LightGrayText.HomeAddressStyle">
         <item name="android:layout_marginTop">@dimen/margin_16</item>
-        <item name="android:text">@string/main_home_address</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
+        <item name="android:text">@string/all_home_address</item>
     </style>
 
     <style name="MainSocialButtonStyle" parent="ImageButtonStyle">
@@ -236,13 +239,6 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="OrangeButtonStyle.MyContacts">
-        <item name="android:layout_marginStart">@dimen/margin_16</item>
-        <item name="android:layout_marginEnd">@dimen/margin_16</item>
-        <item name="android:layout_marginBottom">@dimen/margin_16</item>
-        <item name="android:text">@string/main_view_my_contacts</item>
-    </style>
-
     <!--    Add contact dialog-fragment   -->
     <style name="AddContactHeaderLayoutStyle">
         <item name="android:background">?android:attr/colorPrimary</item>
@@ -253,7 +249,7 @@
 
     <style name="AddContactTitleStyle">
         <item name="android:text">@string/add_contacts_fragment_add_contact</item>
-        <item name="android:textSize">@dimen/text_size_h2</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
     </style>
 
     <style name="ImageButtonAddPhotoStyle">
@@ -286,5 +282,16 @@
         <item name="android:background">@drawable/contacts_frame_light_gray</item>
         <item name="android:padding">@dimen/margin_8</item>
         <item name="android:paddingEnd">@dimen/margin_12</item>
+    </style>
+
+    <!--    Contact detail view   -->
+    <style name="ContactDetailViewLayoutStyle">
+        <item name="android:background">?android:attr/colorPrimary</item>
+        <item name="android:padding">@dimen/margin_20</item>
+    </style>
+
+    <style name="Profile">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:text">@string/contact_detail_view_profile</item>
     </style>
 </resources>

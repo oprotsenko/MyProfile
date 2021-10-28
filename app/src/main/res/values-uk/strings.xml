@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Profile</string>
+    <!--    All   -->
+    <string name="all_username">Ім\'я</string>
+    <string name="all_career">Вид зайнятості</string>
+    <string name="all_home_address">Домашня адреса</string>
     <!--    Main activity   -->
     <string name="main_settings">Налаштування</string>
-    <string name="main_home_address">Домашня адреса</string>
     <string name="main_settings_description">Щоб заповнити свій профіль, відкрийте налаштування</string>
     <string name="main_edit_profile">Змінити профіль</string>
     <string name="main_view_my_contacts">Переглянути мої контакти</string>
@@ -35,7 +38,7 @@
     <string name="add_contacts_fragment_date_of_birth">Дата народження</string>
     <string name="add_contacts_fragment_date_of_birth_sample">01/01/1900</string>
     <string name="add_contacts_fragment_button_save">зберегти</string>
-    <!--    All   -->
-    <string name="all_username">Ім\'я</string>
-    <string name="all_career">Вид зайнятості</string>
+    <!--    Contact detail view   -->
+    <string name="contact_detail_view_profile">Профіль</string>
+    <string name="contact_detail_view_message">написати повідомлення</string>
 </resources>

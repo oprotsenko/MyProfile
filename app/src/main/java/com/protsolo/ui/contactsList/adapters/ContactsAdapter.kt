@@ -2,21 +2,28 @@ package com.protsolo.ui.contactsList.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
+import com.protsolo.ui.INavigateToFragmentListener
+import com.protsolo.utils.Constants
 
 
-class ContactsAdapter(private val onIContactListener: IContactListener)
+class ContactsAdapter(private val onContactListItemClickListener: IContactListItemClickListener)
     : ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.contact_list_item, parent, false)
-        return ContactsViewHolder(ContactListItemBinding.bind(view))
+        view.setOnClickListener {
+            Snackbar.make(parent, Constants.LONG_PRESS_MESSAGE, Snackbar.LENGTH_LONG).show()
+        }
+        return ContactsViewHolder(ContactListItemBinding.bind(view), onContactListItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
@@ -41,6 +48,6 @@ class ContactsAdapter(private val onIContactListener: IContactListener)
     }
 
     private fun deleteItem(position: Int) {
-        onIContactListener.removeItem(position)
+        onContactListItemClickListener.removeItem(position)
     }
 }

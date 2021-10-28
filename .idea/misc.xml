@@ -44,6 +44,8 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/white_cursor.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/font/open_sans.xml" value="0.284375" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/font/open_sans_semibold.xml" value="0.284375" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_app.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth1.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/activity_auth_del.xml" value="0.21203703703703702" />
@@ -52,6 +54,10 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/add_contact_fragment.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/contact_list_item.xml" value="0.4" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/custom_button_layout.xml" value="0.6" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_authorization.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contact_detail_view.xml" value="0.264" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contacts_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_main_page.xml" value="0.1" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/new_custom_button_to_look.xml" value="0.176" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/test.xml" value="0.22592592592592592" />
         <entry key="app/src/main/res/drawable/all_gray_cursor.xml" value="0.2701388888888889" />

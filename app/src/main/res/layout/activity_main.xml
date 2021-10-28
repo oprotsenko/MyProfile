@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHeight_percent="0.5">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/buttonMainSettings"
@@ -27,7 +27,7 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/imageViewMainProfilePhoto"
-            style="@style/MainUserPhotoStyle"
+            style="@style/UserPhotoStyle"
             android:layout_width="@dimen/profile_photo_size_113"
             android:layout_height="@dimen/profile_photo_size_113"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainUserName"
-            style="@style/MainUserNameStyle"
+            style="@style/UserNameStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainCareer"
-            style="@style/LightGrayText.MainCareerStyle"
+            style="@style/LightGrayText.CareerStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewMainHomeAddress"
-            style="@style/LightGrayText.MainHomeAddressStyle"
+            style="@style/LightGrayText.HomeAddressStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         style="@style/MainSocialButtonStyle.Facebook"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textViewMainSettingsDescription"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineMainHorizontal0.75"
         app:layout_constraintEnd_toStartOf="@+id/buttonMainSocialLinkedIn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
         style="@style/MainSocialButtonStyle.LinkedIn"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textViewMainSettingsDescription"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineMainHorizontal0.75"
         app:layout_constraintEnd_toStartOf="@+id/buttonMainSocialVK"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonMainSocialFacebook"
@@ -89,16 +89,23 @@
         style="@style/MainSocialButtonStyle.VK"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textViewMainSettingsDescription"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineMainHorizontal0.75"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonMainSocialLinkedIn"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutMainUserInfo" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineMainHorizontal0.75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".75"/>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewMainSettingsDescription"
         style="@style/BlueText.SettingsDescriptionStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/buttonMainEditProfile"
@@ -116,9 +123,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMainViewContacts"
-        style="@style/OrangeButtonStyle.MyContacts"
+        style="@style/OrangeButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/main_view_my_contacts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
         android:text="@string/all_username"
-        android:textSize="@dimen/text_size_h2"
+        android:textSize="@dimen/text_size_18"
         app:layout_constraintBottom_toTopOf="@+id/textViewContactsListContactCareer"
         app:layout_constraintStart_toEndOf="@id/imageViewContact"
         app:layout_constraintTop_toTopOf="parent"

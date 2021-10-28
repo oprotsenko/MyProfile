@@ -29,7 +29,7 @@ class CustomButton @JvmOverloads constructor(
     private val chars: List<Char>
     private val lettersWidth: FloatArray
 
-    private var mImage: Bitmap
+    private var iconImage: Bitmap
     private var text: String
     private var textSize: Float
     private var textWidth: Float
@@ -55,7 +55,7 @@ class CustomButton @JvmOverloads constructor(
             true -> arr.getString(R.styleable.CustomButton_android_text).toString().uppercase()
             false -> arr.getString(R.styleable.CustomButton_android_text).toString()
         }
-        mImage =
+        iconImage =
             getVectorBitmap(context, arr.getResourceId(R.styleable.CustomButton_srcCompat, 0))!!
         spaceBetween = arr.getDimension(R.styleable.CustomButton_spaceBetween, 0f)
         letterSpacing = arr.getFloat(R.styleable.CustomButton_android_letterSpacing, 0f)
@@ -73,14 +73,14 @@ class CustomButton @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         val textWidth = paint.measureText(text)
-        startDrawableX = (width - mImage.width.toFloat() - textWidth - spaceBetween) / 2
-        startDrawableY = (height - mImage.height.toFloat()) / 2
-        startTextX = startDrawableX + mImage.width + spaceBetween
+        startDrawableX = (width - iconImage.width.toFloat() - textWidth - spaceBetween) / 2
+        startDrawableY = (height - iconImage.height.toFloat()) / 2
+        startTextX = startDrawableX + iconImage.width + spaceBetween
         startTextY = height / 2 + paint.fontMetrics.descent
     }
 
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawBitmap(mImage, startDrawableX, startDrawableY, null)
+        canvas?.drawBitmap(iconImage, startDrawableX, startDrawableY, null)
         var i = 0
         var color = 0
 
@@ -99,13 +99,13 @@ class CustomButton @JvmOverloads constructor(
                 }
             }
         }
-        startTextX = startDrawableX + mImage.width + spaceBetween
+        startTextX = startDrawableX + iconImage.width + spaceBetween
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val defWidth = (mImage.width + textWidth + spaceBetween + letterSpacing * text.length
+        val defWidth = (iconImage.width + textWidth + spaceBetween + letterSpacing * text.length
                 + paddingEnd + paddingStart).toInt()
-        val defHeight = mImage.height.coerceAtLeast(textSize.toInt()) + paddingBottom + paddingTop
+        val defHeight = iconImage.height.coerceAtLeast(textSize.toInt()) + paddingBottom + paddingTop
 
         val initWidth = resolveDefaultWidth(widthMeasureSpec, defWidth)
         val initHeight = resolveDefaultHeight(heightMeasureSpec, defHeight)

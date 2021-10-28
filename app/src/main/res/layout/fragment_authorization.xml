@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.AuthorizationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ParentLayoutMarginStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/activity_auth_scene"
+        tools:context=".ui.AuthActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineAuthHorizontal0.23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.23" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthTitle"
+            style="@style/AuthTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontal0.23" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthFillOutDescription"
+            style="@style/AuthDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAuthTitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAuthEmail"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAuthFillOutDescription">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextAuthEmailAddressField"
+                style="@style/EditTextFieldStyle.Auth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAuthPassword"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextAuthPasswordField"
+                style="@style/EditTextFieldStyle.Auth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxAuthRememberMe"
+            style="@style/AuthCheckBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_remember_me"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthPassword" />
+
+
+        <com.protsolo.ui.customViews.CustomButton
+            android:id="@+id/customButtonGoogle"
+            app:style="@style/CustomButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_12"
+            android:background="@drawable/auth_white_button"
+            android:text="@string/auth_google_sign_in"
+            android:textSize="@dimen/text_size_16"
+            android:textAllCaps="true"
+            android:fontFamily="@font/open_sans_semibold"
+            android:letterSpacing="0.3"
+            app:spaceBetween="@dimen/margin_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_google" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthOr"
+            style="@style/AuthOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAuthRegister"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonAuthRegister"
+            style="@style/BorderOrangeButtonStyle.Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/textViewAuthTermsAndConditions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthTermsAndConditions"
+            style="@style/AuthTermsAndConditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/textViewAuthHaveAccount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthHaveAccount"
+            style="@style/LightGrayText.AuthHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewAuthSignIn"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthSignIn"
+            style="@style/SignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewAuthHaveAccount"
+            app:layout_constraintTop_toBottomOf="@id/textViewAuthTermsAndConditions" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

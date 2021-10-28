@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.contactDetailView.ContactDetailViewFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutContactDetailViewDetails"
+            style="@style/ContactDetailViewLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonContactDetailViewBack"
+                style="@style/ImageButtonBackStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewContactDetailViewProfile"
+                style="@style/Profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/buttonContactDetailViewBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buttonContactDetailViewBack" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imageViewContactDetailViewProfilePhoto"
+                style="@style/UserPhotoStyle"
+                android:layout_width="@dimen/profile_photo_size_113"
+                android:layout_height="@dimen/profile_photo_size_113"
+                app:layout_constraintEnd_toEndOf="@+id/textViewContactDetailViewProfile"
+                app:layout_constraintStart_toStartOf="@+id/textViewContactDetailViewProfile"
+                app:layout_constraintTop_toBottomOf="@id/textViewContactDetailViewProfile" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewContactDetailViewUserName"
+                style="@style/UserNameStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageViewContactDetailViewProfilePhoto" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewContactDetailViewCareer"
+                style="@style/LightGrayText.CareerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewContactDetailViewUserName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewContactDetailViewHomeAddress"
+                style="@style/LightGrayText.HomeAddressStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewContactDetailViewCareer" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonMainSocialFacebook"
+            style="@style/MainSocialButtonStyle.Facebook"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineContactDetailViewHorizontal0.75"
+            app:layout_constraintEnd_toStartOf="@+id/buttonMainSocialLinkedIn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailViewDetails" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonMainSocialLinkedIn"
+            style="@style/MainSocialButtonStyle.LinkedIn"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineContactDetailViewHorizontal0.75"
+            app:layout_constraintEnd_toStartOf="@+id/buttonMainSocialVK"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonMainSocialFacebook"
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailViewDetails" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonMainSocialVK"
+            style="@style/MainSocialButtonStyle.VK"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineContactDetailViewHorizontal0.75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonMainSocialLinkedIn"
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailViewDetails" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineContactDetailViewHorizontal0.75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".75"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonContactDetailViewMessage"
+            style="@style/OrangeButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_detail_view_message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

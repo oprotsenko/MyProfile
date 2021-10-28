@@ -8,11 +8,11 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.protsolo.databinding.AddContactDialogFragmentBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.contactsList.adapters.IContactListener
+import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
 import com.protsolo.utils.Constants
 import com.protsolo.utils.extensions.loadCircleImageWithGlide
 
-class AddContactDialogFragment(private val onIContactListener: IContactListener) : DialogFragment() {
+class AddContactDialogFragment(private val onIContactListItemClickListener: IContactListItemClickListener) : DialogFragment() {
 
     private lateinit var binding: AddContactDialogFragmentBinding
 
@@ -43,7 +43,7 @@ class AddContactDialogFragment(private val onIContactListener: IContactListener)
     private fun setListeners() {
         binding.apply {
             buttonAddContactSave.setOnClickListener {
-                onIContactListener.addItem(
+                onIContactListItemClickListener.addItem(
                     UserModel(
                         0,
                         Constants.DEFAULT_IMAGE,

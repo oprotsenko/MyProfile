@@ -20,7 +20,7 @@
     <dimen name="corner_radius">5dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="text_size_h1">24sp</dimen>
-    <dimen name="text_size_h2">18sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_h3">14sp</dimen>
     <dimen name="text_size_h4">12sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
