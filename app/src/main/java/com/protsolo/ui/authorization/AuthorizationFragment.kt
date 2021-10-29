@@ -1,44 +1,33 @@
-package com.protsolo.ui
+package com.protsolo.ui.authorization
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Patterns
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import androidx.core.widget.doOnTextChanged
 import com.protsolo.R
-import com.protsolo.databinding.ActivityAuthBinding
+import com.protsolo.databinding.FragmentAuthorizationBinding
+import com.protsolo.ui.BaseFragment
 import com.protsolo.utils.Constants
-import com.protsolo.utils.PreferenceStorage
 import com.protsolo.utils.extensions.hideKeyboard
 
 
-class AuthActivity : AppCompatActivity() {
+class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
 
-    private val preferencesStorage: PreferenceStorage = PreferenceStorage(this)
+    private val args: Bundle = Bundle()
 
-    private lateinit var binding: ActivityAuthBinding
+    override fun getViewBinding(): FragmentAuthorizationBinding =
+        FragmentAuthorizationBinding.inflate(layoutInflater)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityAuthBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        if (preferencesStorage.getBoolean(Constants.AUTOLOGIN)) {
+    override fun setUpViews() {
+        super.setUpViews()
+        if (preferenceStorage.getBoolean(Constants.AUTOLOGIN)) {
             autologin()
         }
-
-        binding.root.hideKeyboard() // todo not working
-        setListeners()
     }
 
-    private fun autologin() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
-
-    private fun setListeners() {
+    override fun setListeners() {
         binding.apply {
             editTextAuthEmailAddressField.post {
                 editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
@@ -56,7 +45,8 @@ class AuthActivity : AppCompatActivity() {
                     if (isValidPassword(text)) {
                         textInputLayoutAuthPassword.isErrorEnabled = false
                     } else {
-                        textInputLayoutAuthPassword.error = getString(R.string.authMessagePasswordError)
+                        textInputLayoutAuthPassword.error =
+                            getString(R.string.authMessagePasswordError)
                         textInputLayoutAuthPassword.isErrorEnabled = true
                     }
                     setButtonStatus(binding)
@@ -72,7 +62,15 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    private fun setButtonStatus(binding: ActivityAuthBinding) {
+    private fun autologin() {
+        args.putString(
+            Constants.PREFERENCE_EMAIL_KEY,
+            preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+        )
+        listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
+    }
+
+    private fun setButtonStatus(binding: FragmentAuthorizationBinding) {
         binding.apply {
             buttonAuthRegister.isEnabled =
                 isValidMail(textInputLayoutAuthEmail.editText?.text)
@@ -87,22 +85,23 @@ class AuthActivity : AppCompatActivity() {
         Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
 
     private fun register() {
-        val intent = Intent(this, MainActivity::class.java)
         with(Constants) {
-            preferencesStorage.save(
+            preferenceStorage.save(
                 PREFERENCE_EMAIL_KEY,
                 binding.editTextAuthEmailAddressField.text.toString()
             )
-            preferencesStorage.save(
+            preferenceStorage.save(
                 PREFERENCE_PASSWORD_KEY,
                 binding.editTextAuthPasswordField.text.toString()
             )
-            preferencesStorage.save(
-                AUTOLOGIN, binding.checkBoxAuthRememberMe.isChecked)
-
-            intent.putExtra(MESSAGE, binding.editTextAuthEmailAddressField.text.toString())
+            preferenceStorage.save(
+                AUTOLOGIN, binding.checkBoxAuthRememberMe.isChecked
+            )
+            args.putString(
+                PREFERENCE_EMAIL_KEY,
+                binding.editTextAuthEmailAddressField.text.toString()
+            )
         }
-        startActivity(intent)
-        finish()
+        listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
     }
 }

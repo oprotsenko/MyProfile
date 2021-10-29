@@ -1,15 +1,16 @@
 package com.protsolo.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.protsolo.R
+import com.protsolo.ui.authorization.AuthorizationFragment
 import com.protsolo.ui.contactDetailView.ContactDetailViewFragment
 import com.protsolo.ui.contactsList.ContactsListFragment
+import com.protsolo.ui.mainPage.MainPageFragment
 import com.protsolo.utils.Constants
 
 class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
-    @SuppressLint("ResourceType")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app)
@@ -38,6 +39,7 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
     }
 
     override fun onBackButtonPressed() {
-        supportFragmentManager.popBackStack()
+        if (supportFragmentManager.backStackEntryCount > 0)
+            supportFragmentManager.popBackStack()
     }
 }

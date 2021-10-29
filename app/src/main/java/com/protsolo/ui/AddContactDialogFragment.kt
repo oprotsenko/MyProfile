@@ -12,7 +12,9 @@ import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
 import com.protsolo.utils.Constants
 import com.protsolo.utils.extensions.loadCircleImageWithGlide
 
-class AddContactDialogFragment(private val onIContactListItemClickListener: IContactListItemClickListener) : DialogFragment() {
+class AddContactDialogFragment(
+    private val onIContactListItemClickListener: IContactListItemClickListener
+) : DialogFragment() {
 
     private lateinit var binding: AddContactDialogFragmentBinding
 

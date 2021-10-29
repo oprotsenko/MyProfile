@@ -1,32 +1,32 @@
-package com.protsolo.ui
+package com.protsolo.ui.mainPage
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.protsolo.databinding.ActivityMainBinding
-import com.protsolo.ui.contactsList.ContactsListActivity
+import android.view.View
+import com.protsolo.databinding.FragmentMainPageBinding
+import com.protsolo.ui.BaseFragment
 import com.protsolo.utils.Constants
-import com.protsolo.utils.PreferenceStorage
 import com.protsolo.utils.extensions.loadImageWithFresco
 
 
-class MainActivity : AppCompatActivity() {
+class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
-    private val preferencesStorage: PreferenceStorage = PreferenceStorage(this)
+    private val args: Bundle = Bundle()
 
-    private lateinit var binding: ActivityMainBinding
+    override fun getViewBinding(): FragmentMainPageBinding =
+        FragmentMainPageBinding.inflate(layoutInflater)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+    override fun setUpViews() {
+        super.setUpViews()
         val photo = binding.imageViewMainProfilePhoto
         photo.loadImageWithFresco(Constants.DEFAULT_IMAGE)
 
-        setListeners()
         setName()
+    }
+
+    override fun setListeners() {
+        binding.buttonMainViewContacts.setOnClickListener {
+            startContactsListActivity()
+        }
     }
 
     /**
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
      * parse it for the name and soname.
      */
     private fun setName() {
-        var name = intent.getStringExtra(Constants.MESSAGE)
+        var name = arguments?.getString(Constants.PREFERENCE_EMAIL_KEY)
         if (name.isNullOrEmpty()) {
-            name = preferencesStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+            name = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
         }
         val parsedUserName: String = parseName(name)
         binding.textViewMainUserName.text = parsedUserName
@@ -61,14 +61,15 @@ class MainActivity : AppCompatActivity() {
         return res.toString()
     }
 
-    private fun setListeners() {
-        binding.buttonMainViewContacts.setOnClickListener {
-            startContactsListActivity()
-        }
+    private fun startContactsListActivity() {
+        listener?.onNavigateToFragment(Constants.CONTACTS_LIST, args)
     }
 
-    private fun startContactsListActivity() {
-        val intent = Intent(this, ContactsListActivity::class.java)
-        startActivity(intent)
+    companion object {
+        @JvmStatic
+        fun newInstance(args: Bundle) =
+            MainPageFragment().apply {
+                arguments = args
+            }
     }
 }

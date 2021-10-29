@@ -5,13 +5,15 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.VectorDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.protsolo.R
-import com.protsolo.utils.extensions.getVectorBitmap
 
 @RequiresApi(Build.VERSION_CODES.O)
 class CustomButton @JvmOverloads constructor(
@@ -44,7 +46,7 @@ class CustomButton @JvmOverloads constructor(
         val arr = context.obtainStyledAttributes(attrs, R.styleable.CustomButton, 0, 0)
         textSize = arr.getDimension(R.styleable.CustomButton_android_textSize, 12f)
         paint.color =
-            arr.getColor(R.styleable.CustomButton_android_textColor, getColorFromArray(0))
+            arr.getColor(R.styleable.CustomButton_android_textColor, colors[0])
         if (arr.getColor(R.styleable.CustomButton_android_textColor, 0) != 0)
             multicolor = false
         paint.typeface = ResourcesCompat.getFont(
@@ -81,23 +83,12 @@ class CustomButton @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawBitmap(iconImage, startDrawableX, startDrawableY, null)
-        var i = 0
-        var color = 0
-
-        while (i < chars.size) {
+        for (i in colors.indices) {
+            if (multicolor) {
+                paint.color = colors[i % colors.size]
+            }
             canvas?.drawText(chars[i].toString(), startTextX, startTextY, paint)
             startTextX += lettersWidth[i] + letterSpacing
-            i++
-            color++
-            if (multicolor) {
-                paint.color = when (color < colors.size) {
-                    true -> getColorFromArray(color)
-                    false -> {
-                        color = 0
-                        getColorFromArray(color)
-                    }
-                }
-            }
         }
         startTextX = startDrawableX + iconImage.width + spaceBetween
     }
@@ -105,30 +96,39 @@ class CustomButton @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val defWidth = (iconImage.width + textWidth + spaceBetween + letterSpacing * text.length
                 + paddingEnd + paddingStart).toInt()
-        val defHeight = iconImage.height.coerceAtLeast(textSize.toInt()) + paddingBottom + paddingTop
+        val defHeight =
+            iconImage.height.coerceAtLeast(textSize.toInt()) + paddingBottom + paddingTop
 
-        val initWidth = resolveDefaultWidth(widthMeasureSpec, defWidth)
-        val initHeight = resolveDefaultHeight(heightMeasureSpec, defHeight)
+        val initWidth = resolveDefaultSize(widthMeasureSpec, defWidth)
+        val initHeight = resolveDefaultSize(heightMeasureSpec, defHeight)
         setMeasuredDimension(initWidth, initHeight)
     }
 
-    private fun resolveDefaultWidth(spec: Int, defWidth: Int): Int {
+    private fun resolveDefaultSize(spec: Int, defSize: Int): Int {
         return when (MeasureSpec.getMode(spec)) {
-            MeasureSpec.UNSPECIFIED -> MeasureSpec.getSize(defWidth)
-            MeasureSpec.AT_MOST -> MeasureSpec.getSize(defWidth)
+            MeasureSpec.UNSPECIFIED -> MeasureSpec.getSize(defSize)
+            MeasureSpec.AT_MOST -> MeasureSpec.getSize(defSize)
             MeasureSpec.EXACTLY -> MeasureSpec.getSize(spec)
             else -> MeasureSpec.getSize(spec)
         }
     }
 
-    private fun resolveDefaultHeight(spec: Int, defHeight: Int): Int {
-        return when (MeasureSpec.getMode(spec)) {
-            MeasureSpec.UNSPECIFIED -> MeasureSpec.getSize(defHeight)
-            MeasureSpec.AT_MOST -> MeasureSpec.getSize(defHeight)
-            MeasureSpec.EXACTLY -> MeasureSpec.getSize(spec)
-            else -> MeasureSpec.getSize(spec)
+    private fun getVectorBitmap(context: Context, drawableId: Int): Bitmap? {
+        var bitmap: Bitmap? = null
+        when (val drawable = ContextCompat.getDrawable(context, drawableId)) {
+            is BitmapDrawable -> {
+                bitmap = drawable.bitmap
+            }
+            is VectorDrawable -> {
+                bitmap = Bitmap.createBitmap(
+                    drawable.intrinsicWidth,
+                    drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
+                )
+                val canvas = Canvas(bitmap)
+                drawable.setBounds(0, 0, canvas.width, canvas.height)
+                drawable.draw(canvas)
+            }
         }
+        return bitmap
     }
-
-    private fun getColorFromArray(i: Int): Int = colors[i]
 }

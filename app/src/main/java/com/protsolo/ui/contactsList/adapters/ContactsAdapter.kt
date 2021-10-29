@@ -2,7 +2,6 @@ package com.protsolo.ui.contactsList.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.INavigateToFragmentListener
 import com.protsolo.utils.Constants
 
 
