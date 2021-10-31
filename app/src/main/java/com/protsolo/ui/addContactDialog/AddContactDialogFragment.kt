@@ -1,4 +1,4 @@
-package com.protsolo.ui
+package com.protsolo.ui.addContactDialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.protsolo.databinding.AddContactDialogFragmentBinding
+import com.protsolo.databinding.DialogFragmentAddContactBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
 import com.protsolo.utils.Constants
@@ -16,14 +16,14 @@ class AddContactDialogFragment(
     private val onIContactListItemClickListener: IContactListItemClickListener
 ) : DialogFragment() {
 
-    private lateinit var binding: AddContactDialogFragmentBinding
+    private lateinit var binding: DialogFragmentAddContactBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = AddContactDialogFragmentBinding.inflate(layoutInflater, container, false)
+        binding = DialogFragmentAddContactBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

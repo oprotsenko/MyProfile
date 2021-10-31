@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
     <!-- Base application theme. -->
     <style name="Theme.MyProfile" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -24,6 +24,8 @@
         <item name="fontFamily">@font/open_sans_semibold</item>
         <item name="imageButtonStyle">@style/ImageButtonStyle</item>
         <item name="floatingActionButtonStyle">@style/FloatingButtonStyle</item>
+        <item name="customButtonStyle">@style/CustomButtonStyle</item>
+        <item name="android:windowContentTransitions">true</item>
 <!--        <item name="textInputStyle">@style/TextInputLayoutStyle</item>-->
 <!--        <item name="editTextStyle">@style/EditTextField</item>-->
     </style>

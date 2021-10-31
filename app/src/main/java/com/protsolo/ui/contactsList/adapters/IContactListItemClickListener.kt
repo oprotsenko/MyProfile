@@ -6,4 +6,5 @@ interface IContactListItemClickListener {
     fun removeItem(position: Int)
     fun addItem(element: UserModel, position: Int)
     fun onItemLongClick(position: Int)
+    fun onItemClick(position: Int)
 }

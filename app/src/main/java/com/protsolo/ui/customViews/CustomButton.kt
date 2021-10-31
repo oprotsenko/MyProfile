@@ -1,28 +1,24 @@
 package com.protsolo.ui.customViews
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.content.res.TypedArray
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.VectorDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.protsolo.R
 
-@RequiresApi(Build.VERSION_CODES.O)
 class CustomButton @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null
-) : View(context, attrs) {
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = R.attr.customButtonStyle
+) : View(context, attrs, defStyleAttr) {
 
     private val colors: List<Int> =
-        listOf(Color.BLUE, Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.RED)
+        listOf(Color.BLUE, Color.RED, Color.rgb(251, 188, 5), Color.BLUE, Color.GREEN, Color.RED)
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
@@ -35,7 +31,7 @@ class CustomButton @JvmOverloads constructor(
     private var text: String
     private var textSize: Float
     private var textWidth: Float
-    private var multicolor = true
+    private var multicolor: Boolean
     private var startDrawableX: Float = 0f
     private var startDrawableY: Float = 0f
     private var startTextX: Float = 0f
@@ -43,20 +39,17 @@ class CustomButton @JvmOverloads constructor(
 
 
     init {
-        val arr = context.obtainStyledAttributes(attrs, R.styleable.CustomButton, 0, 0)
-        textSize = arr.getDimension(R.styleable.CustomButton_android_textSize, 12f)
-        paint.color =
-            arr.getColor(R.styleable.CustomButton_android_textColor, colors[0])
-        if (arr.getColor(R.styleable.CustomButton_android_textColor, 0) != 0)
-            multicolor = false
-        paint.typeface = ResourcesCompat.getFont(
-            context,
-            arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
+        val arr = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.CustomButton,
+            defStyleAttr,
+            R.style.CustomButtonStyle
         )
-        text = when (arr.getBoolean(R.styleable.CustomButton_android_textAllCaps, false)) {
-            true -> arr.getString(R.styleable.CustomButton_android_text).toString().uppercase()
-            false -> arr.getString(R.styleable.CustomButton_android_text).toString()
-        }
+        textSize = arr.getDimension(R.styleable.CustomButton_android_textSize, 12f)
+        paint.color = arr.getColor(R.styleable.CustomButton_android_textColor, colors[0])
+        multicolor = arr.getColor(R.styleable.CustomButton_android_textColor, 0) == 0
+        paint.typeface = getTypeface(arr, context)
+        text = getText(arr)
         iconImage =
             getVectorBitmap(context, arr.getResourceId(R.styleable.CustomButton_srcCompat, 0))!!
         spaceBetween = arr.getDimension(R.styleable.CustomButton_spaceBetween, 0f)
@@ -74,7 +67,6 @@ class CustomButton @JvmOverloads constructor(
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        val textWidth = paint.measureText(text)
         startDrawableX = (width - iconImage.width.toFloat() - textWidth - spaceBetween) / 2
         startDrawableY = (height - iconImage.height.toFloat()) / 2
         startTextX = startDrawableX + iconImage.width + spaceBetween
@@ -83,6 +75,7 @@ class CustomButton @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawBitmap(iconImage, startDrawableX, startDrawableY, null)
+
         for (i in colors.indices) {
             if (multicolor) {
                 paint.color = colors[i % colors.size]
@@ -111,6 +104,23 @@ class CustomButton @JvmOverloads constructor(
             MeasureSpec.EXACTLY -> MeasureSpec.getSize(spec)
             else -> MeasureSpec.getSize(spec)
         }
+    }
+
+    private fun getText(arr: TypedArray) =
+        when (arr.getBoolean(R.styleable.CustomButton_android_textAllCaps, false)) {
+            true -> arr.getString(R.styleable.CustomButton_android_text).toString().uppercase()
+            false -> arr.getString(R.styleable.CustomButton_android_text).toString()
+        }
+
+    private fun getTypeface(
+        arr: TypedArray,
+        context: Context
+    ) = when (arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)) {
+        0 -> Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+        else -> ResourcesCompat.getFont(
+            context,
+            arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
+        )
     }
 
     private fun getVectorBitmap(context: Context, drawableId: Int): Bitmap? {

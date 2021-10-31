@@ -10,5 +10,6 @@ data class UserModel(
     var image: String = Constants.DEFAULT_IMAGE,
     var name: String = "User Name",
     var career: String = "User career",
-    var address: String = "User address"
+    var address: String = "User address",
+    var phone: String = "+3801234567"
 ) : Parcelable

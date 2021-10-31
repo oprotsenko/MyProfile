@@ -5,11 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.utils.Constants
 
 
 class ContactsAdapter(private val onContactListItemClickListener: IContactListItemClickListener)
@@ -18,9 +16,6 @@ class ContactsAdapter(private val onContactListItemClickListener: IContactListIt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.contact_list_item, parent, false)
-        view.setOnClickListener {
-            Snackbar.make(parent, Constants.LONG_PRESS_MESSAGE, Snackbar.LENGTH_LONG).show()
-        }
         return ContactsViewHolder(ContactListItemBinding.bind(view), onContactListItemClickListener)
     }
 

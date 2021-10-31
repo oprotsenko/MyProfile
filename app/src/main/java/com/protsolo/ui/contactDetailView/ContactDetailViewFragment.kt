@@ -1,13 +1,11 @@
 package com.protsolo.ui.contactDetailView
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.protsolo.databinding.FragmentContactDetailViewBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.BaseFragment
+import com.protsolo.ui.base.BaseFragment
 import com.protsolo.utils.Constants
+import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.extensions.loadImageWithFresco
 
 class ContactDetailViewFragment : BaseFragment<FragmentContactDetailViewBinding>() {
@@ -17,7 +15,9 @@ class ContactDetailViewFragment : BaseFragment<FragmentContactDetailViewBinding>
 
     override fun setUpViews() {
         super.setUpViews()
-        val args = arguments?.get(Constants.BUNDLE_KEY)
+
+        val args = getARGS()
+
         if (args != null) {
             extractArguments(args)
         }
@@ -38,6 +38,11 @@ class ContactDetailViewFragment : BaseFragment<FragmentContactDetailViewBinding>
             textViewContactDetailViewHomeAddress.text = user.address
         }
     }
+
+    private fun getARGS() = if (GlobalVal.NAV_GRAPH) {
+        arguments?.let { ContactDetailViewFragmentArgs.fromBundle(it).userDetails }
+    } else
+    arguments?.get(Constants.BUNDLE_KEY)
 
     companion object {
         @JvmStatic

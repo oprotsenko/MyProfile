@@ -3,25 +3,28 @@ package com.protsolo.ui.authorization
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Patterns
-import android.view.View
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import com.protsolo.R
 import com.protsolo.databinding.FragmentAuthorizationBinding
-import com.protsolo.ui.BaseFragment
+import com.protsolo.ui.base.BaseFragment
 import com.protsolo.utils.Constants
-import com.protsolo.utils.extensions.hideKeyboard
+import com.protsolo.utils.GlobalVal
 
 
 class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
 
     private val args: Bundle = Bundle()
 
+    private lateinit var authorizationViewModel: AuthorizationViewModel
+
     override fun getViewBinding(): FragmentAuthorizationBinding =
         FragmentAuthorizationBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
         super.setUpViews()
+        authorizationViewModel = ViewModelProvider(this).get(AuthorizationViewModel::class.java)
         if (preferenceStorage.getBoolean(Constants.AUTOLOGIN)) {
             autologin()
         }
@@ -31,25 +34,25 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
         binding.apply {
             editTextAuthEmailAddressField.post {
                 editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
-                    if (isValidMail(text)) {
+                    if (authorizationViewModel.isValidMail(text)) {
                         textInputLayoutAuthEmail.isErrorEnabled = false
                     } else {
                         textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
                         textInputLayoutAuthEmail.isErrorEnabled = true
                     }
-                    setButtonStatus(binding)
+                    setButtonStatus()
                 }
             }
             editTextAuthPasswordField.post {
                 editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
-                    if (isValidPassword(text)) {
+                    if (authorizationViewModel.isValidPassword(text)) {
                         textInputLayoutAuthPassword.isErrorEnabled = false
                     } else {
                         textInputLayoutAuthPassword.error =
                             getString(R.string.authMessagePasswordError)
                         textInputLayoutAuthPassword.isErrorEnabled = true
                     }
-                    setButtonStatus(binding)
+                    setButtonStatus()
                 }
             }
             buttonAuthRegister.setOnClickListener {
@@ -63,28 +66,43 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
     }
 
     private fun autologin() {
-        args.putString(
-            Constants.PREFERENCE_EMAIL_KEY,
-            preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
-        )
-        listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
-    }
-
-    private fun setButtonStatus(binding: FragmentAuthorizationBinding) {
-        binding.apply {
-            buttonAuthRegister.isEnabled =
-                isValidMail(textInputLayoutAuthEmail.editText?.text)
-                        && isValidPassword(editTextAuthPasswordField.text)
+        if (GlobalVal.NAV_GRAPH) {
+            val action: NavDirections =
+                AuthorizationFragmentDirections.actionAuthorizationFragmentToMainPageFragment(
+                    preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+                )
+            listener?.onNavigateToFragment(action)
+        } else {
+            args.putString(
+                Constants.PREFERENCE_EMAIL_KEY,
+                preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+            )
+            listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
         }
     }
 
-    private fun isValidPassword(text: CharSequence?) =
-        Regex(Constants.PASSWORD_PATTERN).matches(text.toString())
-
-    private fun isValidMail(text: CharSequence?) =
-        Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
+    private fun setButtonStatus() {
+        binding.apply {
+            buttonAuthRegister.isEnabled =
+                authorizationViewModel.isValidMail(textInputLayoutAuthEmail.editText?.text)
+                        && authorizationViewModel.isValidPassword(editTextAuthPasswordField.text)
+        }
+    }
 
     private fun register() {
+        writeToPreferenceStorage()
+        if (GlobalVal.NAV_GRAPH) {
+            val action: NavDirections =
+                AuthorizationFragmentDirections.actionAuthorizationFragmentToMainPageFragment(
+                    binding.editTextAuthEmailAddressField.text.toString()
+                )
+            listener?.onNavigateToFragment(action)
+        } else {
+            listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
+        }
+    }
+
+    private fun writeToPreferenceStorage() {
         with(Constants) {
             preferenceStorage.save(
                 PREFERENCE_EMAIL_KEY,
@@ -102,6 +120,5 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
                 binding.editTextAuthEmailAddressField.text.toString()
             )
         }
-        listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
     }
 }

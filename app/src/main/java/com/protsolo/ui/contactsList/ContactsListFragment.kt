@@ -1,19 +1,20 @@
 package com.protsolo.ui.contactsList
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.protsolo.databinding.FragmentContactsListBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.AddContactDialogFragment
-import com.protsolo.ui.BaseFragment
+import com.protsolo.ui.addContactDialog.AddContactDialogFragment
+import com.protsolo.ui.base.BaseFragment
 import com.protsolo.ui.contactsList.adapters.ContactsAdapter
 import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
 import com.protsolo.ui.contactsList.adapters.decorations.ContactListItemDecoration
 import com.protsolo.utils.Constants
+import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.extensions.dpToPx
 
 class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
@@ -54,7 +55,7 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     override fun removeItem(position: Int) {
-        val element = contactsViewModel.contactsData.value?.get(position)
+        val element = contactsViewModel.getData().value?.get(position)
         contactsViewModel.removeItem(position)
 
         Snackbar.make(
@@ -71,12 +72,34 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
         contactsViewModel.addItem(position, element)
     }
 
+    override fun onItemClick(position: Int) {
+        if (GlobalVal.NAV_GRAPH) {
+            val action =
+                ContactsListFragmentDirections.actionContactsListFragmentToContactDetailViewFragment(
+                    contactsViewModel.getData().value?.get(position)
+                )
+            listener?.onNavigateToFragment(action)
+        } else {
+            args.putParcelable(
+                Constants.BUNDLE_KEY,
+                contactsViewModel.getData().value?.get(position)
+            )
+            listener?.onNavigateToFragment(Constants.DETAIL_VIEW, args)
+        }
+    }
+
     override fun onItemLongClick(position: Int) {
-        args.putParcelable(
-            Constants.BUNDLE_KEY,
-            contactsViewModel.contactsData.value?.get(position)
-        )
-        listener?.onNavigateToFragment(Constants.DETAIL_VIEW, args)
+        val user = contactsViewModel.getData().value?.get(position)
+        val contactToShare = "Contact name: " + user?.name + "\n" +
+                "phone: " + user?.phone + ".\nSent from MyProfile =)"
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, contactToShare)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, "Share contact:")
+        startActivity(shareIntent)
     }
 
     private fun recyclerInit() {
@@ -120,7 +143,7 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     private fun setObserver() {
-        contactsViewModel.contactsData.observe(viewLifecycleOwner, {
+        contactsViewModel.getData().observe(viewLifecycleOwner, {
             it?.let {
                 contactsAdapter.submitList(it)
             }

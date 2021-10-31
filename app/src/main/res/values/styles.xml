@@ -45,6 +45,9 @@
     <!-- Button styles -->
     <style name="BorderOrangeButtonStyle">
         <item name="android:background">@drawable/auth_frame_orange</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+        <item name="android:enabled">false</item>
     </style>
 
     <style name="OrangeButtonStyle">
@@ -60,13 +63,11 @@
     </style>
 
     <!--    Auth activity   -->
-    <style name="AuthTitle">
-        <item name="android:text">@string/auth_acquaint</item>
+    <style name="TitleStyle">
         <item name="android:textSize">@dimen/text_size_h1</item>
     </style>
 
-    <style name="AuthDescription">
-        <item name="android:text">@string/auth_fill_out_description</item>
+    <style name="DescriptionStyle">
         <item name="android:textSize">@dimen/text_size_h4</item>
         <item name="android:layout_marginTop">@dimen/margin_4</item>
         <item name="android:layout_marginBottom">@dimen/margin_24</item>
@@ -85,9 +86,11 @@
     </style>
 
     <style name="CustomButtonStyle" parent="FullWidthButton">
-        <item name="background">@drawable/auth_white_button</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@null</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+        <item name="android:background">@drawable/auth_white_button</item>
         <item name="android:padding">@dimen/margin_12</item>
-        <item name="textAppearanceButton">@style/GrayText</item>
         <item name="android:letterSpacing">0.3</item>
         <item name="spaceBetween">@dimen/margin_16</item>
     </style>
@@ -99,13 +102,6 @@
         <item name="android:textSize">@dimen/text_size_18</item>
     </style>
 
-    <style name="BorderOrangeButtonStyle.Register">
-        <item name="android:letterSpacing">0.1</item>
-        <item name="android:layout_marginBottom">@dimen/margin_12</item>
-        <item name="android:enabled">false</item>
-        <item name="android:text">@string/auth_register</item>
-    </style>
-
     <style name="AuthTermsAndConditions">
         <item name="android:text">@string/auth_terms_and_conditions</item>
         <item name="android:textSize">@dimen/text_size_h4</item>
@@ -113,16 +109,16 @@
         <item name="android:fontFamily">@font/open_sans</item>
     </style>
 
-    <style name="LightGrayText.AuthHaveAccount">
+    <style name="LightGrayText.HaveAccount">
         <item name="android:layout_marginEnd">@dimen/margin_12</item>
-        <item name="android:text">@string/auth_already_have_account</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
+<!--        <item name="android:text">@string/auth_already_have_account</item>-->
+<!--        <item name="android:textSize">@dimen/text_size_h3</item>-->
     </style>
 
-    <style name="SignIn">
+    <style name="SignIn_SignUp">
         <item name="android:layout_marginTop">@dimen/margin_12</item>
-        <item name="android:text">@string/auth_sign_in</item>
-        <item name="android:textSize">@dimen/text_size_h3</item>
+<!--        <item name="android:text">@string/auth_sign_in</item>-->
+<!--        <item name="android:textSize">@dimen/text_size_h3</item>-->
     </style>
 
     <!--    Contacts list activity   -->
