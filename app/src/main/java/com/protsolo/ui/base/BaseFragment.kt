@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.protsolo.App
+import com.protsolo.utils.extensions.hideKeyboard
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
     protected val preferenceStorage = App().getStoragePreferences()
+    protected val args: Bundle = Bundle()
+
     protected var listener: INavigateToFragmentListener? = null
 
     protected lateinit var binding: T
@@ -55,5 +58,8 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
     private fun init() {
         binding = getViewBinding()
+        binding.root.setOnClickListener {
+            binding.root.hideKeyboard()
+        }
     }
 }

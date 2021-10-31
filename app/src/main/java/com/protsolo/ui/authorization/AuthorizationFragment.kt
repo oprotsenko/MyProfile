@@ -15,18 +15,23 @@ import com.protsolo.utils.GlobalVal
 
 class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
 
-    private val args: Bundle = Bundle()
-
     private lateinit var authorizationViewModel: AuthorizationViewModel
 
     override fun getViewBinding(): FragmentAuthorizationBinding =
         FragmentAuthorizationBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        super.setUpViews()
         authorizationViewModel = ViewModelProvider(this).get(AuthorizationViewModel::class.java)
         if (preferenceStorage.getBoolean(Constants.AUTOLOGIN)) {
             autologin()
+        }
+        extractArguments()
+    }
+
+    private fun extractArguments() {
+        with(binding) {
+            editTextAuthEmailAddressField.setText(arguments?.getString(Constants.PREFERENCE_EMAIL_KEY))
+            editTextAuthPasswordField.setText(arguments?.getString(Constants.PREFERENCE_PASSWORD_KEY))
         }
     }
 
@@ -120,5 +125,13 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
                 binding.editTextAuthEmailAddressField.text.toString()
             )
         }
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(args: Bundle) =
+            AuthorizationFragment().apply {
+                arguments = args
+            }
     }
 }

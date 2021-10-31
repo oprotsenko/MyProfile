@@ -10,6 +10,7 @@ import com.protsolo.ui.authorization.AuthorizationFragment
 import com.protsolo.ui.base.INavigateToFragmentListener
 import com.protsolo.ui.contactDetailView.ContactDetailViewFragment
 import com.protsolo.ui.contactsList.ContactsListFragment
+import com.protsolo.ui.login.LoginFragment
 import com.protsolo.ui.mainPage.MainPageFragment
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
@@ -39,7 +40,8 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
                                 DETAIL_VIEW -> ContactDetailViewFragment.newInstance(args)
                                 CONTACTS_LIST -> ContactsListFragment.newInstance(args)
                                 MAIN_PAGE -> MainPageFragment.newInstance(args)
-                                else -> AuthorizationFragment()
+                                AUTHORIZATION -> AuthorizationFragment.newInstance(args)
+                                else -> LoginFragment()
                             }
                         }
                     supportFragmentManager.beginTransaction().addToBackStack(null).replace(
@@ -61,7 +63,7 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
     }
 
     private fun runFragmentTransactions() {
-        val fragment = AuthorizationFragment()
+        val fragment = LoginFragment()
         supportFragmentManager.beginTransaction()
             .addToBackStack(Constants.MY_PROFILE_BACK_STACK)
             .add(R.id.container, fragment)
@@ -72,6 +74,6 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
         navController = navHostFragment.navController
-        navController.navigate(R.id.authorizationFragment)
+        navController.navigate(R.id.loginFragment)
     }
 }

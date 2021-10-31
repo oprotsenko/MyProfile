@@ -11,15 +11,12 @@ import com.protsolo.utils.extensions.loadImageWithFresco
 
 class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
-    private val args: Bundle = Bundle()
-
     private lateinit var mainPageViewModel: MainPageViewModel
 
     override fun getViewBinding(): FragmentMainPageBinding =
         FragmentMainPageBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        super.setUpViews()
         mainPageViewModel = ViewModelProvider(this).get(MainPageViewModel::class.java)
 
         val photo = binding.imageViewMainProfilePhoto

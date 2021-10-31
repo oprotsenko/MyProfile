@@ -20,8 +20,6 @@ import com.protsolo.utils.extensions.dpToPx
 class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     IContactListItemClickListener {
 
-    private val args: Bundle = Bundle()
-
     private lateinit var contactsViewModel: ContactsViewModel
     private lateinit var contactsAdapter: ContactsAdapter
 
@@ -29,7 +27,6 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
         FragmentContactsListBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        super.setUpViews()
         contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
         recyclerInit()
         setObserver()

@@ -14,8 +14,6 @@ class ContactDetailViewFragment : BaseFragment<FragmentContactDetailViewBinding>
         FragmentContactDetailViewBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        super.setUpViews()
-
         val args = getARGS()
 
         if (args != null) {

@@ -51,7 +51,8 @@ class AddContactDialogFragment(
                         Constants.DEFAULT_IMAGE,
                         editTextAddContactsFragmentUsername.text.toString(),
                         editTextAddContactsFragmentCareer.text.toString(),
-                        editTextAddContactsFragmentAddress.text.toString()
+                        editTextAddContactsFragmentAddress.text.toString(),
+                        editTextAddContactsFragmentPhone.text.toString()
                     ),
                     0
                 )

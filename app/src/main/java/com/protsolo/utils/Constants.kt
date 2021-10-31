@@ -29,6 +29,7 @@ object Constants {
     // AddContactsFragment
     const val DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE = "addContact"
 
+    const val AUTHORIZATION = "authorization"
     const val MAIN_PAGE = "main page"
     const val CONTACTS_LIST = "contacts list"
     const val DETAIL_VIEW = "detail view"

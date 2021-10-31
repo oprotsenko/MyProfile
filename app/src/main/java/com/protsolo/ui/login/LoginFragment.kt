@@ -1,60 +1,142 @@
 package com.protsolo.ui.login
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import com.protsolo.R
+import com.protsolo.databinding.FragmentLoginBinding
+import com.protsolo.ui.authorization.AuthorizationFragmentDirections
+import com.protsolo.ui.authorization.AuthorizationViewModel
+import com.protsolo.ui.base.BaseFragment
+import com.protsolo.utils.Constants
+import com.protsolo.utils.GlobalVal
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var loginViewModel: AuthorizationViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun getViewBinding(): FragmentLoginBinding =
+        FragmentLoginBinding.inflate(layoutInflater)
+
+    override fun setUpViews() {
+        loginViewModel = ViewModelProvider(this).get(AuthorizationViewModel::class.java)
+        if (preferenceStorage.getBoolean(Constants.AUTOLOGIN)) {
+            autologin()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun setListeners() {
+        binding.apply {
+            editTextLoginEmailAddressField.post {
+                editTextLoginEmailAddressField.doOnTextChanged { text, _, _, _ ->
+                    if (loginViewModel.isValidMail(text)) {
+                        textInputLayoutLoginEmail.isErrorEnabled = false
+                    } else {
+                        textInputLayoutLoginEmail.error = getString(R.string.authMessageEmailError)
+                        textInputLayoutLoginEmail.isErrorEnabled = true
+                    }
+                    setButtonStatus()
                 }
             }
+            editTextLoginPasswordField.post {
+                editTextLoginPasswordField.doOnTextChanged { text, _, _, _ ->
+                    if (loginViewModel.isValidPassword(text)) {
+                        textInputLayoutLoginPassword.isErrorEnabled = false
+                    } else {
+                        textInputLayoutLoginPassword.error =
+                            getString(R.string.authMessagePasswordError)
+                        textInputLayoutLoginPassword.isErrorEnabled = true
+                    }
+                    setButtonStatus()
+                }
+            }
+            buttonLogin.setOnClickListener {
+                buttonLogin.isEnabled = false // to prevent double click
+                register()
+            }
+            textViewLoginSignUp.setOnClickListener {
+                if (GlobalVal.NAV_GRAPH) {
+                    val action: NavDirections =
+                        LoginFragmentDirections.actionLoginFragmentToAuthorizationFragment()
+                    listener?.onNavigateToFragment(action)
+                } else {
+                    args.putString(
+                        Constants.PREFERENCE_EMAIL_KEY,
+                        editTextLoginEmailAddressField.text.toString()
+                    )
+                    args.putString(
+                        Constants.PREFERENCE_PASSWORD_KEY,
+                        editTextLoginPasswordField.text.toString()
+                    )
+                    listener?.onNavigateToFragment(Constants.AUTHORIZATION, args)
+                }
+            }
+        }
+    }
+
+    private fun autologin() {
+        if (GlobalVal.NAV_GRAPH) {
+            val action: NavDirections =
+                LoginFragmentDirections.actionLoginFragmentToMainPageFragment(
+                    preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+                )
+            listener?.onNavigateToFragment(action)
+        } else {
+            args.putString(
+                Constants.PREFERENCE_EMAIL_KEY,
+                preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+            )
+            listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
+        }
+    }
+
+    private fun setButtonStatus() {
+        binding.apply {
+            buttonLogin.isEnabled =
+                loginViewModel.isValidMail(textInputLayoutLoginEmail.editText?.text)
+                        && loginViewModel.isValidPassword(editTextLoginPasswordField.text)
+        }
+    }
+
+    private fun register() {
+        writeToPreferenceStorage()
+        with(binding) {
+            if (GlobalVal.NAV_GRAPH) {
+                val action: NavDirections =
+                    LoginFragmentDirections.actionLoginFragmentToMainPageFragment(
+                        editTextLoginEmailAddressField.text.toString()
+                    )
+                listener?.onNavigateToFragment(action)
+            } else {
+                args.putString(
+                    Constants.BUNDLE_KEY,
+                    editTextLoginEmailAddressField.text.toString()
+                )
+                listener?.onNavigateToFragment(Constants.MAIN_PAGE, args)
+            }
+        }
+    }
+
+    private fun writeToPreferenceStorage() {
+        with(Constants) {
+            preferenceStorage.save(
+                PREFERENCE_EMAIL_KEY,
+                binding.editTextLoginEmailAddressField.text.toString()
+            )
+            preferenceStorage.save(
+                PREFERENCE_PASSWORD_KEY,
+                binding.editTextLoginPasswordField.text.toString()
+            )
+            preferenceStorage.save(
+                AUTOLOGIN, binding.checkBoxLoginRememberMe.isChecked
+            )
+            args.putString(
+                PREFERENCE_EMAIL_KEY,
+                binding.editTextLoginEmailAddressField.text.toString()
+            )
+        }
     }
 }
