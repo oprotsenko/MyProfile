@@ -9,6 +9,7 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/all_gray_cursor.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/all_orange_button.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/all_orange_button_text_color.xml" value="0.24027777777777778" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/all_round_button.xml" value="0.18796296296296297" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/all_round_orange_button_background.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/auth_frame_orange.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/auth_white_button.xml" value="0.2703125" />
@@ -54,6 +55,7 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/add_contact_fragment.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/contact_list_item.xml" value="0.4" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/custom_button_layout.xml" value="0.6" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/dialog_fragment_add_contact.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_authorization.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contact_detail_view.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contacts_list.xml" value="0.25416666666666665" />
@@ -72,7 +74,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -7,21 +7,27 @@ import com.protsolo.itemModel.UserModel
 
 class ContactsViewModel : ViewModel() {
 
-    private val contactsData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
+    private val contactsLiveData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
 
     init {
-        contactsData.value = ContactsDataFake.loadContacts()
+        contactsLiveData.value = ContactsDataFake.loadContacts()
     }
 
-    fun getData() = contactsData
+    fun getData() = contactsLiveData
 
     fun removeItem(position: Int) {
-        contactsData.value?.removeAt(position)
-        contactsData.value = contactsData.value
+        contactsLiveData.value?.removeAt(position)
+        contactsLiveData.value = contactsLiveData.value
     }
 
     fun addItem(position: Int, userModel: UserModel) {
-        contactsData.value?.add(position, userModel)
-        contactsData.value = contactsData.value
+        contactsLiveData.value?.add(position, userModel)
+        contactsLiveData.value = contactsLiveData.value
+    }
+
+    fun createObjectToShare(position: Int): String {
+        val user = contactsLiveData.value?.get(position)
+        return "Contact name: " + user?.name + "\n" +
+                "phone: " + user?.phone + ".\nSent from MyProfile =)"
     }
 }

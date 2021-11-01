@@ -15,6 +15,8 @@ import com.protsolo.ui.mainPage.MainPageFragment
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
 
+var FIRST_LOGIN = true
+
 class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
 
     private lateinit var navController: NavController
@@ -27,6 +29,11 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
         } else {
             runFragmentTransactions()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        FIRST_LOGIN = true
     }
 
     override fun onNavigateToFragment(fragmentToNavigate: Any, args: Bundle?) {

@@ -86,15 +86,12 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     override fun onItemLongClick(position: Int) {
-        val user = contactsViewModel.getData().value?.get(position)
-        val contactToShare = "Contact name: " + user?.name + "\n" +
-                "phone: " + user?.phone + ".\nSent from MyProfile =)"
+        val contactToShare = contactsViewModel.createObjectToShare(position)
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, contactToShare)
             type = "text/plain"
         }
-
         val shareIntent = Intent.createChooser(sendIntent, "Share contact:")
         startActivity(shareIntent)
     }

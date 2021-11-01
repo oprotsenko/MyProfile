@@ -47,14 +47,14 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         setListeners()
     }
 
-    open fun setUpViews() {}
-
-    open fun setListeners(){}
-
     override fun onDetach() {
         super.onDetach()
         listener = null
     }
+
+    open fun setUpViews() {}
+
+    open fun setListeners(){}
 
     private fun init() {
         binding = getViewBinding()

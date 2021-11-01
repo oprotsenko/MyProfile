@@ -7,23 +7,23 @@
     <string name="all_home_address">Домашня адреса</string>
     <!--    Main activity   -->
     <string name="main_settings">Налаштування</string>
-    <string name="main_settings_description">Щоб заповнити свій профіль, відкрийте налаштування</string>
+    <string name="main_settings_description">Щоб заповнити свій профіль, відкрий налаштування</string>
     <string name="main_edit_profile">Змінити профіль</string>
     <string name="main_view_my_contacts">Переглянути мої контакти</string>
     <!--    Auth activity   -->
-    <string name="auth_acquaint">Давайте знайомитися</string>
-    <string name="auth_fill_out_description">Заповніть профіль, та переходьте до додатку!</string>
+    <string name="auth_acquaint">Давай знайомитися</string>
+    <string name="auth_fill_out_description">Заповни профіль, та переходь до додатку!</string>
     <string name="auth_email">E-mail</string>
     <string name="auth_password">Password</string>
     <string name="auth_remember_me">Запам\'ятати мене</string>
     <string name="auth_google_sign_in">google</string>
     <string name="auth_or">або</string>
     <string name="auth_register">зареєструватися</string>
-    <string name="auth_terms_and_conditions">Реєструючись, ви погоджуєтеся з нашими Правилами\nта Умовами користування додатком</string>
-    <string name="auth_already_have_account">Вже зареєстровані?</string>
+    <string name="auth_terms_and_conditions">Реєструючись, ти погоджуєшся з нашими Правилами\nта Умовами користування додатком</string>
+    <string name="auth_already_have_account">Вже зареєстрований?</string>
     <string name="auth_sign_in">Увійти</string>
     <string name="authMessageEmailError">Невірна E-Mail адреса</string>
-    <string name="authMessagePasswordError">Ваш пароль має містит мінімум 8 символів.</string>
+    <string name="authMessagePasswordError">Пароль має містит мінімум 8 символів.</string>
     <!--    ContactsList activity   -->
     <string name="contacts_list_contacts">Контакти</string>
     <string name="contacts_list_add_contacts">Додати контакти</string>
@@ -41,4 +41,11 @@
     <!--    Contact detail view   -->
     <string name="contact_detail_view_profile">Профіль</string>
     <string name="contact_detail_view_message">написати повідомлення</string>
+    <!--   Login   -->
+    <string name="login_hello">Привіт!</string>
+    <string name="login_description">Введи свій email та пароль</string>
+    <string name="login_forgot_password">Забув пароль?</string>
+    <string name="login_login">Увійти</string>
+    <string name="login_do_not_have_account">Досі не зареєстрований?</string>
+    <string name="login_sign_up">Зареєстуватися</string>
 </resources>
