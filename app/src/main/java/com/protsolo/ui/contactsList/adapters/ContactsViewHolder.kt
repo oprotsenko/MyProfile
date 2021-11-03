@@ -1,7 +1,9 @@
 package com.protsolo.ui.contactsList.adapters
 
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
+import com.protsolo.R
 import com.protsolo.databinding.ContactListItemBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.utils.extensions.loadCircleImageWithGlide

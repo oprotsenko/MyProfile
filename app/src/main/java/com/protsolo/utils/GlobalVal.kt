@@ -1,5 +1,5 @@
 package com.protsolo.utils
 
 object GlobalVal {
-    const val NAV_GRAPH = false
+    const val NAV_GRAPH = true
 }

@@ -6,6 +6,7 @@ import com.protsolo.R
 import com.protsolo.databinding.FragmentLoginBinding
 import com.protsolo.ui.FIRST_LOGIN
 import com.protsolo.ui.base.BaseFragment
+import com.protsolo.ui.viewPager.ViewPagerFragmentDirections
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.Validator
@@ -74,7 +75,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun autologin() {
         if (GlobalVal.NAV_GRAPH) {
             val action: NavDirections =
-                LoginFragmentDirections.actionLoginFragmentToMainPageFragment(
+                ViewPagerFragmentDirections.actionViewPagerFragmentToMainPageFragment2(
                     preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
                 )
             listener?.onNavigateToFragment(action)
@@ -100,7 +101,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         with(binding) {
             if (GlobalVal.NAV_GRAPH) {
                 val action: NavDirections =
-                    LoginFragmentDirections.actionLoginFragmentToMainPageFragment(
+                    ViewPagerFragmentDirections.actionViewPagerFragmentToMainPageFragment2(
                         editTextLoginEmailAddressField.text.toString()
                     )
                 listener?.onNavigateToFragment(action)

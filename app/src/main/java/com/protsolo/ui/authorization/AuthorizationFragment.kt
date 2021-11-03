@@ -9,6 +9,7 @@ import com.protsolo.R
 import com.protsolo.databinding.FragmentAuthorizationBinding
 import com.protsolo.ui.FIRST_LOGIN
 import com.protsolo.ui.base.BaseFragment
+import com.protsolo.ui.viewPager.ViewPagerFragmentDirections
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.Validator
@@ -72,7 +73,7 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
     private fun autologin() {
         if (GlobalVal.NAV_GRAPH) {
             val action: NavDirections =
-                AuthorizationFragmentDirections.actionAuthorizationFragmentToMainPageFragment(
+                ViewPagerFragmentDirections.actionViewPagerFragmentToMainPageFragment2(
                     preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
                 )
             listener?.onNavigateToFragment(action)
@@ -98,7 +99,7 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
         writeToPreferenceStorage()
         if (GlobalVal.NAV_GRAPH) {
             val action: NavDirections =
-                AuthorizationFragmentDirections.actionAuthorizationFragmentToMainPageFragment(
+                ViewPagerFragmentDirections.actionViewPagerFragmentToMainPageFragment2(
                     binding.editTextAuthEmailAddressField.text.toString()
                 )
             listener?.onNavigateToFragment(action)

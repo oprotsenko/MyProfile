@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
+import androidx.viewpager2.widget.ViewPager2
 import com.protsolo.R
 import com.protsolo.ui.authorization.AuthorizationFragment
 import com.protsolo.ui.base.INavigateToFragmentListener
@@ -12,6 +13,8 @@ import com.protsolo.ui.contactDetailView.ContactDetailViewFragment
 import com.protsolo.ui.contactsList.ContactsListFragment
 import com.protsolo.ui.login.LoginFragment
 import com.protsolo.ui.mainPage.MainPageFragment
+import com.protsolo.ui.viewPager.ViewPagerAdapter
+import com.protsolo.ui.viewPager.ViewPagerFragment
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
 
@@ -24,6 +27,7 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app)
+
         if (GlobalVal.NAV_GRAPH) {
             runNavigationGraph()
         } else {
@@ -48,7 +52,7 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
                                 CONTACTS_LIST -> ContactsListFragment.newInstance(args)
                                 MAIN_PAGE -> MainPageFragment.newInstance(args)
                                 AUTHORIZATION -> AuthorizationFragment.newInstance(args)
-                                else -> LoginFragment()
+                                else -> ViewPagerFragment()
                             }
                         }
                     supportFragmentManager.beginTransaction().addToBackStack(null).replace(
@@ -70,7 +74,7 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
     }
 
     private fun runFragmentTransactions() {
-        val fragment = LoginFragment()
+        val fragment = ViewPagerFragment()
         supportFragmentManager.beginTransaction()
             .addToBackStack(Constants.MY_PROFILE_BACK_STACK)
             .add(R.id.container, fragment)
@@ -81,6 +85,6 @@ class ActivityApp : AppCompatActivity(), INavigateToFragmentListener {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
         navController = navHostFragment.navController
-        navController.navigate(R.id.loginFragment)
+        navController.navigate(R.id.viewPagerFragment)
     }
 }

@@ -69,6 +69,9 @@ android {
         implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
         // Testing Navigation
         androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+        // ViewPager
+        implementation("androidx.viewpager2:viewpager2:1.0.0")
     }
     compileSdkVersion 31
 }

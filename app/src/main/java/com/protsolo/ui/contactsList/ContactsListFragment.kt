@@ -1,6 +1,5 @@
 package com.protsolo.ui.contactsList
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -86,14 +85,7 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     override fun onItemLongClick(position: Int) {
-        val contactToShare = contactsViewModel.createObjectToShare(position)
-        val sendIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, contactToShare)
-            type = "text/plain"
-        }
-        val shareIntent = Intent.createChooser(sendIntent, "Share contact:")
-        startActivity(shareIntent)
+        contactsViewModel.getData().value?.get(position)?.setUserSelected(true)
     }
 
     private fun recyclerInit() {

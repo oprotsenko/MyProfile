@@ -11,5 +11,13 @@ data class UserModel(
     var name: String = "User Name",
     var career: String = "User career",
     var address: String = "User address",
-    var phone: String = "+3801234567"
-) : Parcelable
+    var phone: String = "+3801234567",
+    var selected: Boolean = false
+) : Parcelable {
+
+    fun setUserSelected(selected: Boolean) {
+        this.selected = selected
+    }
+
+    fun isSelected() = selected
+}

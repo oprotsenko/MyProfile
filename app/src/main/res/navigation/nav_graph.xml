@@ -6,6 +6,16 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.protsolo.ui.viewPager.ViewPagerFragment"
+        android:label="ViewPagerFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_viewPagerFragment_to_mainPageFragment2"
+            app:destination="@id/mainPageFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/loginFragment"
         android:name="com.protsolo.ui.login.LoginFragment"
         android:label="LoginFragment"
@@ -76,6 +86,6 @@
         android:id="@+id/appActivity"
         android:name="com.protsolo.ui.ActivityApp"
         android:label="activity_app"
-        tools:layout="@layout/fragment_authorization"/>
+        tools:layout="@layout/fragment_login"/>
 
 </navigation>
