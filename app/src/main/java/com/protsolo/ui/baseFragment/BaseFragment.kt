@@ -1,4 +1,4 @@
-package com.protsolo.ui.base
+package com.protsolo.ui.baseFragment
 
 import android.content.Context
 import android.os.Bundle
@@ -31,6 +31,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
+        initViewModel()
     }
 
     override fun onCreateView(
@@ -52,9 +53,11 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         listener = null
     }
 
+    open fun initViewModel() {}
+
     open fun setUpViews() {}
 
-    open fun setListeners(){}
+    open fun setListeners() {}
 
     private fun init() {
         binding = getViewBinding()

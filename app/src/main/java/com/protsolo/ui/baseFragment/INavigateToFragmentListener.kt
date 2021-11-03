@@ -1,4 +1,4 @@
-package com.protsolo.ui.base
+package com.protsolo.ui.baseFragment
 
 import android.os.Bundle
 

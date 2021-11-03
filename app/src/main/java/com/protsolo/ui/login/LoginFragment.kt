@@ -5,7 +5,7 @@ import androidx.navigation.NavDirections
 import com.protsolo.R
 import com.protsolo.databinding.FragmentLoginBinding
 import com.protsolo.ui.FIRST_LOGIN
-import com.protsolo.ui.base.BaseFragment
+import com.protsolo.ui.baseFragment.BaseFragment
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.Validator

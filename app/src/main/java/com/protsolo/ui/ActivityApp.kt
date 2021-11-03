@@ -7,7 +7,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import com.protsolo.R
 import com.protsolo.ui.authorization.AuthorizationFragment
-import com.protsolo.ui.base.INavigateToFragmentListener
+import com.protsolo.ui.baseFragment.INavigateToFragmentListener
 import com.protsolo.ui.contactDetailView.ContactDetailViewFragment
 import com.protsolo.ui.contactsList.ContactsListFragment
 import com.protsolo.ui.login.LoginFragment

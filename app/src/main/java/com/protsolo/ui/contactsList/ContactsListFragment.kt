@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.protsolo.databinding.FragmentContactsListBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.addContactDialog.AddContactDialogFragment
-import com.protsolo.ui.base.BaseFragment
+import com.protsolo.ui.baseFragment.BaseFragment
 import com.protsolo.ui.contactsList.adapters.ContactsAdapter
 import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
 import com.protsolo.ui.contactsList.adapters.decorations.ContactListItemDecoration
@@ -18,7 +18,7 @@ import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.extensions.dpToPx
 
 class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
-    IContactListItemClickListener {
+    IContactListItemClickListener, AddContactDialogFragment.IAddUserListener {
 
     private lateinit var contactsViewModel: ContactsViewModel
     private lateinit var contactsAdapter: ContactsAdapter
@@ -26,8 +26,10 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     override fun getViewBinding(): FragmentContactsListBinding =
         FragmentContactsListBinding.inflate(layoutInflater)
 
-    override fun setUpViews() {
+    override fun initViewModel() {
         contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
+    }
+    override fun setUpViews() {
         recyclerInit()
         setObserver()
     }
@@ -36,9 +38,8 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
         binding.apply {
             textViewContactsListAddContact.setOnClickListener {
                 val addContactDialogFragment =
-                    AddContactDialogFragment(onIContactListItemClickListener = this@ContactsListFragment)
-                addContactDialogFragment.show(
-                    requireActivity().supportFragmentManager,
+                    AddContactDialogFragment(onIAddUserListener = this@ContactsListFragment)
+                addContactDialogFragment.show(parentFragmentManager,
                     Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
                 )
             }
@@ -94,6 +95,10 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
         }
         val shareIntent = Intent.createChooser(sendIntent, "Share contact:")
         startActivity(shareIntent)
+    }
+
+    override fun onAddUser(user: Bundle) {
+        addItem(user.getParcelable<UserModel>(Constants.BUNDLE_KEY) as UserModel, 0)
     }
 
     private fun recyclerInit() {

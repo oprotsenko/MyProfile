@@ -3,7 +3,7 @@ package com.protsolo.ui.mainPage
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.protsolo.databinding.FragmentMainPageBinding
-import com.protsolo.ui.base.BaseFragment
+import com.protsolo.ui.baseFragment.BaseFragment
 import com.protsolo.utils.Constants
 import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.extensions.loadImageWithFresco
