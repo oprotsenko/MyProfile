@@ -14,7 +14,7 @@
         tools:context=".ui.AuthActivity">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideLineAuthHorizontal0.23"
+            android:id="@+id/guideLineAuthHorizontalTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontal0.23" />
+            app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontalTop" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewAuthFillOutDescription"
@@ -85,6 +85,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthPassword" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAuthForgotPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_forgot_password"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxAuthRememberMe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxAuthRememberMe" />
 
         <com.protsolo.ui.customViews.CustomButton
             android:id="@+id/customButtonGoogle"
@@ -129,22 +138,19 @@
             style="@style/LightGrayText.HaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/auth_already_have_account"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/textViewAuthSignIn"
+            app:layout_constraintEnd_toStartOf="@id/textViewAuthSignInUp"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewAuthSignIn"
+            android:id="@+id/textViewAuthSignInUp"
             style="@style/SignIn_SignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/auth_sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textViewAuthHaveAccount"
-            app:layout_constraintTop_toBottomOf="@id/textViewAuthTermsAndConditions" />
+            app:layout_constraintStart_toEndOf="@id/textViewAuthHaveAccount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

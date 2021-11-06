@@ -91,7 +91,7 @@
         <item name="android:fontFamily">@font/open_sans_semibold</item>
         <item name="android:background">@drawable/auth_white_button</item>
         <item name="android:padding">@dimen/margin_12</item>
-        <item name="android:letterSpacing">0.3</item>
+        <item name="android:letterSpacing">0.2</item>
         <item name="spaceBetween">@dimen/margin_16</item>
     </style>
 
@@ -111,14 +111,13 @@
 
     <style name="LightGrayText.HaveAccount">
         <item name="android:layout_marginEnd">@dimen/margin_12</item>
-<!--        <item name="android:text">@string/auth_already_have_account</item>-->
-<!--        <item name="android:textSize">@dimen/text_size_h3</item>-->
+        <item name="android:text">@string/auth_already_have_account</item>
     </style>
 
     <style name="SignIn_SignUp">
         <item name="android:layout_marginTop">@dimen/margin_12</item>
-<!--        <item name="android:text">@string/auth_sign_in</item>-->
-<!--        <item name="android:textSize">@dimen/text_size_h3</item>-->
+        <item name="android:textColor">@drawable/clickable_text_color</item>
+        <item name="android:text">@string/auth_sign_in</item>
     </style>
 
     <!--    Contacts list activity   -->
@@ -131,7 +130,7 @@
     </style>
 
     <style name="ImageButtonBackStyle">
-        <item name="srcCompat">@drawable/ic_arrow_back_24px</item>
+        <item name="srcCompat">@drawable/ic_arrow_back_clickable</item>
     </style>
 
     <style name="ImageButtonSearchStyle">
@@ -171,6 +170,7 @@
     <style name="MainSettingsStyle">
         <item name="android:text">@string/main_settings</item>
         <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:textColor">@drawable/clickable_text_color</item>
         <item name="android:letterSpacing">0.05</item>
     </style>
 

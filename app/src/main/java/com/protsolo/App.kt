@@ -6,8 +6,6 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import com.protsolo.utils.PreferenceStorage
 
 @SuppressLint("StaticFieldLeak")
-private lateinit var preferencesStorage: PreferenceStorage
-
 class App : Application() {
 
     override fun onCreate() {
@@ -16,7 +14,8 @@ class App : Application() {
         preferencesStorage = PreferenceStorage(this)
     }
 
-    fun getStoragePreferences(): PreferenceStorage {
-        return preferencesStorage
+    companion object {
+        var isFirstLogin = true
+        lateinit var preferencesStorage: PreferenceStorage
     }
 }

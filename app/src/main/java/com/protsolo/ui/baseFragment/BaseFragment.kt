@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.protsolo.App
-import com.protsolo.utils.extensions.hideKeyboard
+import com.protsolo.ui.INavigateToFragmentListener
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
-    protected val preferenceStorage = App().getStoragePreferences()
+    protected val preferenceStorage = App.preferencesStorage
     protected val args: Bundle = Bundle()
 
     protected var listener: INavigateToFragmentListener? = null
@@ -31,7 +31,6 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
-        initViewModel()
     }
 
     override fun onCreateView(
@@ -53,16 +52,11 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         listener = null
     }
 
-    open fun initViewModel() {}
-
     open fun setUpViews() {}
 
     open fun setListeners() {}
 
     private fun init() {
         binding = getViewBinding()
-        binding.root.setOnClickListener {
-            binding.root.hideKeyboard()
-        }
     }
 }

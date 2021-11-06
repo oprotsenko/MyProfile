@@ -1,36 +1,40 @@
-package com.protsolo.ui.contactsList
+package com.protsolo.ui.contacts
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.protsolo.databinding.FragmentContactsListBinding
+import com.protsolo.databinding.FragmentContactsBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.addContactDialog.AddContactDialogFragment
 import com.protsolo.ui.baseFragment.BaseFragment
-import com.protsolo.ui.contactsList.adapters.ContactsAdapter
-import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
-import com.protsolo.ui.contactsList.adapters.decorations.ContactListItemDecoration
+import com.protsolo.ui.contacts.adapters.ContactsAdapter
+import com.protsolo.ui.contacts.adapters.IContactItemClickListener
+import com.protsolo.ui.contacts.adapters.decorations.ContactListItemDecoration
 import com.protsolo.utils.Constants
-import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.extensions.dpToPx
 
-class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
-    IContactListItemClickListener, AddContactDialogFragment.IAddUserListener {
+class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
+    IContactItemClickListener {
 
-    private lateinit var contactsViewModel: ContactsViewModel
-    private lateinit var contactsAdapter: ContactsAdapter
-
-    override fun getViewBinding(): FragmentContactsListBinding =
-        FragmentContactsListBinding.inflate(layoutInflater)
-
-    override fun initViewModel() {
-        contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
+    private val contactsViewModel: ContactsViewModel by viewModels()
+    private val contactsAdapter: ContactsAdapter by lazy {
+        ContactsAdapter(
+            onContactItemClickListener = this
+        )
     }
-    override fun setUpViews() {
+
+    override fun getViewBinding(): FragmentContactsBinding =
+        FragmentContactsBinding.inflate(layoutInflater)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         recyclerInit()
+    }
+
+    override fun setUpViews() {
         setObserver()
     }
 
@@ -38,8 +42,9 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
         binding.apply {
             textViewContactsListAddContact.setOnClickListener {
                 val addContactDialogFragment =
-                    AddContactDialogFragment(onIAddUserListener = this@ContactsListFragment)
-                addContactDialogFragment.show(parentFragmentManager,
+                    AddContactDialogFragment(onIContactItemClickListener = this@ContactsFragment)
+                addContactDialogFragment.show(
+                    parentFragmentManager,
                     Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
                 )
             }
@@ -53,11 +58,11 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     override fun removeItem(position: Int) {
-        val element = contactsViewModel.getData().value?.get(position)
+        val element = contactsViewModel.contactsLiveData.value?.get(position)
         contactsViewModel.removeItem(position)
 
         Snackbar.make(
-            binding.recyclerViewContactsList, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
+            binding.root, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
             Snackbar.LENGTH_LONG
         ).setAction(Constants.UNDO) {
             if (element != null) {
@@ -71,18 +76,10 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     override fun onItemClick(position: Int) {
-        if (GlobalVal.NAV_GRAPH) {
-            val action =
-                ContactsListFragmentDirections.actionContactsListFragmentToContactDetailViewFragment(
-                    contactsViewModel.getData().value?.get(position)
-                )
-            listener?.onNavigateToFragment(action)
+        if (Constants.NAV_GRAPH) {
+            listener?.onNavigateTo(contactsViewModel.getAction(position))
         } else {
-            args.putParcelable(
-                Constants.BUNDLE_KEY,
-                contactsViewModel.getData().value?.get(position)
-            )
-            listener?.onNavigateToFragment(Constants.DETAIL_VIEW, args)
+            listener?.onTransactionTo(contactsViewModel.getFragment(position, args))
         }
     }
 
@@ -97,15 +94,11 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
         startActivity(shareIntent)
     }
 
-    override fun onAddUser(user: Bundle) {
-        addItem(user.getParcelable<UserModel>(Constants.BUNDLE_KEY) as UserModel, 0)
-    }
-
     private fun recyclerInit() {
-        binding.recyclerViewContactsList.layoutManager = LinearLayoutManager(context)
-        contactsAdapter = ContactsAdapter(onContactListItemClickListener = this)
-        binding.recyclerViewContactsList.adapter = contactsAdapter
-
+        binding.recyclerViewContactsList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = contactsAdapter
+        }
         addItemDecoration()
         setFabButton()
     }
@@ -142,7 +135,7 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     }
 
     private fun setObserver() {
-        contactsViewModel.getData().observe(viewLifecycleOwner, {
+        contactsViewModel.contactsLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 contactsAdapter.submitList(it)
             }
@@ -152,7 +145,7 @@ class ContactsListFragment : BaseFragment<FragmentContactsListBinding>(),
     companion object {
         @JvmStatic
         fun newInstance(args: Bundle) =
-            ContactsListFragment().apply {
+            ContactsFragment().apply {
                 arguments = args
             }
     }

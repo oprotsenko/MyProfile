@@ -3,55 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/authorizationFragmentNav">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.protsolo.ui.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_authorizationFragment"
-            app:destination="@id/authorizationFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_mainPageFragment"
-            app:destination="@id/mainPageFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addContactDialogFragment"
+        android:id="@+id/addContactDialogFragmentNav"
         android:name="com.protsolo.ui.addContactDialog.AddContactDialogFragment"
         android:label="AddContactDialogFragment"
         tools:layout="@layout/dialog_fragment_add_contact"/>
 
     <fragment
-        android:id="@+id/contactsListFragment"
-        android:name="com.protsolo.ui.contactsList.ContactsListFragment"
+        android:id="@+id/contactsFragmentNav"
+        android:name="com.protsolo.ui.contacts.ContactsFragment"
         android:label="ContactsListFragment"
-        tools:layout="@layout/fragment_contacts_list">
+        tools:layout="@layout/fragment_contacts">
         <action
-            android:id="@+id/action_contactsListFragment_to_contactDetailViewFragment"
-            app:destination="@id/contactDetailViewFragment" />
+            android:id="@+id/action_ContactsFragment_to_contactDetailViewFragment"
+            app:destination="@id/contactDetailViewFragmentNav" />
         <action
             android:id="@+id/action_contactsListFragment_to_addContactDialogFragment"
-            app:destination="@id/addContactDialogFragment" />
+            app:destination="@id/addContactDialogFragmentNav" />
     </fragment>
 
     <fragment
-        android:id="@+id/authorizationFragment"
+        android:id="@+id/authorizationFragmentNav"
         android:name="com.protsolo.ui.authorization.AuthorizationFragment"
-        android:label="fragment_authorization"
+        android:label="AuthorizationFragment"
         tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_mainPageFragment"
-            app:destination="@id/mainPageFragment" />
+            app:destination="@id/mainPageFragmentNav" />
+        <action
+            android:id="@+id/action_authorizationFragmentNav_self"
+            app:destination="@id/authorizationFragmentNav" >
+        </action>
+        <argument
+            android:name="emailField"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="" />
+        <argument
+            android:name="passField"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="" />
     </fragment>
 
     <fragment
-        android:id="@+id/contactDetailViewFragment"
+        android:id="@+id/contactDetailViewFragmentNav"
         android:name="com.protsolo.ui.contactDetailView.ContactDetailViewFragment"
-        android:label="fragment_contact_detail_view"
-        tools:layout="@layout/fragment_contact_detail_view" >
+        android:label="ContactDetailViewFragment"
+        tools:layout="@layout/fragment_main_page" >
         <argument
             android:name="userDetails"
             app:argType="com.protsolo.itemModel.UserModel"
@@ -59,13 +60,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/mainPageFragment"
+        android:id="@+id/mainPageFragmentNav"
         android:name="com.protsolo.ui.mainPage.MainPageFragment"
-        android:label="fragment_main_page"
+        android:label="MainPageFragment"
         tools:layout="@layout/fragment_main_page">
         <action
             android:id="@+id/action_mainPageFragment_to_contactsListFragment"
-            app:destination="@id/contactsListFragment" />
+            app:destination="@id/contactsFragmentNav" />
         <argument
             android:name="email"
             app:argType="string"
@@ -73,9 +74,9 @@
     </fragment>
 
     <activity
-        android:id="@+id/appActivity"
-        android:name="com.protsolo.ui.ActivityApp"
-        android:label="activity_app"
+        android:id="@+id/mainActivityNav"
+        android:name="com.protsolo.ui.ActivityMain"
+        android:label="MainActivity"
         tools:layout="@layout/fragment_authorization"/>
 
 </navigation>

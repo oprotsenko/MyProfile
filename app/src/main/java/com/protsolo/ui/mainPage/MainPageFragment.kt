@@ -1,24 +1,22 @@
 package com.protsolo.ui.mainPage
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.ui.baseFragment.BaseFragment
+import com.protsolo.ui.contacts.ContactsFragment
 import com.protsolo.utils.Constants
-import com.protsolo.utils.GlobalVal
 import com.protsolo.utils.extensions.loadImageWithFresco
 
 
 class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
-    private lateinit var mainPageViewModel: MainPageViewModel
+    private val mainPageViewModel: MainPageViewModel by viewModels()
 
     override fun getViewBinding(): FragmentMainPageBinding =
         FragmentMainPageBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        mainPageViewModel = ViewModelProvider(this).get(MainPageViewModel::class.java)
-
         val photo = binding.imageViewMainProfilePhoto
         photo.loadImageWithFresco(Constants.DEFAULT_IMAGE)
 
@@ -27,34 +25,21 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
     override fun setListeners() {
         binding.buttonMainViewContacts.setOnClickListener {
-            if (GlobalVal.NAV_GRAPH) {
-                listener?.onNavigateToFragment(MainPageFragmentDirections.actionMainPageFragmentToContactsListFragment())
+            if (Constants.NAV_GRAPH) {
+                listener?.onNavigateTo(MainPageFragmentDirections.actionMainPageFragmentToContactsListFragment())
             } else {
-                listener?.onNavigateToFragment(Constants.CONTACTS_LIST, args)
+                listener?.onTransactionTo(ContactsFragment.newInstance(args))
             }
         }
     }
 
-    /**
-     * Gets the email from the intent message, if it is nothing there,
-     * gets the email from the app base, calls the method to
-     * parse it for the name and soname.
-     */
     private fun setName() {
-        var name = if (GlobalVal.NAV_GRAPH) {
-            arguments?.let { MainPageFragmentArgs.fromBundle(it).email }
-        } else {
-            arguments?.getString(Constants.PREFERENCE_EMAIL_KEY)
-        }
-        if (name.isNullOrEmpty()) {
-            name = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
-        }
-        val parsedUserName: String = mainPageViewModel.parseName(name)
+        val parsedUserName: String =
+            mainPageViewModel.parseName(mainPageViewModel.getName(arguments))
         binding.textViewMainUserName.text = parsedUserName
     }
 
     companion object {
-        @JvmStatic
         fun newInstance(args: Bundle) =
             MainPageFragment().apply {
                 arguments = args
