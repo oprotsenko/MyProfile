@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.protsolo.databinding.DialogFragmentAddContactBinding
-import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.contactsList.adapters.IContactListItemClickListener
-import com.protsolo.utils.Constants
-import com.protsolo.utils.extensions.loadCircleImageWithGlide
+import com.protsolo.ui.contacts.adapters.IContactItemClickListener
 
 class AddContactDialogFragment(
-    private val onIContactListItemClickListener: IContactListItemClickListener
+    private val onIContactItemClickListener: IContactItemClickListener
 ) : DialogFragment() {
+
+    private val addContactViewModel: AddContactViewModel by viewModels()
 
     private lateinit var binding: DialogFragmentAddContactBinding
 
@@ -29,8 +29,7 @@ class AddContactDialogFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.imageViewAddContactFragmentContactPhoto
-            .loadCircleImageWithGlide(Constants.DEFAULT_IMAGE)
+
         setListeners()
     }
 
@@ -45,17 +44,11 @@ class AddContactDialogFragment(
     private fun setListeners() {
         binding.apply {
             buttonAddContactSave.setOnClickListener {
-                onIContactListItemClickListener.addItem(
-                    UserModel(
-                        0,
-                        Constants.DEFAULT_IMAGE,
-                        editTextAddContactsFragmentUsername.text.toString(),
-                        editTextAddContactsFragmentCareer.text.toString(),
-                        editTextAddContactsFragmentAddress.text.toString(),
-                        editTextAddContactsFragmentPhone.text.toString()
-                    ),
-                    0
-                )
+                val user = addContactViewModel.createUser(editTextAddContactsFragmentUsername.text.toString(),
+                    editTextAddContactsFragmentCareer.text.toString(),
+                    editTextAddContactsFragmentAddress.text.toString(),
+                    editTextAddContactsFragmentPhone.text.toString())
+                onIContactItemClickListener.addItem(user, 0)
                 dialog?.dismiss()
             }
             buttonAddContactBack.setOnClickListener {

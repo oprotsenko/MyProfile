@@ -1,4 +1,4 @@
-package com.protsolo.ui.contactsList.adapters.decorations
+package com.protsolo.ui.contacts.adapters.decorations
 
 import android.graphics.Rect
 import android.view.View

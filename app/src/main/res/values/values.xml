@@ -5,7 +5,6 @@
         <attr name="spaceBetween" format="dimension"/>
         <attr name="android:text"/>
         <attr name="srcCompat"/>
-        <attr name="android:enabled"/>
         <attr name="android:fontFamily"/>
         <attr name="android:textSize"/>
         <attr name="android:textColor"/>

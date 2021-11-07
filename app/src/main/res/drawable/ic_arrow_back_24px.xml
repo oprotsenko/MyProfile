@@ -3,7 +3,9 @@
     android:height="17dp"
     android:viewportWidth="16"
     android:viewportHeight="17">
-  <path
-      android:pathData="M16,7.5H3.83L9.42,1.91L8,0.5L0,8.5L8,16.5L9.41,15.09L3.83,9.5H16V7.5Z"
-      android:fillColor="?android:attr/textColorPrimary"/>
+    <path
+        android:fillColor="?android:attr/textColorPrimary"
+        android:pathData="M16,7.5H3.83L9.42,1.91L8,0.5L0,8.5L8,16.5L9.41,15.09L3.83,9.5H16V7.5Z"
+        android:state_pressed="false" />
 </vector>
+

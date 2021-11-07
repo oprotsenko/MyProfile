@@ -1,19 +1,22 @@
-package com.protsolo.ui.contactsList
+package com.protsolo.ui.contacts
 
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDirections
 import com.protsolo.database.ContactsDataFake
 import com.protsolo.itemModel.UserModel
+import com.protsolo.ui.contactDetailView.ContactDetailViewFragment
+import com.protsolo.utils.Constants
 
 class ContactsViewModel : ViewModel() {
 
-    private val contactsLiveData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
+    val contactsLiveData: MutableLiveData<MutableList<UserModel>> = MutableLiveData()
 
     init {
         contactsLiveData.value = ContactsDataFake.loadContacts()
     }
-
-    fun getData() = contactsLiveData
 
     fun removeItem(position: Int) {
         contactsLiveData.value?.removeAt(position)
@@ -29,5 +32,18 @@ class ContactsViewModel : ViewModel() {
         val user = contactsLiveData.value?.get(position)
         return "Contact name: " + user?.name + "\n" +
                 "phone: " + user?.phone + ".\nSent from MyProfile =)"
+    }
+
+    fun getAction(position: Int): NavDirections =
+        ContactsFragmentDirections.actionContactsFragmentToContactDetailViewFragment(
+            contactsLiveData.value?.get(position)
+        )
+
+    fun getFragment(position: Int, args: Bundle): Fragment {
+        args.putParcelable(
+            Constants.BUNDLE_KEY,
+            contactsLiveData.value?.get(position)
+        )
+        return ContactDetailViewFragment.newInstance(args)
     }
 }
