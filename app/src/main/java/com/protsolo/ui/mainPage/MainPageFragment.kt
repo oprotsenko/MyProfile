@@ -6,8 +6,7 @@ import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.ui.baseFragment.BaseFragment
 import com.protsolo.ui.contacts.ContactsFragment
 import com.protsolo.utils.Constants
-import com.protsolo.utils.extensions.loadImageWithFresco
-
+import com.protsolo.utils.extensions.loadCircleImage
 
 class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
@@ -18,7 +17,7 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
     override fun setUpViews() {
         val photo = binding.imageViewMainProfilePhoto
-        photo.loadImageWithFresco(Constants.DEFAULT_IMAGE)
+        photo.loadCircleImage(Constants.DEFAULT_IMAGE)
 
         setName()
     }

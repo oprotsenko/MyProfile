@@ -40,7 +40,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
 
     override fun setListeners() {
         binding.apply {
-            textViewContactsListAddContact.setOnClickListener {
+            textViewContactsAddContact.setOnClickListener {
                 val addContactDialogFragment =
                     AddContactDialogFragment(onIContactItemClickListener = this@ContactsFragment)
                 addContactDialogFragment.show(
@@ -48,10 +48,10 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                     Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
                 )
             }
-            floatingActionButtonContactsListUp.setOnClickListener {
-                recyclerViewContactsList.smoothScrollToPosition(0)
+            floatingButtonContactsUp.setOnClickListener {
+                recyclerViewContacts.smoothScrollToPosition(0)
             }
-            buttonContactsListBack.setOnClickListener {
+            buttonContactsBack.setOnClickListener {
                 listener?.onBackButtonPressed()
             }
         }
@@ -95,7 +95,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     private fun recyclerInit() {
-        binding.recyclerViewContactsList.apply {
+        binding.recyclerViewContacts.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = contactsAdapter
         }
@@ -104,7 +104,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     private fun addItemDecoration() {
-        binding.recyclerViewContactsList.addItemDecoration(
+        binding.recyclerViewContacts.addItemDecoration(
             ContactListItemDecoration(
                 requireContext().dpToPx(Constants.CONTACTS_ITEM_MARGIN)
             )
@@ -113,7 +113,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
 
     private fun setFabButton() {
         with(binding) {
-            recyclerViewContactsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            recyclerViewContacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
@@ -121,12 +121,12 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
                     if (positionView > 0) {
-                        if (!floatingActionButtonContactsListUp.isShown) {
-                            floatingActionButtonContactsListUp.show()
+                        if (!floatingButtonContactsUp.isShown) {
+                            floatingButtonContactsUp.show()
                         }
                     } else {
-                        if (floatingActionButtonContactsListUp.isShown) {
-                            floatingActionButtonContactsListUp.hide()
+                        if (floatingButtonContactsUp.isShown) {
+                            floatingButtonContactsUp.hide()
                         }
                     }
                 }

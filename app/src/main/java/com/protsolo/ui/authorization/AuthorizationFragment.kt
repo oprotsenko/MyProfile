@@ -52,32 +52,15 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
     }
 
     override fun setListeners() {
+        viewListeners()
+        editTextFieldListeners()
+    }
+
+    private fun viewListeners() {
         binding.apply {
+
             root.setOnClickListener { root.hideKeyboard() }
 
-            editTextAuthEmailAddressField.post {
-                editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
-                    if (Validator.isValidMail(text)) {
-                        textInputLayoutAuthEmail.isErrorEnabled = false
-                    } else {
-                        textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
-                        textInputLayoutAuthEmail.isErrorEnabled = true
-                    }
-                    setButtonStatus()
-                }
-            }
-            editTextAuthPasswordField.post {
-                editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
-                    if (Validator.isValidPassword(text)) {
-                        textInputLayoutAuthPassword.isErrorEnabled = false
-                    } else {
-                        textInputLayoutAuthPassword.error =
-                            getString(R.string.authMessagePasswordError)
-                        textInputLayoutAuthPassword.isErrorEnabled = true
-                    }
-                    setButtonStatus()
-                }
-            }
             buttonAuthRegister.setOnClickListener {
                 buttonAuthRegister.isEnabled = false // to prevent double click
                 register()
@@ -102,6 +85,34 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
                             args
                         )
                     )
+                }
+            }
+        }
+    }
+
+    private fun editTextFieldListeners() {
+        binding.apply {
+            editTextAuthEmailAddressField.post {
+                editTextAuthEmailAddressField.doOnTextChanged { text, _, _, _ ->
+                    if (Validator.isValidMail(text)) {
+                        textInputLayoutAuthEmail.isErrorEnabled = false
+                    } else {
+                        textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
+                        textInputLayoutAuthEmail.isErrorEnabled = true
+                    }
+                    setButtonStatus()
+                }
+            }
+            editTextAuthPasswordField.post {
+                editTextAuthPasswordField.doOnTextChanged { text, _, _, _ ->
+                    if (Validator.isValidPassword(text)) {
+                        textInputLayoutAuthPassword.isErrorEnabled = false
+                    } else {
+                        textInputLayoutAuthPassword.error =
+                            getString(R.string.authMessagePasswordError)
+                        textInputLayoutAuthPassword.isErrorEnabled = true
+                    }
+                    setButtonStatus()
                 }
             }
         }

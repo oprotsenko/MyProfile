@@ -9,6 +9,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.protsolo.databinding.DialogFragmentAddContactBinding
 import com.protsolo.ui.contacts.adapters.IContactItemClickListener
+import com.protsolo.database.ContactsDataFake
+import com.protsolo.utils.extensions.loadCircleImage
+
 
 class AddContactDialogFragment(
     private val onIContactItemClickListener: IContactItemClickListener
@@ -29,7 +32,6 @@ class AddContactDialogFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setListeners()
     }
 
@@ -42,17 +44,31 @@ class AddContactDialogFragment(
     }
 
     private fun setListeners() {
+        var loadedImage = ContactsDataFake.getRandomImage()
+
         binding.apply {
+            val launcher = registerForActivityResult(GetImageFromGalleryContract()) {
+                if (it != null) {
+                    loadedImage = it.toString()
+                }
+                imageViewAddContactFragmentContactPhoto.loadCircleImage(loadedImage)
+            }
             buttonAddContactSave.setOnClickListener {
-                val user = addContactViewModel.createUser(editTextAddContactsFragmentUsername.text.toString(),
+                val user = addContactViewModel.createUser(loadedImage,
+                    editTextAddContactsFragmentUsername.text.toString(),
                     editTextAddContactsFragmentCareer.text.toString(),
                     editTextAddContactsFragmentAddress.text.toString(),
                     editTextAddContactsFragmentPhone.text.toString())
+
                 onIContactItemClickListener.addItem(user, 0)
                 dialog?.dismiss()
             }
             buttonAddContactBack.setOnClickListener {
                 dismiss()
+            }
+
+            buttonAddContactFragmentAddPhoto.setOnClickListener {
+                launcher.launch("image/*")
             }
         }
     }

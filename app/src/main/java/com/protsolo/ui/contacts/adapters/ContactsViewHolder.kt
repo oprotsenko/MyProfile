@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.databinding.ItemContactBinding
 import com.protsolo.itemModel.UserModel
-import com.protsolo.utils.extensions.loadCircleImageWithGlide
+import com.protsolo.utils.extensions.loadCircleImage
 
 class ContactsViewHolder(
     private val binding: ItemContactBinding,
@@ -20,9 +20,9 @@ class ContactsViewHolder(
 
     fun bind(userModel: UserModel) {
         binding.apply {
-            binding.textViewContactsListContactName.text = userModel.name
-            binding.textViewContactsListContactCareer.text = userModel.career
-            binding.imageViewContact.loadCircleImageWithGlide(userModel.image)
+            textViewContactsListContactName.text = userModel.name
+            textViewContactsListContactCareer.text = userModel.career
+            imageViewContact.loadCircleImage(userModel.image)
         }
     }
 

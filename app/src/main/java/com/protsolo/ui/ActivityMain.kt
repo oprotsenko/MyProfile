@@ -13,8 +13,6 @@ import com.protsolo.utils.Constants.NAV_GRAPH
 
 class ActivityMain : AppCompatActivity(), INavigateToFragmentListener {
 
-    private val preferenceStorage = App.preferencesStorage
-
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {

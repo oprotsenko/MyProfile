@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import com.protsolo.R
 import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.ui.baseFragment.BaseFragment
-import com.protsolo.utils.extensions.loadImageWithFresco
+import com.protsolo.utils.extensions.loadCircleImage
 
 class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
 
@@ -28,7 +28,7 @@ class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
         val user = contactDetailViewViewModel.extractArguments(arguments)
 
         binding.apply {
-            imageViewMainProfilePhoto.loadImageWithFresco(user.image)
+            imageViewMainProfilePhoto.loadCircleImage(user.image)
             textViewMainUserName.text = user.name
             textViewMainCareer.text = user.career
             textViewMainHomeAddress.text = user.address
