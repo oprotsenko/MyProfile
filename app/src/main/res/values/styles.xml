@@ -140,18 +140,17 @@
     <style name="ContactsTitleStyle">
         <item name="android:letterSpacing">0.05</item>
         <item name="android:textSize">@dimen/text_size_h1</item>
-        <item name="android:text">@string/contacts_list_contacts</item>
+        <item name="android:text">@string/contacts_contacts</item>
     </style>
 
     <style name="AddContactButtonStyle">
         <item name="android:layout_marginTop">@dimen/margin_32</item>
         <item name="android:textSize">@dimen/text_size_h3</item>
-        <item name="android:text">@string/contacts_list_add_contacts</item>
+        <item name="android:text">@string/contacts_add_contacts</item>
     </style>
 
     <style name="FloatingButtonUp">
         <item name="android:layout_margin">@dimen/margin_16</item>
-        <item name="srcCompat">@drawable/ic_up_arrow</item>
     </style>
 
     <style name="RecyclerViewStyle">

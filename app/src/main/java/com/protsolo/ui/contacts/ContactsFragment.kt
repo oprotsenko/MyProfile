@@ -1,6 +1,7 @@
 package com.protsolo.ui.contacts
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +19,8 @@ import com.protsolo.utils.extensions.dpToPx
 class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     IContactItemClickListener {
 
-    private val contactsViewModel: ContactsViewModel by viewModels()
-    private val contactsAdapter: ContactsAdapter by lazy {
+    private val viewModelContacts: ContactsViewModel by viewModels()
+    private val adapterContacts: ContactsAdapter by lazy {
         ContactsAdapter(
             onContactItemClickListener = this
         )
@@ -47,8 +48,8 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                     Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
                 )
             }
-            floatingActionButtonContactsListUp.setOnClickListener {
-                recyclerViewContactsList.smoothScrollToPosition(0)
+            floatingButtonContactsUp.setOnClickListener {
+                recyclerViewContacts.smoothScrollToPosition(0)
             }
             buttonContactsListBack.setOnClickListener {
                 listener?.onBackButtonPressed()
@@ -57,8 +58,8 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun removeItem(position: Int) {
-        val element = contactsViewModel.contactsLiveData.value?.get(position)
-        contactsViewModel.removeItem(position)
+        val element = viewModelContacts.contactsLiveData.value?.get(position)
+        viewModelContacts.removeItem(position)
 
         Snackbar.make(
             binding.root, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
@@ -71,32 +72,44 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun addItem(element: UserModel, position: Int) {
-        contactsViewModel.addItem(position, element)
+        viewModelContacts.addItem(position, element)
     }
 
     override fun onItemClick(position: Int) {
-        if (Constants.NAV_GRAPH) {
-            listener?.onNavigateTo(contactsViewModel.getAction(position))
+        if (isSelectingMood) {
+            viewModelContacts.setUserSelected(position)
+//            adapterContacts.notifyItemChanged(position)
         } else {
-            listener?.onTransactionTo(contactsViewModel.getFragment(position, args))
+            if (Constants.NAV_GRAPH) {
+                listener?.onNavigateTo(viewModelContacts.getAction(position))
+            } else {
+                listener?.onTransactionTo(viewModelContacts.getFragment(position, args))
+            }
         }
     }
 
     override fun onItemLongClick(position: Int) {
-        contactsViewModel.getData().value?.get(position)?.setUserSelected(true)
+        isSelectingMood = true
+        binding.apply {
+            floatingButtonContactsDelete.visibility = View.VISIBLE
+            floatingButtonContactsUp.visibility = View.GONE
+            recyclerViewContacts.recycledViewPool.clear()
+        }
+        viewModelContacts.setUserSelected(position)
+        adapterContacts.notifyDataSetChanged()
     }
 
     private fun recyclerInit() {
-        binding.recyclerViewContactsList.apply {
+        binding.recyclerViewContacts.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = contactsAdapter
+            adapter = adapterContacts
         }
         addItemDecoration()
         setFabButton()
     }
 
     private fun addItemDecoration() {
-        binding.recyclerViewContactsList.addItemDecoration(
+        binding.recyclerViewContacts.addItemDecoration(
             ContactListItemDecoration(
                 requireContext().dpToPx(Constants.CONTACTS_ITEM_MARGIN)
             )
@@ -105,7 +118,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
 
     private fun setFabButton() {
         with(binding) {
-            recyclerViewContactsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            recyclerViewContacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
@@ -113,12 +126,12 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
                     if (positionView > 0) {
-                        if (!floatingActionButtonContactsListUp.isShown) {
-                            floatingActionButtonContactsListUp.show()
+                        if (!floatingButtonContactsUp.isShown) {
+                            floatingButtonContactsUp.show()
                         }
                     } else {
-                        if (floatingActionButtonContactsListUp.isShown) {
-                            floatingActionButtonContactsListUp.hide()
+                        if (floatingButtonContactsUp.isShown) {
+                            floatingButtonContactsUp.hide()
                         }
                     }
                 }
@@ -127,18 +140,19 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     private fun setObserver() {
-        contactsViewModel.contactsLiveData.observe(viewLifecycleOwner, {
+        viewModelContacts.contactsLiveData.observe(viewLifecycleOwner, {
             it?.let {
-                contactsAdapter.submitList(it)
+                adapterContacts.submitList(it)
             }
         })
     }
 
     companion object {
-        @JvmStatic
         fun newInstance(args: Bundle) =
             ContactsFragment().apply {
                 arguments = args
             }
+
+        var isSelectingMood = false
     }
 }

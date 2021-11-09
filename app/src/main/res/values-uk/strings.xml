@@ -25,8 +25,9 @@
     <string name="authMessageEmailError">Невірна E-Mail адреса</string>
     <string name="authMessagePasswordError">Пароль має містит мінімум 8 символів.</string>
     <!--    ContactsList activity   -->
-    <string name="contacts_list_contacts">Контакти</string>
-    <string name="contacts_list_add_contacts">Додати контакти</string>
+    <string name="contacts_contacts">Контакти</string>
+    <string name="contacts_add_contacts">Додати контакти</string>
+    <string name="contacts_delete_description">Видалити обрані контакти</string>
     <!--    Add contacts fragment   -->
     <string name="add_contacts_fragment_add_contact">Додати контакт</string>
     <string name="add_contacts_fragment_address">Адреса</string>

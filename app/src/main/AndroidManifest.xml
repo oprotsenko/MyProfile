@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyProfile">
         <activity
-            android:name=".ui.ActivityApp"
+            android:name=".ui.ActivityMain"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

@@ -6,17 +6,30 @@
     android:layout_height="wrap_content"
     style="@style/ContactListItemLayoutStyle">
 
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkBoxItemContactIsSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/ic_check_box_selector"
+        android:minWidth="@dimen/zero"
+        android:minHeight="@dimen/zero"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewContact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewContact"
         android:layout_width="@dimen/contact_photo_size_50"
         android:layout_height="@dimen/contact_photo_size_50"
-        tools:src="@drawable/ic_default_profile_photo"
-        tools:tint="@color/gray_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewContactsListContactName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:src="@drawable/ic_default_profile_photo"
+        tools:tint="@color/gray_4">
 
     </androidx.appcompat.widget.AppCompatImageView>
 

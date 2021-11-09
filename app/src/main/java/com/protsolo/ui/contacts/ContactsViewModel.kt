@@ -28,10 +28,9 @@ class ContactsViewModel : ViewModel() {
         contactsLiveData.value = contactsLiveData.value
     }
 
-    fun createObjectToShare(position: Int): String {
+    fun setUserSelected(position: Int) {
         val user = contactsLiveData.value?.get(position)
-        return "Contact name: " + user?.name + "\n" +
-                "phone: " + user?.phone + ".\nSent from MyProfile =)"
+        user?.setUserSelected(!user.isSelected())
     }
 
     fun getAction(position: Int): NavDirections =

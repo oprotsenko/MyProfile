@@ -1,9 +1,12 @@
 package com.protsolo.ui.contacts.adapters
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.protsolo.R
 import com.protsolo.databinding.ItemContactBinding
 import com.protsolo.itemModel.UserModel
+import com.protsolo.ui.contacts.ContactsFragment
 import com.protsolo.utils.extensions.loadCircleImageWithGlide
 
 class ContactsViewHolder(
@@ -11,7 +14,8 @@ class ContactsViewHolder(
     private val contactItemClickListener: IContactItemClickListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, View.OnLongClickListener {
 
-    var deleteButton = binding.imageButtonDeleteContact
+    val deleteButton = binding.imageButtonDeleteContact
+    val checkBox = binding.checkBoxItemContactIsSelected
 
     init {
         binding.root.setOnClickListener(this)
@@ -20,9 +24,15 @@ class ContactsViewHolder(
 
     fun bind(userModel: UserModel) {
         binding.apply {
-            binding.textViewContactsListContactName.text = userModel.name
-            binding.textViewContactsListContactCareer.text = userModel.career
-            binding.imageViewContact.loadCircleImageWithGlide(userModel.image)
+            textViewContactsListContactName.text = userModel.name
+            textViewContactsListContactCareer.text = userModel.career
+            imageViewContact.loadCircleImageWithGlide(userModel.image)
+            if (ContactsFragment.isSelectingMood) {
+                root.background = ContextCompat.getDrawable(root.context, R.color.background)
+                checkBoxItemContactIsSelected.visibility = View.VISIBLE
+                deleteButton.visibility = View.INVISIBLE
+                checkBoxItemContactIsSelected.isChecked = userModel.isSelected()
+            }
         }
     }
 

@@ -6,13 +6,13 @@
     app:startDestination="@id/authorizationFragmentNav">
 
     <fragment
-        android:id="@+id/viewPagerFragment"
+        android:id="@+id/viewPagerFragmentNav"
         android:name="com.protsolo.ui.viewPager.ViewPagerFragment"
         android:label="ViewPagerFragment"
-        tools:layout="@layout/fragment_login">
+        tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_viewPagerFragment_to_mainPageFragment2"
-            app:destination="@id/mainPageFragment" />
+            app:destination="@id/mainPageFragmentNav" />
     </fragment>
 
     <fragment

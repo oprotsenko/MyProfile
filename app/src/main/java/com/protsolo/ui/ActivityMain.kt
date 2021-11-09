@@ -1,19 +1,20 @@
 package com.protsolo.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import com.protsolo.App
 import com.protsolo.R
-import com.protsolo.ui.authorization.AuthorizationFragment
+import com.protsolo.ui.viewPager.ViewPagerFragment
 import com.protsolo.utils.Constants.NAV_GRAPH
 
 class ActivityMain : AppCompatActivity(), INavigateToFragmentListener {
-
-    private val preferenceStorage = App.preferencesStorage
 
     private lateinit var navController: NavController
 
@@ -26,9 +27,9 @@ class ActivityMain : AppCompatActivity(), INavigateToFragmentListener {
         lastNonConfigurationInstance
         if (lastNonConfigurationInstance == null) {
             if (NAV_GRAPH) {
-                navController.navigate(R.id.authorizationFragmentNav)
+                navController.navigate(R.id.viewPagerFragmentNav)
             } else {
-                onTransactionTo(AuthorizationFragment())
+                onTransactionTo(ViewPagerFragment())
             }
         }
     }

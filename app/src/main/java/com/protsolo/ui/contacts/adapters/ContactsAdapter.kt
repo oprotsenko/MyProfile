@@ -25,6 +25,7 @@ class ContactsAdapter(private val onContactItemClickListener: IContactItemClickL
             deleteButton.setOnClickListener {
                 deleteItem(bindingAdapterPosition)
             }
+//            checkBox.isChecked = getItem(bindingAdapterPosition).isSelected()
         }
     }
 
