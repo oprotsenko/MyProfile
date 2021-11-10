@@ -7,4 +7,6 @@ interface IContactItemClickListener {
     fun addItem(element: UserModel, position: Int)
     fun onItemLongClick(position: Int)
     fun onItemClick(position: Int)
+    fun setUserSelected(position: Int)
+    fun renewView()
 }

@@ -30,7 +30,19 @@ class ContactsViewModel : ViewModel() {
 
     fun setUserSelected(position: Int) {
         val user = contactsLiveData.value?.get(position)
-        user?.setUserSelected(!user.isSelected())
+        val selected = user?.isSelected() as Boolean
+        user.setUserSelected(!selected)
+        if (user.isSelected()) {
+            selectedContacts.add(user)
+        } else {
+            selectedContacts.remove(user)
+        }
+    }
+
+    fun deleteSelectedContacts() {
+        contactsLiveData.value?.removeAll(selectedContacts)
+        contactsLiveData.value = contactsLiveData.value
+        selectedContacts.clear()
     }
 
     fun getAction(position: Int): NavDirections =
@@ -44,5 +56,9 @@ class ContactsViewModel : ViewModel() {
             contactsLiveData.value?.get(position)
         )
         return ContactDetailViewFragment.newInstance(args)
+    }
+
+    companion object {
+        val selectedContacts: MutableList<UserModel> = mutableListOf()
     }
 }

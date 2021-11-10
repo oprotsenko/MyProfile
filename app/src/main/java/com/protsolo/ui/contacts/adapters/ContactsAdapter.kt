@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.databinding.ItemContactBinding
 import com.protsolo.itemModel.UserModel
+import com.protsolo.ui.contacts.ContactsFragment
+import com.protsolo.ui.contacts.ContactsViewModel
 
 
 class ContactsAdapter(private val onContactItemClickListener: IContactItemClickListener) :
@@ -25,7 +27,19 @@ class ContactsAdapter(private val onContactItemClickListener: IContactItemClickL
             deleteButton.setOnClickListener {
                 deleteItem(bindingAdapterPosition)
             }
-//            checkBox.isChecked = getItem(bindingAdapterPosition).isSelected()
+            if (ContactsFragment.isSelectingMood) {
+                if (ContactsViewModel.selectedContacts.size == 0) {
+                    ContactsFragment.isSelectingMood = false
+                    notifyDataSetChanged()
+                    onContactItemClickListener.renewView()
+                }
+                root.setOnClickListener {
+                    onContactItemClickListener.setUserSelected(position)
+                    onBindViewHolder(holder, position)
+                }
+            } else root.setOnClickListener {
+                onContactItemClickListener.onItemClick(position)
+            }
         }
     }
 

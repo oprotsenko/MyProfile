@@ -54,6 +54,15 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
             buttonContactsListBack.setOnClickListener {
                 listener?.onBackButtonPressed()
             }
+            floatingButtonContactsDelete.setOnClickListener {
+                viewModelContacts.deleteSelectedContacts()
+                isSelectingMood = false
+                adapterContacts.notifyDataSetChanged()
+                binding.apply {
+                    floatingButtonContactsDelete.visibility = View.GONE
+                    floatingButtonContactsUp.visibility = View.VISIBLE
+                }
+            }
         }
     }
 
@@ -76,29 +85,35 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun onItemClick(position: Int) {
-        if (isSelectingMood) {
-            viewModelContacts.setUserSelected(position)
-//            adapterContacts.notifyItemChanged(position)
+        if (Constants.NAV_GRAPH) {
+            listener?.onNavigateTo(viewModelContacts.getAction(position))
         } else {
-            if (Constants.NAV_GRAPH) {
-                listener?.onNavigateTo(viewModelContacts.getAction(position))
-            } else {
-                listener?.onTransactionTo(viewModelContacts.getFragment(position, args))
-            }
+            listener?.onTransactionTo(viewModelContacts.getFragment(position, args))
         }
+    }
+
+    override fun setUserSelected(position: Int) {
+        viewModelContacts.setUserSelected(position)
     }
 
     override fun onItemLongClick(position: Int) {
-        isSelectingMood = true
-        binding.apply {
-            floatingButtonContactsDelete.visibility = View.VISIBLE
-            floatingButtonContactsUp.visibility = View.GONE
-            recyclerViewContacts.recycledViewPool.clear()
+        if (!isSelectingMood) {
+            isSelectingMood = true
+            adapterContacts.notifyDataSetChanged()
+            binding.apply {
+                floatingButtonContactsDelete.visibility = View.VISIBLE
+                floatingButtonContactsUp.visibility = View.GONE
+            }
         }
         viewModelContacts.setUserSelected(position)
-        adapterContacts.notifyDataSetChanged()
     }
 
+    override fun renewView() {
+        binding.apply {
+            floatingButtonContactsDelete.visibility = if (isSelectingMood) View.VISIBLE else View.GONE
+            floatingButtonContactsUp.visibility = if (isSelectingMood) View.GONE else View.VISIBLE
+        }
+    }
     private fun recyclerInit() {
         binding.recyclerViewContacts.apply {
             layoutManager = LinearLayoutManager(context)

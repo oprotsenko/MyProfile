@@ -14,8 +14,8 @@ class ContactsViewHolder(
     private val contactItemClickListener: IContactItemClickListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, View.OnLongClickListener {
 
+    val root = binding.root
     val deleteButton = binding.imageButtonDeleteContact
-    val checkBox = binding.checkBoxItemContactIsSelected
 
     init {
         binding.root.setOnClickListener(this)
@@ -27,13 +27,21 @@ class ContactsViewHolder(
             textViewContactsListContactName.text = userModel.name
             textViewContactsListContactCareer.text = userModel.career
             imageViewContact.loadCircleImageWithGlide(userModel.image)
-            if (ContactsFragment.isSelectingMood) {
-                root.background = ContextCompat.getDrawable(root.context, R.color.background)
-                checkBoxItemContactIsSelected.visibility = View.VISIBLE
-                deleteButton.visibility = View.INVISIBLE
-                checkBoxItemContactIsSelected.isChecked = userModel.isSelected()
-            }
-        }
+
+            root.background = if (ContactsFragment.isSelectingMood) ContextCompat.getDrawable(
+                root.context,
+                R.drawable.item_selected_background
+            ) else ContextCompat.getDrawable(root.context, R.drawable.item_frame_light_gray)
+
+            imageViewItemContactIsSelected.visibility =
+                if (ContactsFragment.isSelectingMood) View.VISIBLE else View.GONE
+            imageViewItemContactIsSelected.background =
+                if (userModel.isSelected()) ContextCompat.getDrawable(root.context,
+                    R.drawable.ic_check_box_is_checked)
+                else ContextCompat.getDrawable(root.context, R.drawable.ic_check_box_round) }
+
+        deleteButton.visibility =
+            if (ContactsFragment.isSelectingMood) View.GONE else View.VISIBLE
     }
 
     override fun onClick(v: View?) {

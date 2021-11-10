@@ -6,13 +6,11 @@
     android:layout_height="wrap_content"
     style="@style/ContactListItemLayoutStyle">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/checkBoxItemContactIsSelected"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewItemContactIsSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:button="@drawable/ic_check_box_selector"
-        android:minWidth="@dimen/zero"
-        android:minHeight="@dimen/zero"
+        android:background="@drawable/ic_check_box_selector"
         android:layout_marginEnd="@dimen/margin_12"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

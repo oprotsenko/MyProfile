@@ -274,7 +274,7 @@
 
     <!--    Contact list item   -->
     <style name="ContactListItemLayoutStyle">
-        <item name="android:background">@drawable/contacts_frame_light_gray</item>
+        <item name="android:background">@drawable/item_frame_light_gray</item>
         <item name="android:padding">@dimen/margin_8</item>
         <item name="android:paddingEnd">@dimen/margin_12</item>
     </style>
