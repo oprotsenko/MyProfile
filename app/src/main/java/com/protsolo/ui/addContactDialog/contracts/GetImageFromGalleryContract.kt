@@ -1,12 +1,10 @@
-package com.protsolo.ui.addContactDialog
+package com.protsolo.ui.addContactDialog.contracts
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 
 class GetImageFromGalleryContract : ActivityResultContract<String, Uri?>() {
 

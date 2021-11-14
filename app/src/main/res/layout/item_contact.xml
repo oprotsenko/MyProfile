@@ -10,13 +10,14 @@
         android:id="@+id/imageViewContact"
         android:layout_width="@dimen/contact_photo_size_50"
         android:layout_height="@dimen/contact_photo_size_50"
-        tools:src="@drawable/ic_default_profile_photo"
-        tools:tint="@color/gray_4"
+        android:transitionName="contact_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewContactsListContactName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@drawable/ic_default_profile_photo"
+        tools:tint="@color/gray_4">
 
     </androidx.appcompat.widget.AppCompatImageView>
 

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.ui.baseFragment.BaseFragment
-import com.protsolo.ui.contacts.ContactsFragment
 import com.protsolo.utils.Constants
 import com.protsolo.utils.extensions.loadCircleImage
 
@@ -24,11 +23,9 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
     override fun setListeners() {
         binding.buttonMainViewContacts.setOnClickListener {
-            if (Constants.NAV_GRAPH) {
-                listener?.onNavigateTo(MainPageFragmentDirections.actionMainPageFragmentToContactsListFragment())
-            } else {
-                listener?.onTransactionTo(ContactsFragment.newInstance(args))
-            }
+            val bundle = Bundle()
+            bundle.putString(Constants.FRAGMENT_BUNDLE_KEY, Constants.CONTACTS_FRAGMENT)
+            navigator?.goToFragment(bundle)
         }
     }
 

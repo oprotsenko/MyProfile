@@ -8,17 +8,16 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.protsolo.R
 import com.protsolo.databinding.FragmentAuthorizationBinding
-import com.protsolo.ui.ActivityMain
+import com.protsolo.ui.activityMain.ActivityMain
 import com.protsolo.ui.baseFragment.BaseFragment
-import com.protsolo.ui.mainPage.MainPageFragment
 import com.protsolo.utils.Constants
-import com.protsolo.utils.Constants.NAV_GRAPH
 import com.protsolo.utils.Validator
 import com.protsolo.utils.extensions.hideKeyboard
 
 class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
 
-    private val authorizationViewModel: AuthorizationViewModel by viewModels()
+    private val viewModelAuthorization: AuthorizationViewModel by viewModels()
+    private val bundle = Bundle()
 
     override fun getViewBinding(): FragmentAuthorizationBinding =
         FragmentAuthorizationBinding.inflate(layoutInflater)
@@ -37,16 +36,16 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
                 textViewAuthSignInUp.text = resources.getText(R.string.login_sign_up)
             }
         }
-        if (authorizationViewModel.isAutologin()) {
+        if (viewModelAuthorization.isAutologin()) {
             autologin()
         }
 
         with(binding) {
             editTextAuthEmailAddressField.setText(
-                authorizationViewModel.getEmail(arguments)
+                viewModelAuthorization.getEmail(arguments)
             )
             editTextAuthPasswordField.setText(
-                authorizationViewModel.getPass(arguments)
+                viewModelAuthorization.getPass(arguments)
             )
         }
     }
@@ -70,22 +69,10 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
             }
             textViewAuthSignInUp.setOnClickListener {
                 ActivityMain.isLoginPage = !ActivityMain.isLoginPage
-                if (NAV_GRAPH) {
-                    listener?.onNavigateTo(
-                        authorizationViewModel.getAction(
-                            editTextAuthEmailAddressField.text.toString(),
-                            editTextAuthPasswordField.text.toString()
-                        )
-                    )
-                } else {
-                    listener?.onTransactionTo(
-                        authorizationViewModel.getFragment(
-                            editTextAuthEmailAddressField.text.toString(),
-                            editTextAuthPasswordField.text.toString(),
-                            args
-                        )
-                    )
-                }
+                bundle.putString(Constants.FRAGMENT_BUNDLE_KEY, Constants.AUTHORIZATION_FRAGMENT)
+                bundle.putString(Constants.PREFERENCE_EMAIL_KEY, editTextAuthEmailAddressField.text.toString())
+                bundle.putString(Constants.PREFERENCE_PASSWORD_KEY, editTextAuthPasswordField.text.toString())
+                navigator?.goToFragment(bundle)
             }
         }
     }
@@ -119,15 +106,10 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
     }
 
     private fun autologin() {
-        val email = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
-        if (NAV_GRAPH) {
-            listener?.onNavigateTo(
-                AuthorizationFragmentDirections.actionAuthorizationFragmentToMainPageFragment(email)
-            )
-        } else {
-            args.putString(Constants.PREFERENCE_EMAIL_KEY, email)
-            listener?.onTransactionTo(MainPageFragment.newInstance(args))
-        }
+        val email = viewModelAuthorization.getEmailFromPref()
+        bundle.putString(Constants.FRAGMENT_BUNDLE_KEY, Constants.MAIN_FRAGMENT)
+        bundle.putString(Constants.PREFERENCE_EMAIL_KEY, email)
+        navigator?.goToFragment(bundle)
     }
 
     private fun setButtonStatus() {
@@ -140,35 +122,15 @@ class AuthorizationFragment : BaseFragment<FragmentAuthorizationBinding>() {
     }
 
     private fun register() {
-        writeToPreferenceStorage()
-        if (NAV_GRAPH) {
-            listener?.onNavigateTo(
-                AuthorizationFragmentDirections.actionAuthorizationFragmentToMainPageFragment(
-                    binding.editTextAuthEmailAddressField.text.toString()
-                )
+        binding.apply {
+            viewModelAuthorization.writeToPreferenceStorage(
+                editTextAuthEmailAddressField.text.toString(),
+                editTextAuthPasswordField.text.toString(),
+                checkBoxAuthRememberMe.isChecked
             )
-        } else {
-            args.putString(
-                Constants.PREFERENCE_EMAIL_KEY,
-                binding.editTextAuthEmailAddressField.text.toString()
-            )
-            listener?.onTransactionTo(MainPageFragment.newInstance(args))
-        }
-    }
-
-    private fun writeToPreferenceStorage() {
-        with(Constants) {
-            preferenceStorage.save(
-                PREFERENCE_EMAIL_KEY,
-                binding.editTextAuthEmailAddressField.text.toString()
-            )
-            preferenceStorage.save(
-                PREFERENCE_PASSWORD_KEY,
-                binding.editTextAuthPasswordField.text.toString()
-            )
-            preferenceStorage.save(
-                PREFERENCE_AUTOLOGIN, binding.checkBoxAuthRememberMe.isChecked
-            )
+            bundle.putString(Constants.FRAGMENT_BUNDLE_KEY, Constants.MAIN_FRAGMENT)
+            bundle.putString(Constants.PREFERENCE_EMAIL_KEY, editTextAuthEmailAddressField.text.toString())
+            navigator?.goToFragment(bundle)
         }
     }
 

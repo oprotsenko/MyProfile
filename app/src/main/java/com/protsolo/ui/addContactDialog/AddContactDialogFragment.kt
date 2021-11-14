@@ -1,23 +1,44 @@
 package com.protsolo.ui.addContactDialog
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.protsolo.databinding.DialogFragmentAddContactBinding
-import com.protsolo.ui.contacts.adapters.IContactItemClickListener
 import com.protsolo.database.ContactsDataFake
+import com.protsolo.ui.addContactDialog.contracts.GetImageFromGalleryContract
+import com.protsolo.utils.Constants
 import com.protsolo.utils.extensions.loadCircleImage
 
 
-class AddContactDialogFragment(
-    private val onIContactItemClickListener: IContactItemClickListener
-) : DialogFragment() {
+class AddContactDialogFragment : DialogFragment() {
 
-    private val addContactViewModel: AddContactViewModel by viewModels()
+    private val viewModelAddContact: AddContactViewModel by viewModels()
+    private val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+    private val launcher = registerForActivityResult(GetImageFromGalleryContract()) { uri ->
+        if (context?.packageManager?.resolveActivity(
+                Intent.getIntentOld(uri.toString()),
+                PackageManager.MATCH_DEFAULT_ONLY
+            ) != null
+        ) {
+            loadedImage = uri.toString()
+        }
+        binding.imageViewAddContactFragmentContactPhoto.loadCircleImage(loadedImage)
+    }
+
+    private var isGranted = false
+    private var loadedImage = ContactsDataFake.getRandomImage()
 
     private lateinit var binding: DialogFragmentAddContactBinding
 
@@ -30,8 +51,10 @@ class AddContactDialogFragment(
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setObserver()
         setListeners()
     }
 
@@ -43,24 +66,25 @@ class AddContactDialogFragment(
         dialog?.onWindowAttributesChanged(params)
     }
 
-    private fun setListeners() {
-        var loadedImage = ContactsDataFake.getRandomImage()
+    private fun setObserver() {
+        viewModelAddContact.userData.observe(viewLifecycleOwner, {
+            parentFragmentManager.setFragmentResult(
+                Constants.FRAGMENT_RESULT_LISTENER_KEY,
+                bundleOf(Constants.USER_BUNDLE_KEY to it)
+            )
+        })
+    }
 
+    private fun setListeners() {
         binding.apply {
-            val launcher = registerForActivityResult(GetImageFromGalleryContract()) {
-                if (it != null) {
-                    loadedImage = it.toString()
-                }
-                imageViewAddContactFragmentContactPhoto.loadCircleImage(loadedImage)
-            }
             buttonAddContactSave.setOnClickListener {
-                val user = addContactViewModel.createUser(loadedImage,
+                viewModelAddContact.createUser(
+                    loadedImage,
                     editTextAddContactsFragmentUsername.text.toString(),
                     editTextAddContactsFragmentCareer.text.toString(),
                     editTextAddContactsFragmentAddress.text.toString(),
-                    editTextAddContactsFragmentPhone.text.toString())
-
-                onIContactItemClickListener.addItem(user, 0)
+                    editTextAddContactsFragmentPhone.text.toString()
+                )
                 dialog?.dismiss()
             }
             buttonAddContactBack.setOnClickListener {
@@ -68,8 +92,28 @@ class AddContactDialogFragment(
             }
 
             buttonAddContactFragmentAddPhoto.setOnClickListener {
-                launcher.launch("image/*")
+                isGranted = ContextCompat.checkSelfPermission(
+                    requireContext(), permissions[0]) == PackageManager.PERMISSION_GRANTED
+                checkPermission()
             }
+        }
+    }
+
+    private fun checkPermission() {
+        if (isGranted) {
+            launcher.launch("image/*")
+        } else {
+            requestPermissions(requireActivity(), permissions, Constants.REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == Constants.REQUEST_CODE) {
+            isGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
         }
     }
 }

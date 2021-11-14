@@ -19,7 +19,7 @@ import com.protsolo.utils.extensions.dpToPx
 class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     IContactItemClickListener {
 
-    private val contactsViewModel: ContactsViewModel by viewModels()
+    private val viewModelContacts: ContactsViewModel by viewModels()
     private val contactsAdapter: ContactsAdapter by lazy {
         ContactsAdapter(
             onContactItemClickListener = this
@@ -42,7 +42,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
         binding.apply {
             textViewContactsAddContact.setOnClickListener {
                 val addContactDialogFragment =
-                    AddContactDialogFragment(onIContactItemClickListener = this@ContactsFragment)
+                    AddContactDialogFragment()
                 addContactDialogFragment.show(
                     parentFragmentManager,
                     Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
@@ -52,14 +52,14 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                 recyclerViewContacts.smoothScrollToPosition(0)
             }
             buttonContactsBack.setOnClickListener {
-                listener?.onBackButtonPressed()
+                navigator?.onBackButtonPressed()
             }
         }
     }
 
     override fun removeItem(position: Int) {
-        val element = contactsViewModel.contactsLiveData.value?.get(position)
-        contactsViewModel.removeItem(position)
+        val element = viewModelContacts.contactsData.value?.get(position)
+        viewModelContacts.removeItem(position)
 
         Snackbar.make(
             binding.root, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
@@ -72,19 +72,21 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun addItem(element: UserModel, position: Int) {
-        contactsViewModel.addItem(position, element)
+        viewModelContacts.addItem(position, element)
     }
 
     override fun onItemClick(position: Int) {
-        if (Constants.NAV_GRAPH) {
-            listener?.onNavigateTo(contactsViewModel.getAction(position))
-        } else {
-            listener?.onTransactionTo(contactsViewModel.getFragment(position, args))
-        }
+        val bundle = Bundle()
+        bundle.putString(Constants.FRAGMENT_BUNDLE_KEY, Constants.DETAIL_VIEW_FRAGMENT)
+        bundle.putParcelable(
+            Constants.USER_BUNDLE_KEY,
+            viewModelContacts.contactsData.value?.get(position)
+        )
+        navigator?.goToFragment(bundle)
     }
 
     override fun onItemLongClick(position: Int) {
-        val contactToShare = contactsViewModel.createObjectToShare(position)
+        val contactToShare = viewModelContacts.createObjectToShare(position)
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, contactToShare)
@@ -134,19 +136,18 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
         }
     }
 
-    private fun setObserver() {
-        contactsViewModel.contactsLiveData.observe(viewLifecycleOwner, {
+    override fun setObserver() {
+        viewModelContacts.contactsData.observe(viewLifecycleOwner, {
             it?.let {
                 contactsAdapter.submitList(it)
             }
         })
-    }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(args: Bundle) =
-            ContactsFragment().apply {
-                arguments = args
-            }
+        parentFragmentManager.setFragmentResultListener(
+            Constants.FRAGMENT_RESULT_LISTENER_KEY,
+            viewLifecycleOwner, { _, bundle ->
+                val fragmentResult = bundle.getParcelable<UserModel>(Constants.USER_BUNDLE_KEY)
+                fragmentResult?.let { user -> addItem(user, 0) }
+            })
     }
 }

@@ -18,10 +18,18 @@
         tools:layout="@layout/fragment_contacts">
         <action
             android:id="@+id/action_ContactsFragment_to_contactDetailViewFragment"
-            app:destination="@id/contactDetailViewFragmentNav" />
+            app:destination="@id/contactDetailViewFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_contactsListFragment_to_addContactDialogFragment"
-            app:destination="@id/addContactDialogFragmentNav" />
+            app:destination="@id/addContactDialogFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -31,10 +39,18 @@
         tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_mainPageFragment"
-            app:destination="@id/mainPageFragmentNav" />
+            app:destination="@id/mainPageFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_authorizationFragmentNav_self"
-            app:destination="@id/authorizationFragmentNav" >
+            app:destination="@id/authorizationFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
         </action>
         <argument
             android:name="emailField"
@@ -66,7 +82,11 @@
         tools:layout="@layout/fragment_main_page">
         <action
             android:id="@+id/action_mainPageFragment_to_contactsListFragment"
-            app:destination="@id/contactsFragmentNav" />
+            app:destination="@id/contactsFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="email"
             app:argType="string"
@@ -75,7 +95,7 @@
 
     <activity
         android:id="@+id/mainActivityNav"
-        android:name="com.protsolo.ui.ActivityMain"
+        android:name="com.protsolo.ui.activityMain.ActivityMain"
         android:label="MainActivity"
         tools:layout="@layout/fragment_authorization"/>
 

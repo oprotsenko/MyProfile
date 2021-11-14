@@ -10,7 +10,7 @@ import com.protsolo.utils.extensions.loadCircleImage
 
 class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
 
-    private val contactDetailViewViewModel: ContactDetailViewViewModel by viewModels()
+    private val viewModelContactDetailView: ContactDetailViewViewModel by viewModels()
 
     override fun getViewBinding(): FragmentMainPageBinding =
         FragmentMainPageBinding.inflate(layoutInflater)
@@ -25,19 +25,23 @@ class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
             buttonMainViewContacts.text = resources.getText(R.string.contact_detail_view_message)
         }
 
-        val user = contactDetailViewViewModel.extractArguments(arguments)
+        viewModelContactDetailView.extractArguments(arguments)
+    }
 
-        binding.apply {
-            imageViewMainProfilePhoto.loadCircleImage(user.image)
-            textViewMainUserName.text = user.name
-            textViewMainCareer.text = user.career
-            textViewMainHomeAddress.text = user.address
-        }
+    override fun setObserver() {
+        viewModelContactDetailView.userData.observe(viewLifecycleOwner, { user ->
+            binding.apply {
+                imageViewMainProfilePhoto.loadCircleImage(user.image)
+                textViewMainUserName.text = user.name
+                textViewMainCareer.text = user.career
+                textViewMainHomeAddress.text = user.address
+            }
+        })
     }
 
     override fun setListeners() {
         binding.buttonMainBack.setOnClickListener {
-            listener?.onBackButtonPressed()
+            navigator?.onBackButtonPressed()
         }
     }
 

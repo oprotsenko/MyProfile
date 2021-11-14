@@ -1,9 +1,7 @@
 package com.protsolo.ui.authorization
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDirections
 import com.protsolo.App
 import com.protsolo.utils.Constants
 import com.protsolo.utils.Constants.NAV_GRAPH
@@ -42,12 +40,21 @@ class AuthorizationViewModel : ViewModel() {
             true
         } else false
 
-    fun getAction(email: String, pass: String): NavDirections =
-        AuthorizationFragmentDirections.actionAuthorizationFragmentNavSelf(email, pass)
-
-    fun getFragment(email: String, pass: String, args: Bundle): Fragment {
-        args.putString(Constants.PREFERENCE_EMAIL_KEY, email)
-        args.putString(Constants.PREFERENCE_PASSWORD_KEY, pass)
-        return AuthorizationFragment.newInstance(args)
+    fun writeToPreferenceStorage(email: String, pass: String, isAutologin: Boolean) {
+        with(Constants) {
+            preferenceStorage.save(
+                PREFERENCE_EMAIL_KEY,
+                email
+            )
+            preferenceStorage.save(
+                PREFERENCE_PASSWORD_KEY,
+                pass
+            )
+            preferenceStorage.save(
+                PREFERENCE_AUTOLOGIN, isAutologin
+            )
+        }
     }
+
+    fun getEmailFromPref(): String? = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
 }

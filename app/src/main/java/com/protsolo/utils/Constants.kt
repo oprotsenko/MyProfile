@@ -2,7 +2,15 @@ package com.protsolo.utils
 
 object Constants {
 
-    const val NAV_GRAPH = false
+    const val NAV_GRAPH = true
+    const val FRAGMENT_BUNDLE_KEY = "FRAGMENT"
+    const val AUTHORIZATION_FRAGMENT = "AUTHORIZATION"
+    const val MAIN_FRAGMENT = "MAIN"
+    const val CONTACTS_FRAGMENT = "CONTACTS"
+    const val DETAIL_VIEW_FRAGMENT = "DETAIL_VIEW"
+    const val ADD_CONTACT_DIALOG_FRAGMENT = "ADD_CONTACT_DIALOG_FRAGMENT"
+    const val USER_BUNDLE_KEY = "USER"
+    const val FRAGMENT_RESULT_LISTENER_KEY = "FRAGMENT_RESULT"
 
     // Preferences keys
     const val PREFERENCE_EMAIL_KEY = "email"
@@ -28,4 +36,7 @@ object Constants {
 
     // Custom View
     const val DEFAULT_TEXT_SIZE = 12f
+
+    // Add contact dialog fragment
+    const val REQUEST_CODE = 1
 }
