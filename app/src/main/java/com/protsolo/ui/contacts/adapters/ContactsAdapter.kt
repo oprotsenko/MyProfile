@@ -10,7 +10,10 @@ import com.protsolo.databinding.ItemContactBinding
 import com.protsolo.itemModel.UserModel
 
 
-class ContactsAdapter(private val onContactItemClickListener: IContactItemClickListener) :
+class ContactsAdapter(
+    private val onContactItemClickListener: IContactItemClickListener,
+    private val onContactItemChangedListener: IContactItemChangedListener
+) :
     ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
@@ -40,6 +43,6 @@ class ContactsAdapter(private val onContactItemClickListener: IContactItemClickL
     }
 
     private fun deleteItem(position: Int) {
-        onContactItemClickListener.removeItem(position)
+        onContactItemChangedListener.removeItem(position)
     }
 }

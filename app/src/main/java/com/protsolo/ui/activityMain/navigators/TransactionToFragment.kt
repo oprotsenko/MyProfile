@@ -9,19 +9,19 @@ import com.protsolo.ui.mainPage.MainPageFragment
 import com.protsolo.utils.Constants
 
 class TransactionToFragment : ITransactionToFragmentListener {
-    override fun goToFragment(bundle: Bundle, unit: ((Any) -> Any)?) {
+    override fun goToFragment(bundle: Bundle, unit: ((Array<*>) -> Any)?) {
         when (bundle.getString(Constants.FRAGMENT_BUNDLE_KEY)) {
             Constants.MAIN_FRAGMENT -> {
-                unit?.let { it(MainPageFragment.newInstance(bundle)) }
+                unit?.let { it(arrayOf(MainPageFragment.newInstance(bundle))) }
             }
             Constants.CONTACTS_FRAGMENT -> {
-                unit?.let { it(ContactsFragment()) }
+                unit?.let { it(arrayOf(ContactsFragment())) }
             }
             Constants.DETAIL_VIEW_FRAGMENT -> {
-                unit?.let { it(ContactDetailViewFragment.newInstance(bundle)) }
+                unit?.let { it(arrayOf(ContactDetailViewFragment.newInstance(bundle))) }
             }
             else -> {
-                unit?.let { it(AuthorizationFragment.newInstance(bundle)) }
+                unit?.let { it(arrayOf(AuthorizationFragment.newInstance(bundle))) }
             }
         }
     }

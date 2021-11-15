@@ -2,6 +2,7 @@ package com.protsolo.ui.mainPage
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import com.protsolo.database.ContactsDataFake
 import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.ui.baseFragment.BaseFragment
 import com.protsolo.utils.Constants
@@ -16,7 +17,7 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>() {
 
     override fun setUpViews() {
         val photo = binding.imageViewMainProfilePhoto
-        photo.loadCircleImage(Constants.DEFAULT_IMAGE)
+        photo.loadCircleImage(ContactsDataFake.getRandomImage())
 
         setName()
     }

@@ -3,20 +3,18 @@ package com.protsolo.ui.addContactDialog
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import com.protsolo.databinding.DialogFragmentAddContactBinding
 import com.protsolo.database.ContactsDataFake
+import com.protsolo.databinding.DialogFragmentAddContactBinding
 import com.protsolo.ui.addContactDialog.contracts.GetImageFromGalleryContract
 import com.protsolo.utils.Constants
 import com.protsolo.utils.extensions.loadCircleImage
@@ -51,7 +49,6 @@ class AddContactDialogFragment : DialogFragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObserver()
@@ -93,7 +90,8 @@ class AddContactDialogFragment : DialogFragment() {
 
             buttonAddContactFragmentAddPhoto.setOnClickListener {
                 isGranted = ContextCompat.checkSelfPermission(
-                    requireContext(), permissions[0]) == PackageManager.PERMISSION_GRANTED
+                    requireContext(), permissions[0]
+                ) == PackageManager.PERMISSION_GRANTED
                 checkPermission()
             }
         }

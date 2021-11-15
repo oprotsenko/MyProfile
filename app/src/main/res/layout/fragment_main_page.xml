@@ -51,7 +51,6 @@
             style="@style/UserPhotoStyle"
             android:layout_width="@dimen/profile_photo_size_113"
             android:layout_height="@dimen/profile_photo_size_113"
-            android:transitionName="contact_image"
             app:layout_constraintBottom_toTopOf="@+id/textViewMainUserName"
             app:layout_constraintEnd_toEndOf="@+id/textViewMainUserName"
             app:layout_constraintHorizontal_bias="0.5"

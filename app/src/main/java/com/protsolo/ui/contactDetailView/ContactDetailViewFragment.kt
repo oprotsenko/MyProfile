@@ -1,11 +1,13 @@
 package com.protsolo.ui.contactDetailView
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.protsolo.R
 import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.ui.baseFragment.BaseFragment
+import com.protsolo.ui.contacts.adapters.ContactsViewHolder
 import com.protsolo.utils.extensions.loadCircleImage
 
 class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
@@ -15,8 +17,14 @@ class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
     override fun getViewBinding(): FragmentMainPageBinding =
         FragmentMainPageBinding.inflate(layoutInflater)
 
+    override fun setAnimation() {
+        sharedElementEnterTransition =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+    }
+
     override fun setUpViews() {
         binding.apply {
+            imageViewMainProfilePhoto.transitionName = ContactsViewHolder.transitionNameImage
             textViewMainSettings.visibility = View.GONE
             buttonMainBack.visibility = View.VISIBLE
             textViewMainProfile.visibility = View.VISIBLE
@@ -46,7 +54,6 @@ class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
     }
 
     companion object {
-        @JvmStatic
         fun newInstance(args: Bundle) =
             ContactDetailViewFragment().apply {
                 arguments = args

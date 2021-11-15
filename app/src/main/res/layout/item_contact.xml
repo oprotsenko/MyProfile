@@ -10,7 +10,6 @@
         android:id="@+id/imageViewContact"
         android:layout_width="@dimen/contact_photo_size_50"
         android:layout_height="@dimen/contact_photo_size_50"
-        android:transitionName="contact_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewContactsListContactName"
         app:layout_constraintStart_toStartOf="parent"

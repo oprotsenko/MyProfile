@@ -11,18 +11,20 @@ import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.addContactDialog.AddContactDialogFragment
 import com.protsolo.ui.baseFragment.BaseFragment
 import com.protsolo.ui.contacts.adapters.ContactsAdapter
+import com.protsolo.ui.contacts.adapters.IContactItemChangedListener
 import com.protsolo.ui.contacts.adapters.IContactItemClickListener
 import com.protsolo.ui.contacts.adapters.decorations.ContactListItemDecoration
 import com.protsolo.utils.Constants
 import com.protsolo.utils.extensions.dpToPx
 
 class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
-    IContactItemClickListener {
+    IContactItemClickListener , IContactItemChangedListener {
 
     private val viewModelContacts: ContactsViewModel by viewModels()
     private val contactsAdapter: ContactsAdapter by lazy {
         ContactsAdapter(
-            onContactItemClickListener = this
+            onContactItemClickListener = this,
+            onContactItemChangedListener = this
         )
     }
 

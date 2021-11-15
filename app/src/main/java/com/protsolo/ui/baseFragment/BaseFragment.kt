@@ -32,6 +32,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
+        setAnimation()
     }
 
     override fun onCreateView(
@@ -53,6 +54,8 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         super.onDetach()
         navigator = null
     }
+
+    open fun setAnimation() {}
 
     open fun setUpViews() {}
 

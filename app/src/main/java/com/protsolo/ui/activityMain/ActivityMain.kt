@@ -11,6 +11,7 @@ import com.protsolo.App
 import com.protsolo.R
 import com.protsolo.ui.activityMain.navigators.NavigateToFragment
 import com.protsolo.ui.activityMain.navigators.TransactionToFragment
+import com.protsolo.ui.contacts.adapters.ContactsViewHolder
 import com.protsolo.utils.Constants.NAV_GRAPH
 
 class ActivityMain : AppCompatActivity(), INavigateToFragmentListener,
@@ -40,19 +41,11 @@ class ActivityMain : AppCompatActivity(), INavigateToFragmentListener,
         App.isFirstLogin = false
     }
 
-    override fun goToFragment(bundle: Bundle, unit: ((Any) -> Any)?) {
-        val direction = { navigator: Any ->
+    override fun goToFragment(bundle: Bundle, unit: ((Array<*>) -> Any)?) {
+        val direction = { fragmentDirection: Array<*> ->
             when (navigator) {
-                is NavDirections -> navController.navigate(navigator)
-                is Fragment -> {
-                    val fragmentManager = supportFragmentManager.beginTransaction()
-                    setAnimation(fragmentManager)
-                    fragmentManager.addToBackStack(null).replace(
-                        R.id.container,
-                        navigator
-                    ).commit()
-                }
-                else -> {}
+                is NavigateToFragment -> navigateToFragment(fragmentDirection)
+                else -> transactionToFragment(fragmentDirection)
             }
         }
         navigator.goToFragment(bundle, direction)
@@ -64,6 +57,26 @@ class ActivityMain : AppCompatActivity(), INavigateToFragmentListener,
         } else {
             if (supportFragmentManager.backStackEntryCount > 0)
                 supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun transactionToFragment(fragmentDirection: Array<*>): Int {
+        val fragmentManager = supportFragmentManager.beginTransaction()
+        setAnimation(fragmentManager)
+        return fragmentManager.addToBackStack(null).replace(
+            R.id.container,
+            fragmentDirection[0] as Fragment
+        ).commit()
+    }
+
+    private fun navigateToFragment(fragmentDirection: Array<*>) {
+        if (fragmentDirection.size == 1) {
+            navController.navigate(fragmentDirection[0] as NavDirections)
+        } else {
+            navController.navigate(
+                fragmentDirection[0] as NavDirections,
+                ContactsViewHolder.extras
+            )
         }
     }
 
