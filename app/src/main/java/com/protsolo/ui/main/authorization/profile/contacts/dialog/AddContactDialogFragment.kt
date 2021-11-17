@@ -14,10 +14,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.protsolo.app.utils.Constants
+import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.data.ContactsDataFake
 import com.protsolo.databinding.DialogFragmentAddContactBinding
 import com.protsolo.ui.main.authorization.profile.contacts.dialog.contracts.GetImageFromGalleryContract
-import com.protsolo.app.utils.Constants
 
 
 class AddContactDialogFragment : DialogFragment() {
@@ -105,20 +106,6 @@ class AddContactDialogFragment : DialogFragment() {
             requestPermissions(requireActivity(), permissions, Constants.REQUEST_CODE)
         }
     }
-
-//    val permission = registerForActivityResult(RequestPermission()) { granted ->
-//        when {
-//            granted -> {
-//                camera.launch() // доступ к камере разрешен, открываем камеру
-//            }
-//            !shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
-//                // доступ к камере запрещен, пользователь поставил галочку Don't ask again.
-//            }
-//            else -> {
-//                // доступ к камере запрещен
-//            }
-//        }
-//    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

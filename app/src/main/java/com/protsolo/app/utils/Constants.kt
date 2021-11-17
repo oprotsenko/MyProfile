@@ -2,7 +2,6 @@ package com.protsolo.app.utils
 
 object Constants {
 
-    const val NAV_GRAPH = true
     const val FRAGMENT_BUNDLE_KEY = "FRAGMENT"
     const val AUTHORIZATION_FRAGMENT = "AUTHORIZATION"
     const val MAIN_FRAGMENT = "MAIN"

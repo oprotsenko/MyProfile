@@ -1,27 +1,27 @@
-package com.protsolo.ui.contacts
+package com.protsolo.ui.main.authorization.profile.contacts
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.protsolo.databinding.FragmentContactsBinding
-import com.protsolo.data.models.UserModel
-import com.protsolo.ui.main.authorization.profile.contacts.dialog.AddContactDialogFragment
 import com.protsolo.app.architecture.BaseFragment
+import com.protsolo.app.utils.Constants
+import com.protsolo.app.utils.extensions.dpToPx
+import com.protsolo.databinding.FragmentContactsBinding
+import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.ContactsAdapter
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.IContactItemChangedListener
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.IContactItemClickListener
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.decorations.ContactListItemDecoration
-import com.protsolo.app.utils.Constants
-import com.protsolo.app.utils.extensions.dpToPx
+import com.protsolo.ui.main.authorization.profile.contacts.dialog.AddContactDialogFragment
 
 class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
-    IContactItemClickListener , IContactItemChangedListener {
+    IContactItemClickListener, IContactItemChangedListener {
 
     private val viewModelContacts: ContactsViewModel by viewModels()
-    private val contactsAdapter: ContactsAdapter by lazy {
+    private val adapterContacts: ContactsAdapter by lazy {
         ContactsAdapter(
             onContactItemClickListener = this,
             onContactItemChangedListener = this
@@ -34,10 +34,6 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         recyclerInit()
-    }
-
-    override fun setUpViews() {
-        setObserver()
     }
 
     override fun setListeners() {
@@ -54,7 +50,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                 recyclerViewContacts.smoothScrollToPosition(0)
             }
             buttonContactsBack.setOnClickListener {
-                navigator?.onBackButtonPressed()
+                navController.popBackStack()
             }
             floatingButtonContactsDelete.setOnClickListener {
                 viewModelContacts.deleteSelectedContacts()
@@ -87,13 +83,11 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun onItemClick(position: Int) {
-        val bundle = Bundle()
-        bundle.putString(Constants.FRAGMENT_BUNDLE_KEY, Constants.DETAIL_VIEW_FRAGMENT)
-        bundle.putParcelable(
-            Constants.USER_BUNDLE_KEY,
-            viewModelContacts.contactsData.value?.get(position)
+        navController.navigate(
+            ContactsFragmentDirections.actionContactsFragmentToContactDetailViewFragment(
+                viewModelContacts.contactsData.value?.get(position)
+            )
         )
-        navigator?.goToFragment(bundle)
     }
 
     override fun setUserSelected(position: Int) {
@@ -112,16 +106,10 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
         viewModelContacts.setUserSelected(position)
     }
 
-    override fun renewView() {
-        binding.apply {
-            floatingButtonContactsDelete.visibility = if (isSelectingMood) View.VISIBLE else View.GONE
-            floatingButtonContactsUp.visibility = if (isSelectingMood) View.GONE else View.VISIBLE
-        }
-    }
     private fun recyclerInit() {
         binding.recyclerViewContacts.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = contactsAdapter
+            adapter = adapterContacts
         }
         addItemDecoration()
         setFabButton()
@@ -158,26 +146,22 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
         }
     }
 
-    private fun setObserver() {
-        viewModelContacts.contactsLiveData.observe(viewLifecycleOwner, {
+    override fun setObserver() {
+        viewModelContacts.contactsData.observe(viewLifecycleOwner, {
             it?.let {
                 adapterContacts.submitList(it)
             }
         })
-    }
 
-    companion object {
-        fun newInstance(args: Bundle) =
-            ContactsFragment().apply {
-                arguments = args
-            }
-
-        var isSelectingMood = false
         parentFragmentManager.setFragmentResultListener(
             Constants.FRAGMENT_RESULT_LISTENER_KEY,
             viewLifecycleOwner, { _, bundle ->
                 val fragmentResult = bundle.getParcelable<UserModel>(Constants.USER_BUNDLE_KEY)
                 fragmentResult?.let { user -> addItem(user, 0) }
             })
+    }
+
+    companion object {
+        var isSelectingMood = false
     }
 }

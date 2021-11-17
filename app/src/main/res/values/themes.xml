@@ -18,10 +18,9 @@
         <item name="android:navigationBarColor">?android:attr/statusBarColor</item>
 
         <!-- Customize your theme here. -->
-        <item name="android:windowAnimationStyle">@style/WindowAnimationsStyle</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
         <item name="buttonStyle">@style/FullWidthButton</item>
-        <item name="fontFamily">@font/open_sans_semibold</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
         <item name="imageButtonStyle">@style/ImageButtonStyle</item>
         <item name="floatingActionButtonStyle">@style/FloatingButtonStyle</item>
         <item name="customButtonStyle">@style/CustomButtonStyle</item>
@@ -31,13 +30,6 @@
     </style>
 
     <!-- All app styles -->
-    <style name="WindowAnimationsStyle">
-        <item name="android:activityOpenEnterAnimation">@anim/enter_activity</item>
-        <item name="android:activityOpenExitAnimation">@anim/exit_activity</item>
-        <item name="android:activityCloseEnterAnimation">@anim/enter_activity</item>
-        <item name="android:activityCloseExitAnimation">@anim/exit_activity</item>
-    </style>
-
     <style name="TextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">?android:attr/fontFamily</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>

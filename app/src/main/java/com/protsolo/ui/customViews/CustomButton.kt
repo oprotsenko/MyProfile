@@ -5,11 +5,12 @@ import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.res.ResourcesCompat.getColor
 import com.protsolo.R
 import com.protsolo.app.utils.Constants.DEFAULT_TEXT_SIZE
-import com.protsolo.app.utils.extensions.CustomViewUtils
-import com.protsolo.app.utils.extensions.MeasureUtils
+import com.protsolo.app.utils.CustomViewUtils
+import com.protsolo.app.utils.MeasureUtils
 
 class CustomButton @JvmOverloads constructor(
     context: Context,
@@ -55,7 +56,8 @@ class CustomButton @JvmOverloads constructor(
         paint.color = arr.getColor(R.styleable.CustomButton_android_textColor, colors[0])
         paint.letterSpacing = arr.getFloat(R.styleable.CustomButton_android_letterSpacing, 0f)
         multicolor = arr.getColor(R.styleable.CustomButton_android_textColor, 0) == 0
-        paint.typeface = CustomViewUtils.getTypeface(arr, context)
+        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+//            getTypeface(arr, context)
         text = getText(arr)
         spaceBetween = arr.getDimension(R.styleable.CustomButton_spaceBetween, 0f)
         iconImage =
@@ -111,4 +113,17 @@ class CustomButton @JvmOverloads constructor(
             true -> arr.getString(R.styleable.CustomButton_android_text).toString().uppercase()
             false -> arr.getString(R.styleable.CustomButton_android_text).toString()
         }
+
+    private fun getTypeface(
+        arr: TypedArray,
+        context: Context
+    ): Typeface? = when (arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)) {
+        0 -> Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+        else -> {
+            ResourcesCompat.getFont(
+                context,
+                arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
+            )
+        }
+    }
 }

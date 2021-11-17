@@ -1,20 +1,20 @@
 package com.protsolo.ui.main.authorization.profile.contacts.details
 
-import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.protsolo.R
-import com.protsolo.databinding.FragmentMainPageBinding
 import com.protsolo.app.architecture.BaseFragment
+import com.protsolo.app.utils.extensions.loadCircleImage
+import com.protsolo.databinding.FragmentProfileBinding
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.ContactsViewHolder
 
-class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
+class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
 
     private val viewModelContactDetailView: ContactDetailViewViewModel by viewModels()
 
-    override fun getViewBinding(): FragmentMainPageBinding =
-        FragmentMainPageBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentProfileBinding =
+        FragmentProfileBinding.inflate(layoutInflater)
 
     override fun setAnimation() {
         sharedElementEnterTransition =
@@ -48,14 +48,7 @@ class ContactDetailViewFragment : BaseFragment<FragmentMainPageBinding>() {
 
     override fun setListeners() {
         binding.buttonMainBack.setOnClickListener {
-            navigator?.onBackButtonPressed()
+            navController.popBackStack()
         }
-    }
-
-    companion object {
-        fun newInstance(args: Bundle) =
-            ContactDetailViewFragment().apply {
-                arguments = args
-            }
     }
 }

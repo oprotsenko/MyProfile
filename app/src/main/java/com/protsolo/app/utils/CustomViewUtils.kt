@@ -1,15 +1,11 @@
-package com.protsolo.app.utils.extensions
+package com.protsolo.app.utils
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.VectorDrawable
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import com.protsolo.R
 
 object CustomViewUtils {
 
@@ -32,15 +28,15 @@ object CustomViewUtils {
         return bitmap
     }
 
-    fun getTypeface(
-        arr: TypedArray,
-        context: Context
-    ) = when (arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)) {
-        0 -> Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-        else -> ResourcesCompat.getFont(
-            context,
-            arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
-        )
-    }
+//    fun getTypeface(
+//        arr: TypedArray,
+//        context: Context
+//    ): Typeface? = when (arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)) {
+//        0 -> Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
+//        else -> ResourcesCompat.getFont(
+//            context,
+//            arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
+//        )
+//    }
 
 }

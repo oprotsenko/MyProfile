@@ -1,4 +1,4 @@
-package com.protsolo.data.models
+package com.protsolo.itemModel
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -11,12 +11,4 @@ data class UserModel(
     var career: String,
     var address: String,
     var phone: String,
-    var selected: Boolean = false
-) : Parcelable {
-
-    fun setUserSelected(selected: Boolean) {
-        this.selected = selected
-    }
-
-    fun isSelected() = selected
-}
+) : Parcelable

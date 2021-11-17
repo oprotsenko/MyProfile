@@ -1,7 +1,7 @@
 package com.protsolo.data
 
 import android.net.Uri
-import com.protsolo.data.models.UserModel
+import com.protsolo.itemModel.UserModel
 
 object ContactsDataFake {
 

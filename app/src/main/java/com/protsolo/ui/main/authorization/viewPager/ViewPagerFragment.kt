@@ -1,7 +1,7 @@
-package com.protsolo.ui.viewPager
+package com.protsolo.ui.main.authorization.viewPager
 
 import com.google.android.material.tabs.TabLayoutMediator
-import com.protsolo.ui.baseFragment.BaseFragment
+import com.protsolo.app.architecture.BaseFragment
 import com.protsolo.databinding.FragmentViewPagerBinding
 
 class ViewPagerFragment : BaseFragment<FragmentViewPagerBinding>() {

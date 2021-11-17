@@ -64,7 +64,7 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/contact_list_item.xml" value="0.4" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/custom_button_layout.xml" value="0.6" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/dialog_fragment_add_contact.xml" value="0.264" />
-        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_authorization.xml" value="0.2" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_authorization.xml" value="0.4" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contact_detail_view.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contacts.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contacts_list.xml" value="0.25416666666666665" />
@@ -75,6 +75,13 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/item_contact_selection_mood.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/new_custom_button_to_look.xml" value="0.176" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/test.xml" value="0.22592592592592592" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/drawable/ic_default_profile_photo.xml" value="0.1" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/layout/activity_main.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/layout/dialog_fragment_add_contact.xml" value="0.1" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/layout/fragment_authorization.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/layout/fragment_contacts.xml" value="0.13489583333333333" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15104166666666666" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfileDELETE/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1546875" />
         <entry key="app/src/main/res/drawable/all_gray_cursor.xml" value="0.2701388888888889" />
         <entry key="app/src/main/res/drawable/ic_arrow_back_24px.xml" value="0.24375" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.23958333333333334" />

@@ -1,4 +1,4 @@
-package com.protsolo.ui.contacts.adapters
+package com.protsolo.ui.main.authorization.profile.contacts.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
-import com.protsolo.databinding.ItemContactBinding
-import com.protsolo.data.models.UserModel
 import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.contacts.ContactsFragment
-import com.protsolo.ui.contacts.ContactsViewModel
+import com.protsolo.databinding.ItemContactBinding
+import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
+import com.protsolo.ui.main.authorization.profile.contacts.ContactsViewModel
 
 
 class ContactsAdapter(
@@ -35,10 +34,9 @@ class ContactsAdapter(
                 if (ContactsViewModel.selectedContacts.size == 0) {
                     ContactsFragment.isSelectingMood = false
                     notifyDataSetChanged()
-                    onContactItemClickListener.renewView()
                 }
                 root.setOnClickListener {
-                    onContactItemClickListener.setUserSelected(position)
+                    onContactItemChangedListener.setUserSelected(position)
                     onBindViewHolder(holder, position)
                 }
             } else root.setOnClickListener {

@@ -2,7 +2,7 @@ package com.protsolo.ui.main.authorization.profile.contacts.dialog
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.protsolo.data.models.UserModel
+import com.protsolo.itemModel.UserModel
 
 class AddContactViewModel : ViewModel() {
 

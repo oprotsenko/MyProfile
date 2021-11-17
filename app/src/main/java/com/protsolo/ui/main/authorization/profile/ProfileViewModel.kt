@@ -28,11 +28,7 @@ class ProfileViewModel : ViewModel() {
     }
 
     fun getName(arguments: Bundle?): String {
-        var name = if (Constants.NAV_GRAPH) {
-            arguments?.let { ProfileFragmentArgs.fromBundle(it).email }
-        } else {
-            arguments?.getString(Constants.PREFERENCE_EMAIL_KEY)
-        }
+        var name = arguments?.let { ProfileFragmentArgs.fromBundle(it).email }
         if (name.isNullOrEmpty()) {
             name = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
         }

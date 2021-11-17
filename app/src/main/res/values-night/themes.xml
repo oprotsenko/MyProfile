@@ -19,13 +19,10 @@
         <item name="android:navigationBarColor">?android:attr/statusBarColor</item>
 
         <!-- Customize your theme here. -->
-        <item name="android:windowAnimationStyle">@style/WindowAnimationsStyle</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
         <item name="buttonStyle">@style/FullWidthButton</item>
         <item name="fontFamily">@font/open_sans_semibold</item>
         <item name="imageButtonStyle">@style/ImageButtonStyle</item>
         <item name="floatingActionButtonStyle">@style/FloatingButtonStyle</item>
-        <!--        <item name="textInputStyle">@style/TextInputLayoutStyle</item>-->
-        <!--        <item name="editTextStyle">@style/EditTextField</item>-->
     </style>
 </resources>

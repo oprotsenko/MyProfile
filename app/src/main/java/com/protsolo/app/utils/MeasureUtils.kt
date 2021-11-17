@@ -1,4 +1,4 @@
-package com.protsolo.app.utils.extensions
+package com.protsolo.app.utils
 
 import android.view.View
 

@@ -10,7 +10,6 @@
         style="@style/ParentLayoutMarginStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/activity_auth_scene"
         tools:context=".ui.AuthActivity">
 
         <androidx.constraintlayout.widget.Guideline
