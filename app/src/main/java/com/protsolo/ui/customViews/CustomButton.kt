@@ -7,9 +7,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.res.ResourcesCompat.getColor
 import com.protsolo.R
-import com.protsolo.utils.Constants.DEFAULT_TEXT_SIZE
-import com.protsolo.utils.extensions.CustomViewUtils
-import com.protsolo.utils.extensions.MeasureUtils
+import com.protsolo.app.utils.Constants.DEFAULT_TEXT_SIZE
+import com.protsolo.app.utils.extensions.CustomViewUtils
+import com.protsolo.app.utils.extensions.MeasureUtils
 
 class CustomButton @JvmOverloads constructor(
     context: Context,
