@@ -22,9 +22,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewAuthTitle"
             style="@style/TitleStyle"
-            android:text="@string/auth_acquaint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/auth_acquaint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/guideLineAuthHorizontalTop" />
@@ -32,9 +32,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewAuthFillOutDescription"
             style="@style/DescriptionStyle"
-            android:text="@string/auth_fill_out_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/auth_fill_out_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAuthTitle" />
@@ -63,9 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/auth_password"
+            app:layout_constraintBottom_toTopOf="@+id/checkBoxAuthRememberMe"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthEmail">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAuthEmail"
+            app:layout_constraintVertical_chainStyle="packed">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAuthPasswordField"
@@ -81,8 +84,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/auth_remember_me"
+            app:layout_constraintBottom_toTopOf="@+id/customButtonGoogle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutAuthPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAuthPassword" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewAuthForgotPass"
@@ -99,9 +103,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/auth_google_sign_in"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_google" />
 
         <androidx.appcompat.widget.AppCompatTextView

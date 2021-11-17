@@ -31,12 +31,11 @@
         <item name="android:ems">10</item>
         <item name="boxStrokeErrorColor">?android:attr/textColorHint</item>
         <item name="errorTextColor">?attr/errorTextColor</item>
-        <item name="android:padding">@dimen/zero</item>
     </style>
 
     <style name="EditTextFieldStyle" parent="TextStyle">
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:paddingStart">@dimen/zero</item>
+        <item name="android:paddingLeft">@dimen/zero</item>
         <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:gravity">start</item>
         <item name="boxCollapsedPaddingTop">-16dp</item>

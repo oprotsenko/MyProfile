@@ -27,16 +27,4 @@ object CustomViewUtils {
         }
         return bitmap
     }
-
-//    fun getTypeface(
-//        arr: TypedArray,
-//        context: Context
-//    ): Typeface? = when (arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)) {
-//        0 -> Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-//        else -> ResourcesCompat.getFont(
-//            context,
-//            arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
-//        )
-//    }
-
 }

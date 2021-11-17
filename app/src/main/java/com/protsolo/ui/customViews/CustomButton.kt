@@ -56,8 +56,7 @@ class CustomButton @JvmOverloads constructor(
         paint.color = arr.getColor(R.styleable.CustomButton_android_textColor, colors[0])
         paint.letterSpacing = arr.getFloat(R.styleable.CustomButton_android_letterSpacing, 0f)
         multicolor = arr.getColor(R.styleable.CustomButton_android_textColor, 0) == 0
-        paint.typeface = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-//            getTypeface(arr, context)
+        paint.typeface = getTypeface(arr, context)
         text = getText(arr)
         spaceBetween = arr.getDimension(R.styleable.CustomButton_spaceBetween, 0f)
         iconImage =
@@ -117,12 +116,11 @@ class CustomButton @JvmOverloads constructor(
     private fun getTypeface(
         arr: TypedArray,
         context: Context
-    ): Typeface? = when (arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)) {
+    ): Typeface? = when (arr.getResourceId(R.styleable.CustomButton_fontFamily, 0)) {
         0 -> Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
-        else -> {
-            ResourcesCompat.getFont(
+        else -> { ResourcesCompat.getFont(
                 context,
-                arr.getResourceId(R.styleable.CustomButton_android_fontFamily, 0)
+                arr.getResourceId(R.styleable.CustomButton_fontFamily, 0)
             )
         }
     }
