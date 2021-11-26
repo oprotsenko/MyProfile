@@ -46,7 +46,6 @@
         <item name="android:background">@drawable/auth_frame_orange</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
-        <item name="android:enabled">false</item>
     </style>
 
     <style name="OrangeButtonStyle">
@@ -242,7 +241,7 @@
     </style>
 
     <style name="AddContactTitleStyle">
-        <item name="android:text">@string/add_contacts_fragment_add_contact</item>
+        <item name="android:text">@string/add_contact_add_contact</item>
         <item name="android:textSize">@dimen/text_size_18</item>
     </style>
 
@@ -268,7 +267,7 @@
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:layout_marginStart">@dimen/margin_16</item>
         <item name="android:layout_marginEnd">@dimen/margin_16</item>
-        <item name="android:text">@string/add_contacts_fragment_button_save</item>
+        <item name="android:text">@string/add_contact_button_save</item>
     </style>
 
     <!--    Contact list item   -->

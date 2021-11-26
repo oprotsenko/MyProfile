@@ -1,5 +1,7 @@
 package com.protsolo.ui.main.authorization.profile
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import com.protsolo.app.architecture.BaseFragment
 import com.protsolo.app.utils.extensions.loadCircleImage
@@ -13,21 +15,25 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun getViewBinding(): FragmentProfileBinding =
         FragmentProfileBinding.inflate(layoutInflater)
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setObservers()
+        setUpViews()
+        setListeners()
+    }
+
+    private fun setObservers() {
+        viewModel.userName.observe(viewLifecycleOwner, { userName ->
+            binding.textViewMainUserName.text = userName
+        })
+    }
+
+    private fun setUpViews() {
         binding.imageViewMainProfilePhoto.loadCircleImage(ContactsDataFake.getRandomImage())
-
-        setName()
     }
 
-    override fun setListeners() {
+    private fun setListeners() {
         binding.buttonMainViewContacts.setOnClickListener {
-            navController.navigate(ProfileFragmentDirections.actionProfileFragmentToContactsFragment())
+            navigator.navigate(ProfileFragmentDirections.actionProfileFragmentNavToContactsFragmentNav())
         }
-    }
-
-    private fun setName() {
-        val parsedUserName: String =
-            viewModel.parseName(viewModel.getName(arguments))
-        binding.textViewMainUserName.text = parsedUserName
     }
 }

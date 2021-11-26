@@ -101,11 +101,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextInputLayoutStyle.FragmentMargin"
-            android:hint="@string/add_contacts_fragment_email"
+            android:hint="@string/add_contact_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentCareer"
-            app:placeholderText="@string/add_contacts_fragment_email_sample">
+            app:placeholderText="@string/add_contact_email_sample">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentEmail"
@@ -120,11 +120,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextInputLayoutStyle.FragmentMargin"
-            android:hint="@string/add_contacts_fragment_phone"
+            android:hint="@string/add_contact_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentEmail"
-            app:placeholderText="@string/add_contacts_fragment_phone_sample">
+            app:placeholderText="@string/add_contact_phone_sample">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentPhone"
@@ -139,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextInputLayoutStyle.FragmentMargin"
-            android:hint="@string/add_contacts_fragment_address"
+            android:hint="@string/add_contact_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentPhone">
@@ -157,11 +157,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextInputLayoutStyle.FragmentMargin"
-            android:hint="@string/add_contacts_fragment_date_of_birth"
+            android:hint="@string/add_contact_date_of_birth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddContactsFragmentAddress"
-            app:placeholderText="@string/add_contacts_fragment_date_of_birth_sample">
+            app:placeholderText="@string/add_contact_date_of_birth_sample">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddContactsFragmentBirthDay"

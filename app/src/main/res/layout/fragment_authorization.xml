@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.authorization.AuthorizationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +39,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAuthTitle" />
 
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxAuthRememberMe"
+            style="@style/AuthCheckBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_remember_me"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAuthPassword" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAuthEmail"
             style="@style/TextInputLayoutStyle"
@@ -63,7 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/auth_password"
-            app:layout_constraintBottom_toTopOf="@+id/checkBoxAuthRememberMe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,16 +85,6 @@
                 android:layout_height="match_parent"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/checkBoxAuthRememberMe"
-            style="@style/AuthCheckBoxStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auth_remember_me"
-            app:layout_constraintBottom_toTopOf="@+id/customButtonGoogle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAuthPassword" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewAuthForgotPass"
@@ -105,7 +103,10 @@
             android:text="@string/auth_google_sign_in"
             app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.812"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxAuthRememberMe"
+            app:layout_constraintVertical_bias="0.925"
             app:srcCompat="@drawable/ic_google" />
 
         <androidx.appcompat.widget.AppCompatTextView

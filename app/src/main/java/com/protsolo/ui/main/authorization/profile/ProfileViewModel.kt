@@ -1,40 +1,27 @@
 package com.protsolo.ui.main.authorization.profile
 
-import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import com.protsolo.app.App
 import com.protsolo.app.utils.Constants
+import com.protsolo.app.utils.SingleLiveEvent
 
 class ProfileViewModel : ViewModel() {
 
     private val preferenceStorage = App.preferencesStorage
 
-    /**
-     * Parse the obtained string to the user name.
-     */
-    fun parseName(name: String?): String {
-        val res = StringBuilder()
-        if (name.isNullOrEmpty())
-            return Constants.DEFAULT_NAME
-        for (c in name.indices) {
-            when (name[c]) {
-                '.' -> res.append(" ")
-                '@' -> break
-                else -> if (c == 0 || res[c - 1] == ' ') res.append(name[c].uppercase()) else
-                    res.append(name[c])
-            }
-        }
-        return res.toString()
+    val userName by lazy { SingleLiveEvent<String>() }
+
+    init {
+        parseName()
     }
 
-    fun getName(arguments: Bundle?): String {
-        var name = arguments?.let { ProfileFragmentArgs.fromBundle(it).email }
-        if (name.isNullOrEmpty()) {
-            name = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
-        }
-        return when(name) {
-            null -> "User name"
-            else -> name
-        }
+    private fun parseName() {
+        val email = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
+        val firstName = email?.substring(0, email.indexOf('.')) ?: ""
+        val lastName = email?.substring(email.indexOf('.'), email.indexOf('@'))
+            ?.replace('.', ' ')
+
+        userName.value = firstName.replaceFirst(firstName[0], firstName[0].uppercaseChar(), false) +
+                lastName?.replaceFirst(lastName[1], lastName[1].uppercaseChar(), false)
     }
 }

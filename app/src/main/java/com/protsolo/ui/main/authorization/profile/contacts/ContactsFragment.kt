@@ -1,8 +1,10 @@
 package com.protsolo.ui.main.authorization.profile.contacts
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -15,12 +17,11 @@ import com.protsolo.ui.main.authorization.profile.contacts.adapters.ContactsAdap
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.IContactItemChangedListener
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.IContactItemClickListener
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.decorations.ContactListItemDecoration
-import com.protsolo.ui.main.authorization.profile.contacts.dialog.AddContactDialogFragment
 
 class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     IContactItemClickListener, IContactItemChangedListener {
 
-    private val viewModelContacts: ContactsViewModel by viewModels()
+    private val viewModel: ContactsViewModel by viewModels()
     private val adapterContacts: ContactsAdapter by lazy {
         ContactsAdapter(
             onContactItemClickListener = this,
@@ -28,33 +29,45 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
         )
     }
 
+    private var positionView = 0
+
     override fun getViewBinding(): FragmentContactsBinding =
         FragmentContactsBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("TAG", "onCreate")
         recyclerInit()
     }
 
-    override fun setListeners() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("TAG", "onViewCreated")
+
+        setListeners()
+        setObservers()
+    }
+
+    private fun setListeners() {
         binding.apply {
             textViewContactsAddContact.setOnClickListener {
-                val addContactDialogFragment =
-                    AddContactDialogFragment()
-                addContactDialogFragment.show(
-                    parentFragmentManager,
-                    Constants.DIALOG_FRAGMENT_ADD_CONTACT_MESSAGE
-                )
+                navigator.navigate(ContactsFragmentDirections.actionContactsFragmentNavToAddContactDialogFragmentNav())
             }
             floatingButtonContactsUp.setOnClickListener {
                 recyclerViewContacts.smoothScrollToPosition(0)
             }
             buttonContactsBack.setOnClickListener {
-                navController.popBackStack()
+                navigator.popBackStack()
             }
             floatingButtonContactsDelete.setOnClickListener {
-                viewModelContacts.deleteSelectedContacts()
-                isSelectingMood = false
+                viewModel.deleteSelectedContacts()
+                Snackbar.make(
+                    binding.root, "${ContactsViewModel.selectedContacts.size}" +
+                            Constants.SNACK_BAR_SELECTED_CONTACTS_REMOVED_MESSAGE,
+                    Snackbar.LENGTH_LONG
+                ).setAction(Constants.UNDO) {
+                    viewModel.addRemovedContactsList()
+                }.show()
+                isSelectionMood = false
                 adapterContacts.notifyDataSetChanged()
                 binding.apply {
                     floatingButtonContactsDelete.visibility = View.GONE
@@ -65,11 +78,11 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun removeItem(position: Int) {
-        val element = viewModelContacts.contactsData.value?.get(position)
-        viewModelContacts.removeItem(position)
+        val element = viewModel.contactsData.value?.get(position)
+        viewModel.removeItem(position)
 
         Snackbar.make(
-            binding.root, "${element?.name}" + Constants.SNACK_BAR_MESSAGE,
+            binding.root, "${element?.name}" + Constants.SNACK_BAR_ONE_CONTACT_REMOVED_MESSAGE,
             Snackbar.LENGTH_LONG
         ).setAction(Constants.UNDO) {
             if (element != null) {
@@ -79,38 +92,46 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
     }
 
     override fun addItem(element: UserModel, position: Int) {
-        viewModelContacts.addItem(position, element)
+        viewModel.addItem(position, element)
     }
 
-    override fun onItemClick(position: Int) {
-        navController.navigate(
-            ContactsFragmentDirections.actionContactsFragmentToContactDetailViewFragment(
-                viewModelContacts.contactsData.value?.get(position)
+    override fun onItemClick(position: Int, view: View) {
+        transitionNameImage = view.transitionName.toString()
+        val user = viewModel.contactsData.value?.get(position)
+        val extras =
+            FragmentNavigatorExtras((view to transitionNameImage))
+        user?.let {
+            navigator.navigate(
+                ContactsFragmentDirections.actionContactsFragmentNavToContactDetailViewFragmentNav(it),
+                extras
             )
-        )
+        }
     }
 
     override fun setUserSelected(position: Int) {
-        viewModelContacts.setUserSelected(position)
+        viewModel.setUserSelected(position)
     }
 
     override fun onItemLongClick(position: Int) {
-        if (!isSelectingMood) {
-            isSelectingMood = true
+        ContactsViewModel.selectedContacts.clear()
+        if (!isSelectionMood) {
+            isSelectionMood = true
             adapterContacts.notifyDataSetChanged()
             binding.apply {
                 floatingButtonContactsDelete.visibility = View.VISIBLE
                 floatingButtonContactsUp.visibility = View.GONE
             }
         }
-        viewModelContacts.setUserSelected(position)
+        viewModel.setUserSelected(position)
     }
 
     private fun recyclerInit() {
         binding.recyclerViewContacts.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = adapterContacts
+            itemAnimator?.changeDuration = 0
         }
+
         addItemDecoration()
         setFabButton()
     }
@@ -129,7 +150,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
-                    val positionView =
+                    positionView =
                         (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
                     if (positionView > 0) {
@@ -146,22 +167,31 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(),
         }
     }
 
-    override fun setObserver() {
-        viewModelContacts.contactsData.observe(viewLifecycleOwner, {
+    private fun setObservers() {
+        viewModel.contactsData.observe(viewLifecycleOwner, {
             it?.let {
                 adapterContacts.submitList(it)
             }
         })
 
-        parentFragmentManager.setFragmentResultListener(
-            Constants.FRAGMENT_RESULT_LISTENER_KEY,
-            viewLifecycleOwner, { _, bundle ->
-                val fragmentResult = bundle.getParcelable<UserModel>(Constants.USER_BUNDLE_KEY)
-                fragmentResult?.let { user -> addItem(user, 0) }
-            })
+        viewModel.isSelectionMood.observe(viewLifecycleOwner, {
+            binding.apply {
+                floatingButtonContactsUp.visibility = if (it) View.GONE else View.VISIBLE
+                floatingButtonContactsDelete.visibility = if (it) View.VISIBLE else View.GONE
+                positionView =
+                    (recyclerViewContacts.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            }
+        })
+
+        navigator.currentBackStackEntry?.savedStateHandle?.getLiveData<UserModel>(Constants.USER_BUNDLE_KEY)
+            ?.observe(viewLifecycleOwner) {
+                addItem(it, 0)
+            }
     }
 
     companion object {
-        var isSelectingMood = false
+        var isSelectionMood = false
+        var transitionNameImage = ""
     }
+
 }

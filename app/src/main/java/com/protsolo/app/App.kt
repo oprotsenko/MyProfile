@@ -15,7 +15,6 @@ class App : Application() {
     }
 
     companion object {
-        var isFirstLogin = true
         lateinit var preferencesStorage: PreferenceStorage
     }
 }

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
-import com.protsolo.itemModel.UserModel
 import com.protsolo.databinding.ItemContactBinding
+import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
 import com.protsolo.ui.main.authorization.profile.contacts.ContactsViewModel
 
@@ -30,17 +30,14 @@ class ContactsAdapter(
             deleteButton.setOnClickListener {
                 deleteItem(bindingAdapterPosition)
             }
-            if (ContactsFragment.isSelectingMood) {
-                if (ContactsViewModel.selectedContacts.size == 0) {
-                    ContactsFragment.isSelectingMood = false
-                    notifyDataSetChanged()
-                }
+            if (ContactsFragment.isSelectionMood) {
                 root.setOnClickListener {
-                    onContactItemChangedListener.setUserSelected(position)
-                    onBindViewHolder(holder, position)
+                    onContactItemClickListener.setUserSelected(position)
+                    if (ContactsViewModel.selectedContacts.size == 0) {
+                        ContactsFragment.isSelectionMood = false
+                        notifyDataSetChanged()
+                    }
                 }
-            } else root.setOnClickListener {
-                onContactItemClickListener.onItemClick(position)
             }
         }
     }
@@ -52,7 +49,7 @@ class ContactsAdapter(
         ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(recyclerView)
     }
 
-    override fun submitList(list: MutableList<UserModel>?) {
+    override fun submitList(list: List<UserModel>?) {
         super.submitList(list?.let { ArrayList(it) })
     }
 

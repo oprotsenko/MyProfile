@@ -1,5 +1,6 @@
 package com.protsolo.ui.main.authorization.profile.contacts.details
 
+import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -7,11 +8,11 @@ import com.protsolo.R
 import com.protsolo.app.architecture.BaseFragment
 import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.databinding.FragmentProfileBinding
-import com.protsolo.ui.main.authorization.profile.contacts.adapters.ContactsViewHolder
+import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
 
 class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
 
-    private val viewModelContactDetailView: ContactDetailViewViewModel by viewModels()
+    private val viewModel: ContactDetailViewViewModel by viewModels()
 
     override fun getViewBinding(): FragmentProfileBinding =
         FragmentProfileBinding.inflate(layoutInflater)
@@ -21,9 +22,15 @@ class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
             TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
     }
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setUpViews()
+        setListeners()
+        setObserver()
+    }
+
+    private fun setUpViews() {
         binding.apply {
-            imageViewMainProfilePhoto.transitionName = ContactsViewHolder.transitionNameImage
+            imageViewMainProfilePhoto.transitionName = ContactsFragment.transitionNameImage
             textViewMainSettings.visibility = View.GONE
             buttonMainBack.visibility = View.VISIBLE
             textViewMainProfile.visibility = View.VISIBLE
@@ -32,11 +39,11 @@ class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
             buttonMainViewContacts.text = resources.getText(R.string.contact_detail_view_message)
         }
 
-        viewModelContactDetailView.extractArguments(arguments)
+        viewModel.extractArguments(arguments)
     }
 
-    override fun setObserver() {
-        viewModelContactDetailView.userData.observe(viewLifecycleOwner, { user ->
+    private fun setObserver() {
+        viewModel.userData.observe(viewLifecycleOwner, { user ->
             binding.apply {
                 imageViewMainProfilePhoto.loadCircleImage(user.image)
                 textViewMainUserName.text = user.name
@@ -46,9 +53,9 @@ class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
         })
     }
 
-    override fun setListeners() {
+    private fun setListeners() {
         binding.buttonMainBack.setOnClickListener {
-            navController.popBackStack()
+            navigator.popBackStack()
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.protsolo.app.architecture
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +12,15 @@ import com.protsolo.R
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
-    protected lateinit var navController: NavController
-
     protected lateinit var binding: T
     protected abstract fun getViewBinding(): T
 
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        initNavController()
-//        if (context is IGoToFragment) {
-//            navigator = context
-//        }
-    }
+    protected lateinit var navigator: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
+        initNavController()
         setAnimation()
     }
 
@@ -41,25 +32,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setUpViews()
-        setObserver()
-        setListeners()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-//        navigator = null
-    }
-
     open fun setAnimation() {}
-
-    open fun setUpViews() {}
-
-    open fun setObserver() {}
-
-    open fun setListeners() {}
 
     private fun init() {
         binding = getViewBinding()
@@ -67,7 +40,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
     private fun initNavController() {
         val navHostFragment =
-            parentFragmentManager.findFragmentById(R.id.container) as NavHostFragment
-        navController = navHostFragment.navController
+            requireActivity().supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
+        navigator = navHostFragment.navController
     }
 }

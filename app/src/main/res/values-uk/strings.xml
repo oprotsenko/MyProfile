@@ -29,16 +29,21 @@
     <string name="contacts_add_contacts">Додати контакти</string>
     <string name="contacts_delete_description">Видалити обрані контакти</string>
     <!--    Add contacts fragment   -->
-    <string name="add_contacts_fragment_add_contact">Додати контакт</string>
-    <string name="add_contacts_fragment_address">Адреса</string>
-    <string name="add_contacts_fragment_email">Email</string>
-    <string name="add_contacts_fragment_email_sample">name@gmail.com</string>
-    <string name="add_contacts_fragment_phone">Телефон</string>
-    <string name="add_contacts_fragment_phone_sample">(264)-654-3762</string>
-    <string name="add_contacts_fragment_username">Ім\'я</string>
-    <string name="add_contacts_fragment_date_of_birth">Дата народження</string>
-    <string name="add_contacts_fragment_date_of_birth_sample">01/01/1900</string>
-    <string name="add_contacts_fragment_button_save">зберегти</string>
+    <string name="add_contact_add_contact">Додати контакт</string>
+    <string name="add_contact_address">Адреса</string>
+    <string name="add_contact_email">Email</string>
+    <string name="add_contact_email_sample">name@gmail.com</string>
+    <string name="add_contact_phone">Телефон</string>
+    <string name="add_contact_phone_sample">(264)-654-3762</string>
+    <string name="add_contacts_username">Ім\'я</string>
+    <string name="add_contact_date_of_birth">Дата народження</string>
+    <string name="add_contact_date_of_birth_sample">01/01/1900</string>
+    <string name="add_contact_button_save">зберегти</string>
+    <string name="add_contact_permission_needed">Для доступу до галереї потрібен дозвіл</string>
+    <string name="add_contact_permission_needed_title">Потрібен твій дозвіл:</string>
+    <string name="add_contact_permission_needed_message">Щоб відкрити галерею, надай свій дозвіл</string>
+    <string name="add_contact_allow">Дозволити</string>
+    <string name="add_contact_cancel">Вімінити</string>
     <!--    Contact detail view   -->
     <string name="contact_detail_view_profile">Профіль</string>
     <string name="contact_detail_view_message">написати повідомлення</string>

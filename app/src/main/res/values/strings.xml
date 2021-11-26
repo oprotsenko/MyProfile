@@ -28,17 +28,22 @@
     <string name="contacts_contacts">Contacts</string>
     <string name="contacts_add_contacts">Add contacts</string>
     <string name="contacts_delete_description">Delete selected contacts</string>
-    <!--    Add contacts fragment   -->
-    <string name="add_contacts_fragment_add_contact">Add contact</string>
-    <string name="add_contacts_fragment_address">Address</string>
-    <string name="add_contacts_fragment_email">Email</string>
-    <string name="add_contacts_fragment_email_sample">name@gmail.com</string>
-    <string name="add_contacts_fragment_phone">Phone</string>
-    <string name="add_contacts_fragment_phone_sample">(264)-654-3762</string>
-    <string name="add_contacts_fragment_username">Username</string>
-    <string name="add_contacts_fragment_date_of_birth">Date of birth</string>
-    <string name="add_contacts_fragment_date_of_birth_sample">01/01/1900</string>
-    <string name="add_contacts_fragment_button_save">save</string>
+    <!--    Add contacts   -->
+    <string name="add_contact_add_contact">Add contact</string>
+    <string name="add_contact_address">Address</string>
+    <string name="add_contact_email">Email</string>
+    <string name="add_contact_email_sample">name@gmail.com</string>
+    <string name="add_contact_phone">Phone</string>
+    <string name="add_contact_phone_sample">(264)-654-3762</string>
+    <string name="add_contacts_username">Username</string>
+    <string name="add_contact_date_of_birth">Date of birth</string>
+    <string name="add_contact_date_of_birth_sample">01/01/1900</string>
+    <string name="add_contact_button_save">save</string>
+    <string name="add_contact_permission_needed">Permission to access the Gallery needed</string>
+    <string name="add_contact_permission_needed_title">Permission needed:</string>
+    <string name="add_contact_permission_needed_message">To open the Gallery the app needed your permission</string>
+    <string name="add_contact_allow">Allow</string>
+    <string name="add_contact_cancel">Cancel</string>
     <!--    Contact detail view   -->
     <string name="contact_detail_view_profile">Profile</string>
     <string name="contact_detail_view_message">message</string>
