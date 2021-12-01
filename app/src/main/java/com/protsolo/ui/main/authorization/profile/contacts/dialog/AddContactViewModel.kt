@@ -1,10 +1,10 @@
 package com.protsolo.ui.main.authorization.profile.contacts.dialog
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.protsolo.app.architecture.BaseViewModel
 import com.protsolo.itemModel.UserModel
 
-class AddContactViewModel : ViewModel() {
+class AddContactViewModel : BaseViewModel() {
 
     val userData: MutableLiveData<UserModel> = MutableLiveData()
 

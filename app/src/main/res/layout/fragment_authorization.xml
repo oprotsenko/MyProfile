@@ -100,6 +100,7 @@
             android:id="@+id/customButtonGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/CustomButtonStyle"
             android:text="@string/auth_google_sign_in"
             app:layout_constraintBottom_toTopOf="@+id/textViewAuthOr"
             app:layout_constraintEnd_toEndOf="parent"

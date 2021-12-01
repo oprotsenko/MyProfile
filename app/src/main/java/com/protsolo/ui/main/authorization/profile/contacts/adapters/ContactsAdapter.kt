@@ -9,33 +9,39 @@ import com.protsolo.R
 import com.protsolo.databinding.ItemContactBinding
 import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
-import com.protsolo.ui.main.authorization.profile.contacts.ContactsViewModel
 
 
 class ContactsAdapter(
-    private val onContactItemClickListener: IContactItemClickListener,
-    private val onContactItemChangedListener: IContactItemChangedListener
+    private val onItemClickListener: IItemClickListener,
+    private val onItemChangedListener: IItemChangedListener
 ) :
     ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_contact, parent, false)
-        return ContactsViewHolder(ItemContactBinding.bind(view), onContactItemClickListener)
+        return ContactsViewHolder(ItemContactBinding.bind(view))
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         with(holder) {
-            bind(getItem(bindingAdapterPosition))
-            deleteButton.setOnClickListener {
-                deleteItem(bindingAdapterPosition)
-            }
-            if (ContactsFragment.isSelectionMood) {
-                root.setOnClickListener {
-                    onContactItemClickListener.setUserSelected(position)
-                    if (ContactsViewModel.selectedContacts.size == 0) {
-                        ContactsFragment.isSelectionMood = false
-                        notifyDataSetChanged()
+            bind(getItem(position))
+
+            binding.apply {
+                imageButtonDeleteContact.setOnClickListener {
+                    onItemChangedListener.removeItem(position)
+                }
+                root.setOnLongClickListener {
+                    onItemClickListener.onItemLongClick(position)
+                    return@setOnLongClickListener true
+                }
+                if (ContactsFragment.isSelectionMood) {
+                    root.setOnClickListener {
+                        onItemClickListener.setUserSelected(position)
+                    }
+                } else {
+                    root.setOnClickListener {
+                        onItemClickListener.onItemClick(position, imageViewContact)
                     }
                 }
             }
@@ -45,15 +51,11 @@ class ContactsAdapter(
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
 
-        val onItemDelete = { position: Int -> deleteItem(position) }
+        val onItemDelete = { position: Int -> onItemChangedListener.removeItem(position) }
         ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(recyclerView)
     }
 
     override fun submitList(list: List<UserModel>?) {
         super.submitList(list?.let { ArrayList(it) })
-    }
-
-    private fun deleteItem(position: Int) {
-        onContactItemChangedListener.removeItem(position)
     }
 }

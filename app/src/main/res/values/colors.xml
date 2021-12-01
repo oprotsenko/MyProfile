@@ -8,6 +8,9 @@
     <color name="gray_4">#BDBDBD</color>
     <color name="background">#E7E7E7</color>
     <color name="google_yellow">#FBBC05</color>
+    <color name="google_red">#EB4335</color>
+    <color name="google_green">#34A853</color>
+    <color name="google_blue">#4285F4</color>
     <color name="orange">#FB5E06</color>
     <color name="error_color">#F93E3E</color>
     <color name="mtrl_textinput_default_box_stroke_color">#BDBDBD</color>

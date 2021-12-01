@@ -1,12 +1,15 @@
 package com.protsolo.app.utils
 
 import android.content.Context
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 const val PREFS_FILE_NAME = "myProfileSettings"
 
 
-class PreferenceStorage constructor(private val context: Context) {
+class PreferenceStorage : KoinComponent {
 
+    private val context: Context by inject()
 
     fun save(_key: String, _value: String) {
         val prefs = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)

@@ -20,13 +20,13 @@ class CustomButton @JvmOverloads constructor(
 
     private val colors: List<Int> =
         listOf(
-            Color.BLUE,
-            Color.RED,
+            getColor(resources, R.color.google_blue, context.theme),
+            getColor(resources, R.color.google_red, context.theme),
             getColor(resources, R.color.google_yellow, context.theme),
-            Color.BLUE,
-            Color.GREEN,
-            Color.RED
-        )
+            getColor(resources, R.color.google_blue, context.theme),
+            getColor(resources, R.color.google_green, context.theme),
+            getColor(resources, R.color.google_red, context.theme)
+            )
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 

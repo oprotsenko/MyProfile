@@ -10,16 +10,17 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
 import com.protsolo.R
 
-abstract class BaseFragment<T : ViewBinding> : Fragment() {
+abstract class BaseFragment<T : ViewBinding>(
+    private val inflater: (LayoutInflater, ViewGroup?, Boolean) -> T
+) : Fragment() {
 
-    protected lateinit var binding: T
-    protected abstract fun getViewBinding(): T
+    private var _binding: T? = null
+    protected val binding get() = _binding!!
 
     protected lateinit var navigator: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        init()
         initNavController()
         setAnimation()
     }
@@ -29,14 +30,11 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = this.inflater.invoke(inflater, container, false)
         return binding.root
     }
 
     open fun setAnimation() {}
-
-    private fun init() {
-        binding = getViewBinding()
-    }
 
     private fun initNavController() {
         val navHostFragment =

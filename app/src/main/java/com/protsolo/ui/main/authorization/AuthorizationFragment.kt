@@ -8,19 +8,15 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.protsolo.R
 import com.protsolo.app.architecture.BaseFragment
-import com.protsolo.app.utils.Validator
 import com.protsolo.app.utils.extensions.hideKeyboard
 import com.protsolo.databinding.FragmentAuthorizationBinding
 import com.protsolo.ui.main.authorization.viewPager.IViewPagerListener
 import com.protsolo.ui.main.authorization.viewPager.ViewPagerFragmentDirections
 
 class AuthorizationFragment :
-    BaseFragment<FragmentAuthorizationBinding>() {
+    BaseFragment<FragmentAuthorizationBinding>(FragmentAuthorizationBinding::inflate) {
 
     private val viewModel: AuthorizationViewModel by viewModels()
-
-    override fun getViewBinding(): FragmentAuthorizationBinding =
-        FragmentAuthorizationBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObservers()
@@ -52,11 +48,11 @@ class AuthorizationFragment :
         })
 
         viewModel.enteredEmail.observe(viewLifecycleOwner, {
-            viewModel.isValid()
+            viewModel.isValidEmail()
         })
 
         viewModel.enteredPass.observe(viewLifecycleOwner, {
-            viewModel.isValid()
+            viewModel.isValidPass()
         })
     }
 
@@ -78,36 +74,27 @@ class AuthorizationFragment :
                 viewModel.setPass(pass.toString())
             }
             buttonAuthRegister.setOnClickListener {
-                if (viewModel.isValidData.value == true) {
-                    buttonAuthRegister.isEnabled = false // to prevent double click
+                if (!isValidationErrors()) {
                     register()
-                } else {
-                    setErrors()
                 }
             }
         }
     }
 
-    private fun setErrors() {
+    private fun isValidationErrors(): Boolean {
         binding.apply {
-            if (!Validator.isValidMail(viewModel.enteredEmail.value)) {
-                textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
-                textInputLayoutAuthEmail.isErrorEnabled = true
-            } else {
-                textInputLayoutAuthEmail.isErrorEnabled = false
-            }
-            if (!Validator.isValidPassword(viewModel.enteredPass.value)) {
-                textInputLayoutAuthPassword.error =
+            textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
+            textInputLayoutAuthEmail.isErrorEnabled = viewModel.isValidEmail.value == false
+            textInputLayoutAuthPassword.error =
                     getString(R.string.authMessagePasswordError)
-                textInputLayoutAuthPassword.isErrorEnabled = true
-            } else {
-                textInputLayoutAuthPassword.isErrorEnabled = false
-            }
+            textInputLayoutAuthPassword.isErrorEnabled = viewModel.isValidPass.value == false
+            return textInputLayoutAuthEmail.isErrorEnabled || textInputLayoutAuthPassword.isErrorEnabled
         }
     }
 
     private fun register() {
         binding.apply {
+            buttonAuthRegister.isEnabled = false // to prevent double click
             viewModel.writeToPreferenceStorage(
                 editTextAuthEmailAddressField.text.toString(),
                 editTextAuthPasswordField.text.toString(),

@@ -8,14 +8,12 @@ import com.protsolo.R
 import com.protsolo.app.architecture.BaseFragment
 import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.databinding.FragmentProfileBinding
-import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
 
-class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
+class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>(
+    FragmentProfileBinding::inflate
+) {
 
     private val viewModel: ContactDetailViewViewModel by viewModels()
-
-    override fun getViewBinding(): FragmentProfileBinding =
-        FragmentProfileBinding.inflate(layoutInflater)
 
     override fun setAnimation() {
         sharedElementEnterTransition =
@@ -29,8 +27,10 @@ class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun setUpViews() {
+        viewModel.userData.value =
+            arguments?.let { ContactDetailViewFragmentArgs.fromBundle(it).userDetails }
         binding.apply {
-            imageViewMainProfilePhoto.transitionName = ContactsFragment.transitionNameImage
+            imageViewMainProfilePhoto.transitionName = viewModel.userData.value?.image
             textViewMainSettings.visibility = View.GONE
             buttonMainBack.visibility = View.VISIBLE
             textViewMainProfile.visibility = View.VISIBLE
@@ -38,8 +38,6 @@ class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>() {
             buttonMainEditProfile.visibility = View.INVISIBLE
             buttonMainViewContacts.text = resources.getText(R.string.contact_detail_view_message)
         }
-
-        viewModel.extractArguments(arguments)
     }
 
     private fun setObserver() {

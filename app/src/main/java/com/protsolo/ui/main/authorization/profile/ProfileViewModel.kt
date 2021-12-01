@@ -1,13 +1,10 @@
 package com.protsolo.ui.main.authorization.profile
 
-import androidx.lifecycle.ViewModel
-import com.protsolo.app.App
+import com.protsolo.app.architecture.BaseViewModel
 import com.protsolo.app.utils.Constants
 import com.protsolo.app.utils.SingleLiveEvent
 
-class ProfileViewModel : ViewModel() {
-
-    private val preferenceStorage = App.preferencesStorage
+class ProfileViewModel : BaseViewModel() {
 
     val userName by lazy { SingleLiveEvent<String>() }
 

@@ -1,18 +1,26 @@
 package com.protsolo.ui.main.authorization.profile.contacts
 
-import androidx.lifecycle.ViewModel
+import com.protsolo.app.architecture.BaseViewModel
 import com.protsolo.app.utils.SingleLiveEvent
 import com.protsolo.data.ContactsDataFake
 import com.protsolo.itemModel.UserModel
+import org.koin.core.component.KoinComponent
 
-class ContactsViewModel : ViewModel() {
+
+class ContactsViewModel : BaseViewModel(), KoinComponent {
 
     val contactsData by lazy { SingleLiveEvent<MutableList<UserModel>>() }
     val isSelectionMood by lazy { SingleLiveEvent<Boolean>() }
+    val selectedContacts by lazy { SingleLiveEvent<MutableList<Pair<Int, UserModel>>>() }
 
     init {
         contactsData.value = ContactsDataFake.loadContacts()
-        isSelectionMood.value = ContactsFragment.isSelectionMood
+        isSelectionMood.value = false
+        selectedContacts.value = mutableListOf()
+    }
+
+    fun setSelectionMood(selectionMood: Boolean) {
+        isSelectionMood.value = selectionMood
     }
 
     fun removeItem(position: Int) {
@@ -27,31 +35,38 @@ class ContactsViewModel : ViewModel() {
 
     fun setUserSelected(position: Int) {
         user = contactsData.value?.get(position)
-        if (selectedContacts.contains(position to user)) {
-            selectedContacts.remove(position to user)
+        if (selectedContacts.value?.contains(position to user) == true) {
+            selectedContacts.value?.remove(position to user)
+            if (selectedContacts.value?.isEmpty() == true) {
+                setSelectionMood(false)
+            }
         } else {
-            user?.let { selectedContacts.add(position to it) }
+            user?.let { selectedContacts.value?.add(position to it) }
         }
         contactsData.value = contactsData.value
     }
 
     fun deleteSelectedContacts() {
-        for (i in selectedContacts.indices) {
-            contactsData.value?.remove(selectedContacts[i].second)
+        for (i in selectedContacts.value?.indices!!) {
+            contactsData.value?.remove(selectedContacts.value?.get(i)?.second)
         }
         contactsData.value = contactsData.value
     }
 
-    fun addRemovedContactsList() {
-        selectedContacts.sortWith(compareBy { it.first })
-        for (i in selectedContacts.indices) {
-            contactsData.value?.add(selectedContacts[i].first, selectedContacts[i].second)
+    fun undoMultiRemove() {
+        selectedContacts.value?.sortWith(compareBy { it.first })
+        for (i in selectedContacts.value?.indices!!) {
+            selectedContacts.value?.get(i)?.first?.let { position ->
+                selectedContacts.value?.get(i)?.second?.let { user ->
+                    contactsData.value?.add(position, user)
+                }
+            }
         }
         contactsData.value = contactsData.value
     }
 
     companion object {
         var user: UserModel? = null
-        val selectedContacts: MutableList<Pair<Int, UserModel>> = mutableListOf()
+        var selectedContactsCopy: MutableList<Pair<Int, UserModel>> = mutableListOf()
     }
 }

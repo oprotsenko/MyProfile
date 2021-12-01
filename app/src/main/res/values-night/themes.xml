@@ -4,7 +4,6 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gray_text</item>
         <item name="android:textColorPrimary">@color/white</item>
-
         <item name="android:windowBackground">@color/blue</item>
         <item name="android:textColorSecondary">@color/gray_4</item>
         <item name="errorTextColor">@color/design_default_color_error</item>

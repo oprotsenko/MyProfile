@@ -2,6 +2,7 @@ package com.protsolo.app.utils
 
 object Constants {
 
+    const val PHONEBOOK_CONTACTS = false
     const val USER_BUNDLE_KEY = "USER"
 
     // Preferences keys
@@ -26,4 +27,5 @@ object Constants {
     // Add contact dialog fragment
     const val REQUEST_CODE = 1
     const val READ_FILE_TYPE = "image/*"
+    const val PERMISSION_NEEDED = "The app needs your permission, open phone settings to allow it."
 }

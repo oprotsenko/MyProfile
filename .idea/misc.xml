@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/miste/.gradle/caches/transforms-3/995f6ea890e810ab23f52af4590577c9/transformed/appcompat-1.4.0/res/drawable/abc_btn_default_mtrl_shape.xml" value="0.2703125" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable-anydpi/ic_add_profile_photo.xml" value="0.2263888888888889" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/drawable/all_cursor_white.xml" value="0.2703125" />
@@ -70,6 +71,7 @@
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_contacts_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_main_page.xml" value="0.1" />
+        <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/fragment_view_pager.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/item_contact.xml" value="0.4" />
         <entry key="..\:/Users/miste/AndroidStudioProjects/MyProfile/app/src/main/res/layout/item_contact_selection_mood.xml" value="0.25416666666666665" />
