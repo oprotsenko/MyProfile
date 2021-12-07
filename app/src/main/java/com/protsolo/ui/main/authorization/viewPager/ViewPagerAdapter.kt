@@ -9,8 +9,6 @@ class ViewPagerAdapter(val fragment: Fragment) :
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
-        AuthorizationFragment.onPagerClickListener = fragment as IViewPagerListener
-        AuthorizationFragment.isLoginPage = position == 0
-        return AuthorizationFragment()
+        return AuthorizationFragment.createFragment(position == 0)
     }
 }

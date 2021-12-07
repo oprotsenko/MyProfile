@@ -7,11 +7,12 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.protsolo.app.architecture.BaseFragment
+import com.protsolo.app.base.BaseFragment
+import com.protsolo.app.item.UserModel
 import com.protsolo.app.utils.Constants
+import com.protsolo.app.utils.SelectionItemView
 import com.protsolo.app.utils.extensions.dpToPx
 import com.protsolo.databinding.FragmentContactsBinding
-import com.protsolo.itemModel.UserModel
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.ContactsAdapter
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.IItemChangedListener
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.IItemClickListener
@@ -21,8 +22,9 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     IItemClickListener, IItemChangedListener {
 
     private val viewModel: ContactsViewModel by viewModels()
+    private val selectionView by lazy { SelectionItemView() }
     private val adapterContacts: ContactsAdapter by lazy {
-        ContactsAdapter(onItemClickListener = this, onItemChangedListener = this)
+        ContactsAdapter(onItemClickListener = this, onItemChangedListener = this, selectionView)
     }
 
     private var positionView = 0
@@ -98,7 +100,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     override fun onItemLongClick(position: Int) {
         viewModel.selectedContacts.value?.clear()
-        if (!isSelectionMood) {
+        if (!selectionView.isSelectionItemView) {
             viewModel.setSelectionMood(true)
         }
         setUserSelected(position)
@@ -166,7 +168,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
         })
 
         viewModel.isSelectionMood.observe(viewLifecycleOwner, {
-            isSelectionMood = it
+            selectionView.isSelectionItemView = it
             adapterContacts.notifyDataSetChanged()
             binding.apply {
                 floatingButtonContactsUp.visibility = if (it) View.GONE else View.VISIBLE
@@ -183,9 +185,5 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
             ?.observe(viewLifecycleOwner) {
                 addItem(it, 0)
             }
-    }
-
-    companion object {
-        var isSelectionMood = false
     }
 }

@@ -11,6 +11,7 @@ object Constants {
     const val PREFERENCE_AUTOLOGIN = "autologin"
 
     // Authorization constants
+    const val IS_LOGIN_PAGE = "is login page"
     const val PASSWORD_PATTERN = "[a-z0-9?:!#$%&]{8,}"
 
     // ContactsAdapter
@@ -28,4 +29,8 @@ object Constants {
     const val REQUEST_CODE = 1
     const val READ_FILE_TYPE = "image/*"
     const val PERMISSION_NEEDED = "The app needs your permission, open phone settings to allow it."
+
+    // ViewPager
+    const val SIGN_IN = "Sign in"
+    const val SIGN_UP = "Sign up"
 }

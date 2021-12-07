@@ -5,7 +5,7 @@ import android.transition.TransitionInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.protsolo.R
-import com.protsolo.app.architecture.BaseFragment
+import com.protsolo.app.base.BaseFragment
 import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.databinding.FragmentProfileBinding
 

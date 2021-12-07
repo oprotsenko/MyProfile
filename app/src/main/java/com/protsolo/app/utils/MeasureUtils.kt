@@ -2,7 +2,7 @@ package com.protsolo.app.utils
 
 import android.view.View
 
-object MeasureUtils {
+class MeasureUtils {
 
     fun resolveDefaultSize(spec: Int, defSize: Int): Int {
         return when (View.MeasureSpec.getMode(spec)) {

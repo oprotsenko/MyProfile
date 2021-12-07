@@ -1,6 +1,6 @@
 package com.protsolo.ui.main.authorization.profile.contacts.adapters
 
-import com.protsolo.itemModel.UserModel
+import com.protsolo.app.item.UserModel
 
 interface IItemChangedListener {
     fun removeItem(position: Int)

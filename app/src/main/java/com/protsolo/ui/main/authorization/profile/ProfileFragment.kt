@@ -7,16 +7,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import com.protsolo.app.architecture.BaseFragment
+import com.protsolo.app.base.BaseFragment
+import com.protsolo.app.data.ContactsDataFake
 import com.protsolo.app.utils.Constants
 import com.protsolo.app.utils.extensions.loadCircleImage
-import com.protsolo.data.ContactsDataFake
 import com.protsolo.databinding.FragmentProfileBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
 
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModel()
     private val permissions = arrayOf(Manifest.permission.READ_CONTACTS)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +37,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
     private fun setListeners() {
         binding.buttonMainViewContacts.setOnClickListener {
-            checkPermission()
+            if (Constants.PHONEBOOK_CONTACTS) {
+                checkPermission()
+            } else {
+                navigator.navigate(ProfileFragmentDirections.actionProfileFragmentNavToContactsFragmentNav())
+            }
         }
     }
 
@@ -58,7 +62,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 checkPermission()
             }
             else -> {
-                Toast.makeText(requireContext(), Constants.PERMISSION_NEEDED, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), Constants.PERMISSION_NEEDED, Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }

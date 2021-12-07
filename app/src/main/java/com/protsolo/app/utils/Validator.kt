@@ -2,11 +2,13 @@ package com.protsolo.app.utils
 
 import android.util.Patterns
 
-object Validator {
+class Validator {
 
     fun isValidPassword(text: String?) =
-        Regex(Constants.PASSWORD_PATTERN).matches(text.toString())
+        if (text.isNullOrEmpty()) false
+        else Regex(Constants.PASSWORD_PATTERN).matches(text.toString())
 
     fun isValidEmail(text: String?) =
-        Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
+        if (text.isNullOrEmpty()) false
+        else Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
 }

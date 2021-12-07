@@ -7,7 +7,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.VectorDrawable
 import androidx.core.content.ContextCompat
 
-object CustomViewUtils {
+class CustomViewUtils {
 
     fun getVectorBitmap(context: Context, drawableId: Int): Bitmap {
         var bitmap: Bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8)

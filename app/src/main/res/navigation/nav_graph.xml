@@ -67,7 +67,7 @@
         tools:layout="@layout/fragment_profile" >
         <argument
             android:name="userDetails"
-            app:argType="com.protsolo.itemModel.UserModel" />
+            app:argType="com.protsolo.app.item.UserModel" />
     </fragment>
 
     <activity

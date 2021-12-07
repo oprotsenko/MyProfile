@@ -1,4 +1,4 @@
-package com.protsolo.data
+package com.protsolo.app.data
 
 import android.content.ContentResolver
 import android.content.Context
@@ -6,7 +6,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.ContactsContract
 import com.protsolo.app.utils.Constants
-import com.protsolo.itemModel.UserModel
+import com.protsolo.app.item.UserModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

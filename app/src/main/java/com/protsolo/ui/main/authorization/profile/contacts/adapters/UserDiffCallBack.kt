@@ -1,7 +1,7 @@
 package com.protsolo.ui.main.authorization.profile.contacts.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.protsolo.itemModel.UserModel
+import com.protsolo.app.item.UserModel
 import com.protsolo.ui.main.authorization.profile.contacts.ContactsViewModel
 
 class UserDiffCallBack : DiffUtil.ItemCallback<UserModel>() {

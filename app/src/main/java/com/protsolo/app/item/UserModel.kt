@@ -1,4 +1,4 @@
-package com.protsolo.itemModel
+package com.protsolo.app.item
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -7,41 +7,42 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.databinding.ItemContactBinding
-import com.protsolo.itemModel.UserModel
-import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
+import com.protsolo.app.item.UserModel
+import com.protsolo.app.utils.SelectionItemView
 
 
 class ContactsAdapter(
     private val onItemClickListener: IItemClickListener,
-    private val onItemChangedListener: IItemChangedListener
+    private val onItemChangedListener: IItemChangedListener,
+    private val selectionView: SelectionItemView
 ) :
     ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_contact, parent, false)
-        return ContactsViewHolder(ItemContactBinding.bind(view))
+        return ContactsViewHolder(ItemContactBinding.bind(view), selectionView)
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         with(holder) {
-            bind(getItem(position))
+            bind(getItem(bindingAdapterPosition))
 
             binding.apply {
                 imageButtonDeleteContact.setOnClickListener {
-                    onItemChangedListener.removeItem(position)
+                    onItemChangedListener.removeItem(bindingAdapterPosition)
                 }
                 root.setOnLongClickListener {
-                    onItemClickListener.onItemLongClick(position)
+                    onItemClickListener.onItemLongClick(bindingAdapterPosition)
                     return@setOnLongClickListener true
                 }
-                if (ContactsFragment.isSelectionMood) {
+                if (selectionView.isSelectionItemView) {
                     root.setOnClickListener {
-                        onItemClickListener.setUserSelected(position)
+                        onItemClickListener.setUserSelected(bindingAdapterPosition)
                     }
                 } else {
                     root.setOnClickListener {
-                        onItemClickListener.onItemClick(position, imageViewContact)
+                        onItemClickListener.onItemClick(bindingAdapterPosition, imageViewContact)
                     }
                 }
             }

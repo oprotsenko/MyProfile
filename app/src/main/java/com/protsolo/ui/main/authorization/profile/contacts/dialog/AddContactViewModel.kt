@@ -1,8 +1,8 @@
 package com.protsolo.ui.main.authorization.profile.contacts.dialog
 
 import androidx.lifecycle.MutableLiveData
-import com.protsolo.app.architecture.BaseViewModel
-import com.protsolo.itemModel.UserModel
+import com.protsolo.app.base.BaseViewModel
+import com.protsolo.app.item.UserModel
 
 class AddContactViewModel : BaseViewModel() {
 

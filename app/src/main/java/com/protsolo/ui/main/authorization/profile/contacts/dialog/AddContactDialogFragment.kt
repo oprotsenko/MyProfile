@@ -18,20 +18,21 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.protsolo.R
 import com.protsolo.app.utils.Constants
-import com.protsolo.app.utils.extensions.IntentUtils.isExistIntent
 import com.protsolo.app.utils.extensions.hideKeyboard
 import com.protsolo.app.utils.extensions.loadCircleImage
-import com.protsolo.data.ContactsDataFake
+import com.protsolo.app.data.ContactsDataFake
 import com.protsolo.databinding.DialogFragmentAddContactBinding
-import com.protsolo.itemModel.UserModel
+import com.protsolo.app.item.UserModel
+import com.protsolo.app.utils.IntentUtils
 
 
 class AddContactDialogFragment : DialogFragment() {
 
     private val viewModelAddContact: AddContactViewModel by viewModels()
+    private val intentUtils by lazy { IntentUtils() }
     private val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        if (isExistIntent(context, uri)) {
+        if (intentUtils.isExistIntent(context, uri)) {
             loadedImage = uri.toString()
         }
         binding.imageViewAddContactFragmentContactPhoto.loadCircleImage(loadedImage)

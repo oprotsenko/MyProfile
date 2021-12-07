@@ -1,4 +1,4 @@
-package com.protsolo.app.architecture
+package com.protsolo.app.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -31,6 +31,7 @@
         <item name="android:ems">10</item>
         <item name="boxStrokeErrorColor">?android:attr/textColorHint</item>
         <item name="errorTextColor">?attr/errorTextColor</item>
+        <item name="android:gravity">start</item>
     </style>
 
     <style name="EditTextFieldStyle" parent="TextStyle">

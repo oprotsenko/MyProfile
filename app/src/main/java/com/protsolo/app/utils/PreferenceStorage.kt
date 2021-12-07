@@ -7,9 +7,7 @@ import org.koin.core.component.inject
 const val PREFS_FILE_NAME = "myProfileSettings"
 
 
-class PreferenceStorage : KoinComponent {
-
-    private val context: Context by inject()
+class PreferenceStorage(private val context: Context) {
 
     fun save(_key: String, _value: String) {
         val prefs = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)

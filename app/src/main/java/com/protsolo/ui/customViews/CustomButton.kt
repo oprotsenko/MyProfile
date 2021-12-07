@@ -18,6 +18,8 @@ class CustomButton @JvmOverloads constructor(
     defStyleAttr: Int = R.attr.customButtonStyle
 ) : View(context, attrs, defStyleAttr) {
 
+    private val measureUtils by lazy { MeasureUtils() }
+    private val customViewUtils by lazy { CustomViewUtils() }
     private val colors: List<Int> =
         listOf(
             getColor(resources, R.color.google_blue, context.theme),
@@ -60,7 +62,7 @@ class CustomButton @JvmOverloads constructor(
         text = getText(arr)
         spaceBetween = arr.getDimension(R.styleable.CustomButton_spaceBetween, 0f)
         iconImage =
-            CustomViewUtils.getVectorBitmap(
+            customViewUtils.getVectorBitmap(
                 context,
                 arr.getResourceId(R.styleable.CustomButton_srcCompat, 0)
             )
@@ -102,8 +104,8 @@ class CustomButton @JvmOverloads constructor(
         val defHeight =
             iconImage.height.coerceAtLeast(textSize.toInt()) + paddingBottom + paddingTop
 
-        val initWidth = MeasureUtils.resolveDefaultSize(widthMeasureSpec, defWidth)
-        val initHeight = MeasureUtils.resolveDefaultSize(heightMeasureSpec, defHeight)
+        val initWidth = measureUtils.resolveDefaultSize(widthMeasureSpec, defWidth)
+        val initHeight = measureUtils.resolveDefaultSize(heightMeasureSpec, defHeight)
         setMeasuredDimension(initWidth, initHeight)
     }
 

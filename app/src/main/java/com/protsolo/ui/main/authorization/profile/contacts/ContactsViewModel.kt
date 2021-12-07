@@ -1,17 +1,17 @@
 package com.protsolo.ui.main.authorization.profile.contacts
 
-import com.protsolo.app.architecture.BaseViewModel
-import com.protsolo.app.utils.SingleLiveEvent
-import com.protsolo.data.ContactsDataFake
-import com.protsolo.itemModel.UserModel
+import androidx.lifecycle.MutableLiveData
+import com.protsolo.app.base.BaseViewModel
+import com.protsolo.app.data.ContactsDataFake
+import com.protsolo.app.item.UserModel
 import org.koin.core.component.KoinComponent
 
 
 class ContactsViewModel : BaseViewModel(), KoinComponent {
 
-    val contactsData by lazy { SingleLiveEvent<MutableList<UserModel>>() }
-    val isSelectionMood by lazy { SingleLiveEvent<Boolean>() }
-    val selectedContacts by lazy { SingleLiveEvent<MutableList<Pair<Int, UserModel>>>() }
+    val contactsData by lazy { MutableLiveData<MutableList<UserModel>>() }
+    val isSelectionMood by lazy { MutableLiveData<Boolean>() }
+    val selectedContacts by lazy { MutableLiveData<MutableList<Pair<Int, UserModel>>>() }
 
     init {
         contactsData.value = ContactsDataFake.loadContacts()
