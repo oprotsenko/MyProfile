@@ -4,19 +4,21 @@ import androidx.lifecycle.MutableLiveData
 import com.protsolo.app.base.BaseViewModel
 import com.protsolo.app.data.ContactsDataFake
 import com.protsolo.app.item.UserModel
-import org.koin.core.component.KoinComponent
+import com.protsolo.app.item.WrapperUserModel
 
 
-class ContactsViewModel : BaseViewModel(), KoinComponent {
+class ContactsViewModel : BaseViewModel() {
 
-    val contactsData by lazy { MutableLiveData<MutableList<UserModel>>() }
+    val contactsData by lazy { MutableLiveData<List<WrapperUserModel>>() }
     val isSelectionMood by lazy { MutableLiveData<Boolean>() }
-    val selectedContacts by lazy { MutableLiveData<MutableList<Pair<Int, UserModel>>>() }
+    val selectedContacts: MutableList<Pair<Int, UserModel>> = mutableListOf()
 
     init {
-        contactsData.value = ContactsDataFake.loadContacts()
+        val list = ContactsDataFake.loadContacts()
+        contactsData.value = list.map { user ->
+            WrapperUserModel(user)
+        }
         isSelectionMood.value = false
-        selectedContacts.value = mutableListOf()
     }
 
     fun setSelectionMood(selectionMood: Boolean) {
@@ -24,49 +26,47 @@ class ContactsViewModel : BaseViewModel(), KoinComponent {
     }
 
     fun removeItem(position: Int) {
-        contactsData.value?.removeAt(position)
-        contactsData.value = contactsData.value
+        val list = contactsData.value?.toMutableList()
+        list?.removeAt(position)
+        contactsData.value = list
     }
 
     fun addItem(position: Int, userModel: UserModel) {
-        contactsData.value?.add(position, userModel)
-        contactsData.value = contactsData.value
+        val list = contactsData.value?.toMutableList()
+        list?.add(position, WrapperUserModel(userModel))
+        contactsData.value = list
     }
 
     fun setUserSelected(position: Int) {
-        user = contactsData.value?.get(position)
-        if (selectedContacts.value?.contains(position to user) == true) {
-            selectedContacts.value?.remove(position to user)
-            if (selectedContacts.value?.isEmpty() == true) {
+        val list = contactsData.value?.toMutableList()
+        val user = contactsData.value?.get(position)?.user
+        if (contactsData.value?.get(position)?.isSelected == true) {
+            list?.set(position, list[position].copy(isSelected = false))
+            selectedContacts.remove(position to user)
+            if (selectedContacts.isEmpty()) {
                 setSelectionMood(false)
             }
         } else {
-            user?.let { selectedContacts.value?.add(position to it) }
+            list?.set(position, list[position].copy(isSelected = true))
+            user?.let { selectedContacts.add(position to it) }
         }
-        contactsData.value = contactsData.value
+        contactsData.value = list
     }
 
     fun deleteSelectedContacts() {
-        for (i in selectedContacts.value?.indices!!) {
-            contactsData.value?.remove(selectedContacts.value?.get(i)?.second)
+        val list = contactsData.value?.toMutableList()
+        list?.removeIf {
+            it.isSelected
         }
-        contactsData.value = contactsData.value
+        contactsData.value = list
     }
 
     fun undoMultiRemove() {
-        selectedContacts.value?.sortWith(compareBy { it.first })
-        for (i in selectedContacts.value?.indices!!) {
-            selectedContacts.value?.get(i)?.first?.let { position ->
-                selectedContacts.value?.get(i)?.second?.let { user ->
-                    contactsData.value?.add(position, user)
-                }
-            }
+        val list = contactsData.value?.toMutableList()
+        selectedContacts.sortWith(compareBy { it.first })
+        for (i in selectedContacts.indices) {
+            list?.add(selectedContacts[i].first, WrapperUserModel(selectedContacts[i].second))
         }
-        contactsData.value = contactsData.value
-    }
-
-    companion object {
-        var user: UserModel? = null
-        var selectedContactsCopy: MutableList<Pair<Int, UserModel>> = mutableListOf()
+        contactsData.value = list
     }
 }

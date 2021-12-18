@@ -1,21 +1,15 @@
 package com.protsolo.ui.main.authorization.profile.contacts.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.protsolo.app.item.UserModel
-import com.protsolo.ui.main.authorization.profile.contacts.ContactsViewModel
+import com.protsolo.app.item.WrapperUserModel
 
-class UserDiffCallBack : DiffUtil.ItemCallback<UserModel>() {
+class UserDiffCallBack : DiffUtil.ItemCallback<WrapperUserModel>() {
 
-    override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
-        return oldItem.userId == newItem.userId
+    override fun areItemsTheSame(oldItem: WrapperUserModel, newItem: WrapperUserModel): Boolean {
+        return oldItem.user.userId == newItem.user.userId
     }
 
-    override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
-        return if (ContactsViewModel.user != null && newItem == ContactsViewModel.user) {
-            ContactsViewModel.user = null
-            false
-        } else {
-            oldItem == newItem
-        }
+    override fun areContentsTheSame(oldItem: WrapperUserModel, newItem: WrapperUserModel): Boolean {
+        return oldItem == newItem
     }
 }

@@ -6,9 +6,14 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserModel(
     val userId: Long,
-    var image: String,
-    var name: String,
-    var career: String,
-    var address: String,
-    var phone: String,
+    val image: String,
+    val name: String,
+    val career: String,
+    val address: String,
+    val phone: String,
 ) : Parcelable
+
+data class WrapperUserModel(
+    val user: UserModel,
+    var isSelected: Boolean = false
+)

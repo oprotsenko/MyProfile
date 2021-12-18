@@ -10,7 +10,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.protsolo.app.base.BaseFragment
 import com.protsolo.app.item.UserModel
 import com.protsolo.app.utils.Constants
-import com.protsolo.app.utils.SelectionItemView
 import com.protsolo.app.utils.extensions.dpToPx
 import com.protsolo.databinding.FragmentContactsBinding
 import com.protsolo.ui.main.authorization.profile.contacts.adapters.ContactsAdapter
@@ -22,9 +21,8 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     IItemClickListener, IItemChangedListener {
 
     private val viewModel: ContactsViewModel by viewModels()
-    private val selectionView by lazy { SelectionItemView() }
     private val adapterContacts: ContactsAdapter by lazy {
-        ContactsAdapter(onItemClickListener = this, onItemChangedListener = this, selectionView)
+        ContactsAdapter(onItemClickListener = this, onItemChangedListener = this)
     }
 
     private var positionView = 0
@@ -56,7 +54,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
                 viewModel.deleteSelectedContacts()
 
                 Snackbar.make(
-                    binding.root, "${viewModel.selectedContacts.value?.size}" +
+                    binding.root, "${viewModel.selectedContacts.size}" +
                             Constants.SNACK_BAR_SELECTED_CONTACTS_REMOVED_MESSAGE,
                     Snackbar.LENGTH_LONG
                 ).setAction(Constants.UNDO) {
@@ -73,11 +71,11 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
         viewModel.removeItem(position)
 
         Snackbar.make(
-            binding.root, "${element?.name}" + Constants.SNACK_BAR_ONE_CONTACT_REMOVED_MESSAGE,
+            binding.root, "${element?.user?.name}" + Constants.SNACK_BAR_ONE_CONTACT_REMOVED_MESSAGE,
             Snackbar.LENGTH_LONG
         ).setAction(Constants.UNDO) {
             if (element != null) {
-                addItem(element, position)
+                addItem(element.user, position)
             }
         }.show()
     }
@@ -93,14 +91,14 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
         user?.let {
             navigator.navigate(
                 ContactsFragmentDirections
-                    .actionContactsFragmentNavToContactDetailViewFragmentNav(it), extras
+                    .actionContactsFragmentNavToContactDetailViewFragmentNav(it.user), extras
             )
         }
     }
 
     override fun onItemLongClick(position: Int) {
-        viewModel.selectedContacts.value?.clear()
-        if (!selectionView.isSelectionItemView) {
+        viewModel.selectedContacts.clear()
+        if (!selectionView) {
             viewModel.setSelectionMood(true)
         }
         setUserSelected(position)
@@ -158,32 +156,34 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     }
 
     private fun setObservers() {
-        viewModel.contactsData.observe(viewLifecycleOwner, {
-            positionView =
-                (binding.recyclerViewContacts.layoutManager as LinearLayoutManager)
-                    .findFirstVisibleItemPosition()
-            it?.let {
-                adapterContacts.submitList(it)
-            }
-        })
+        viewModel.apply {
+            contactsData.observe(viewLifecycleOwner, {
+                positionView =
+                    (binding.recyclerViewContacts.layoutManager as LinearLayoutManager)
+                        .findFirstVisibleItemPosition()
+                it?.let {
+                    adapterContacts.submitList(it)
+                }
+            })
 
-        viewModel.isSelectionMood.observe(viewLifecycleOwner, {
-            selectionView.isSelectionItemView = it
-            adapterContacts.notifyDataSetChanged()
-            binding.apply {
-                floatingButtonContactsUp.visibility = if (it) View.GONE else View.VISIBLE
-                floatingButtonContactsDelete.visibility = if (it) View.VISIBLE else View.GONE
-            }
-        })
-
-        viewModel.selectedContacts.observe(viewLifecycleOwner, {
-            ContactsViewModel.selectedContactsCopy = it
-        })
+            isSelectionMood.observe(viewLifecycleOwner, {
+                selectionView = it
+                adapterContacts.notifyDataSetChanged()
+                binding.apply {
+                    floatingButtonContactsUp.visibility = if (it) View.GONE else View.VISIBLE
+                    floatingButtonContactsDelete.visibility = if (it) View.VISIBLE else View.GONE
+                }
+            })
+        }
 
         navigator.currentBackStackEntry?.savedStateHandle
             ?.getLiveData<UserModel>(Constants.USER_BUNDLE_KEY)
             ?.observe(viewLifecycleOwner) {
                 addItem(it, 0)
             }
+    }
+
+    companion object {
+        var selectionView = false
     }
 }

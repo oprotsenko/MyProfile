@@ -7,67 +7,48 @@ import com.protsolo.app.utils.PreferenceStorage
 import com.protsolo.app.utils.SingleLiveEvent
 import com.protsolo.app.utils.Validator
 
-class AuthorizationViewModel(private val preferenceStorage: PreferenceStorage) : BaseViewModel() {
+class AuthorizationViewModel(
+    private val preferenceStorage: PreferenceStorage,
+    private val validator: Validator
+) : BaseViewModel() {
 
-    val isLoginPage by lazy { MutableLiveData<Boolean>() }
-    val isAutologin by lazy { SingleLiveEvent<Boolean>() }
-    val enteredEmail by lazy { SingleLiveEvent<String>() }
-    val enteredPass by lazy { SingleLiveEvent<String>() }
-    val isValidEmail by lazy { SingleLiveEvent<Boolean>() }
-    val isValidPass by lazy { SingleLiveEvent<Boolean>() }
-    val isValidData by lazy { SingleLiveEvent<Boolean>() }
+    val autologinState by lazy { SingleLiveEvent<Boolean>() }
+    val registerPermissionState by lazy { SingleLiveEvent<Boolean>() }
+    val emailValidationState by lazy { MutableLiveData<Boolean>() }
+    val passValidationState by lazy { MutableLiveData<Boolean>() }
 
-    private val emailFromPref by lazy { SingleLiveEvent<String>() }
-    private val validator by lazy { Validator() }
+    var setUpLoginPageView = true
 
     init {
         isAutologin()
-        getEmailFromPref()
     }
 
     private fun isAutologin() {
         if (preferenceStorage.getBoolean(Constants.PREFERENCE_AUTOLOGIN)) {
-            isAutologin.value = true
+            autologinState.value = true
         }
     }
 
-    private fun getEmailFromPref() {
-        emailFromPref.value = preferenceStorage.getString(Constants.PREFERENCE_EMAIL_KEY)
-    }
-
     fun isLoginPage(isLoginPage: Boolean) {
-        this.isLoginPage.value = isLoginPage
+        setUpLoginPageView = isLoginPage
     }
 
-    fun setEnteredEmail(email: String) {
-        enteredEmail.value = email
+    fun register(email: String, pass: String) {
+        emailValidationState.value = validator.isValidEmail(email)
+        passValidationState.value = validator.isValidPassword(pass)
+        registerPermissionState.value =
+            (emailValidationState.value == true && passValidationState.value == true)
     }
 
-    fun setEnteredPass(pass: String) {
-        enteredPass.value = pass
-    }
-
-    fun isValidEmail() {
-        isValidEmail.value = validator.isValidEmail(enteredEmail.value)
-    }
-
-    fun isValidPass() {
-        isValidPass.value = validator.isValidPassword(enteredPass.value)
-    }
-
-    fun isValidData() {
-        isValidData.value = (isValidEmail.value == true && isValidPass.value == true)
-    }
-
-    fun writeToPreferenceStorage(isAutologin: Boolean) {
+    fun writeToPreferenceStorage(email: String, pass: String, isAutologin: Boolean) {
         with(Constants) {
             preferenceStorage.save(
                 PREFERENCE_EMAIL_KEY,
-                enteredEmail.value.toString()
+                email
             )
             preferenceStorage.save(
                 PREFERENCE_PASSWORD_KEY,
-                enteredPass.value.toString()
+                pass
             )
             preferenceStorage.save(
                 PREFERENCE_AUTOLOGIN, isAutologin

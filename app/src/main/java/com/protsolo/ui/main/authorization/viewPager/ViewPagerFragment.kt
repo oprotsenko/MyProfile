@@ -24,11 +24,9 @@ class ViewPagerFragment :
         }
     }
 
-    fun onClick() {
+    fun onPagerItemChange() {
         with(binding.viewPager) {
-            currentItem =
-                if (currentItem == adapter?.let { it.itemCount - 1 }) 0
-                else currentItem + 1
+            currentItem = if (currentItem == 1) 0 else 1
         }
     }
 

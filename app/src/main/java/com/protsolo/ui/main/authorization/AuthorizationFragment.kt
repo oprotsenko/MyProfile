@@ -18,35 +18,39 @@ class AuthorizationFragment :
 
     private val viewModel: AuthorizationViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.isLoginPage(arguments?.getBoolean(Constants.IS_LOGIN_PAGE) ?: true)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.isLoginPage(arguments?.getBoolean(Constants.IS_LOGIN_PAGE) ?: true)
+        if (viewModel.setUpLoginPageView) {
+            setUpLoginPageView()
+        }
         setObservers()
         setListeners()
     }
 
     private fun setObservers() {
         viewModel.apply {
-            isAutologin.observe(viewLifecycleOwner, {
+            autologinState.observe(viewLifecycleOwner, {
                 navigator.navigate(
                     ViewPagerFragmentDirections.actionViewPagerFragmentNavToProfileFragmentNav()
                 )
             })
 
-            isLoginPage.observe(viewLifecycleOwner, { isLoginPage ->
-                if (isLoginPage) {
-                    setUpViews()
+            registerPermissionState.observe(viewLifecycleOwner, { permissionIsAllowed ->
+                if (permissionIsAllowed) {
+                    binding.apply {
+                        writeToPreferenceStorage(
+                            editTextAuthEmailAddressField.text.toString(),
+                            editTextAuthPasswordField.text.toString(),
+                            checkBoxAuthRememberMe.isChecked
+                        )
+                    }
+                    navigator.navigate(
+                        ViewPagerFragmentDirections.actionViewPagerFragmentNavToProfileFragmentNav()
+                    )
                 }
             })
 
-            enteredEmail.observe(viewLifecycleOwner, { isValidEmail() })
-
-            enteredPass.observe(viewLifecycleOwner, { isValidPass() })
-
-            isValidEmail.observe(viewLifecycleOwner, { isCorrectEmail ->
+            emailValidationState.observe(viewLifecycleOwner, { isCorrectEmail ->
                 binding.apply {
                     if (!isCorrectEmail) {
                         textInputLayoutAuthEmail.error = getString(R.string.authMessageEmailError)
@@ -56,7 +60,7 @@ class AuthorizationFragment :
                 }
             })
 
-            isValidPass.observe(viewLifecycleOwner, { isCorrectPass ->
+            passValidationState.observe(viewLifecycleOwner, { isCorrectPass ->
                 binding.apply {
                     if (!isCorrectPass) {
                         textInputLayoutAuthPassword.error =
@@ -65,21 +69,11 @@ class AuthorizationFragment :
                         textInputLayoutAuthPassword.isErrorEnabled = false
                     }
                 }
-                isValidData()
-            })
-
-            isValidData.observe(viewLifecycleOwner, { isValidData ->
-                if (isValidData) {
-                    writeToPreferenceStorage(binding.checkBoxAuthRememberMe.isChecked)
-                    navigator.navigate(
-                        ViewPagerFragmentDirections.actionViewPagerFragmentNavToProfileFragmentNav()
-                    )
-                }
             })
         }
     }
 
-    private fun setUpViews() {
+    private fun setUpLoginPageView() {
         binding.apply {
             textViewAuthTitle.text = resources.getText(R.string.login_hello)
             textViewAuthFillOutDescription.text = resources.getText(R.string.login_description)
@@ -103,11 +97,15 @@ class AuthorizationFragment :
             }
             textViewAuthSignInUp.setOnClickListener {
                 val onPagerClickListener = parentFragment as ViewPagerFragment
-                onPagerClickListener.onClick()
+                onPagerClickListener.onPagerItemChange()
             }
             buttonAuthRegister.setOnClickListener {
-                viewModel.setEnteredEmail(editTextAuthEmailAddressField.text.toString())
-                viewModel.setEnteredPass(editTextAuthPasswordField.text.toString())
+                binding.apply {
+                    viewModel.register(
+                        editTextAuthEmailAddressField.text.toString(),
+                        editTextAuthPasswordField.text.toString()
+                    )
+                }
             }
         }
     }

@@ -6,22 +6,21 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
+import com.protsolo.app.item.WrapperUserModel
 import com.protsolo.databinding.ItemContactBinding
-import com.protsolo.app.item.UserModel
-import com.protsolo.app.utils.SelectionItemView
+import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
 
 
 class ContactsAdapter(
     private val onItemClickListener: IItemClickListener,
     private val onItemChangedListener: IItemChangedListener,
-    private val selectionView: SelectionItemView
 ) :
-    ListAdapter<UserModel, ContactsViewHolder>(UserDiffCallBack()) {
+    ListAdapter<WrapperUserModel, ContactsViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_contact, parent, false)
-        return ContactsViewHolder(ItemContactBinding.bind(view), selectionView)
+        return ContactsViewHolder(ItemContactBinding.bind(view))
     }
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
@@ -36,7 +35,7 @@ class ContactsAdapter(
                     onItemClickListener.onItemLongClick(bindingAdapterPosition)
                     return@setOnLongClickListener true
                 }
-                if (selectionView.isSelectionItemView) {
+                if (ContactsFragment.selectionView) {
                     root.setOnClickListener {
                         onItemClickListener.setUserSelected(bindingAdapterPosition)
                     }
@@ -56,7 +55,7 @@ class ContactsAdapter(
         ItemTouchHelper(SwipeToDelete(onItemDelete)).attachToRecyclerView(recyclerView)
     }
 
-    override fun submitList(list: List<UserModel>?) {
+    override fun submitList(list: List<WrapperUserModel>?) {
         super.submitList(list?.let { ArrayList(it) })
     }
 }
