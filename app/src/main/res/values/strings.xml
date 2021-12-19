@@ -2,7 +2,7 @@
     <string name="app_name">My Profile</string>
 
     <!--    All   -->
-    <string name="all_username">Username</string>
+    <string name="all_username">User name</string>
     <string name="all_career">Career</string>
     <string name="all_home_address">Home address</string>
     <!--    Main activity   -->
@@ -54,4 +54,9 @@
     <string name="login_login">login</string>
     <string name="login_do_not_have_account">Don’t have account?</string>
     <string name="login_sign_up">Sign up</string>
+    <!--    SignUp    -->
+    <string name="sing_up_your_profile_data">Your profile data</string>
+    <string name="sign_up_mobile_phone">Mobile phone</string>
+    <string name="cancel">Cancel</string>
+    <string name="forward">Forward</string>
 </resources>

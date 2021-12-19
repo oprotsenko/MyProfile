@@ -1,8 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -16,12 +18,25 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://188.40.127.78:7777\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://188.40.127.78:7777\""
         }
     }
     compileOptions {
@@ -35,53 +50,83 @@ android {
     buildFeatures {
         viewBinding true
     }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
 
-    dependencies {
-        implementation 'androidx.appcompat:appcompat:1.4.0'
-        implementation 'com.google.android.material:material:1.4.0'
-        implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-        testImplementation 'junit:junit:4.+'
-        androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-        androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-        implementation 'androidx.core:core-ktx:1.7.0'
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-        // Kotlin
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
 
-        // Fragment
-        implementation "androidx.fragment:fragment-ktx:1.4.0"
+    // Recycler view
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-        // Recycler view
-        implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
-        // Glide
-        implementation 'com.github.bumptech.glide:glide:4.12.0'
-        annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    // Fresco
+    implementation 'com.facebook.fresco:fresco:2.5.0'
 
-        // Fresco
-        implementation 'com.facebook.fresco:fresco:2.5.0'
+    // Live Data
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
 
-        // Live Data
-        implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
-        annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-        // Navigation
-        implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-        implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 
-        // Feature module Support
-        implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    // Testing Navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
-        // Testing Navigation
-        androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+    // ViewPager
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
-        // ViewPager
-        implementation("androidx.viewpager2:viewpager2:1.0.0")
+    // Koin for Android
+    implementation "io.insert-koin:koin-android:3.1.3"
+    // Navigation Graph
+    implementation "io.insert-koin:koin-androidx-navigation:3.1.3"
 
-        // Koin for Android
-        implementation "io.insert-koin:koin-android:3.1.3"
-        // Navigation Graph
-        implementation "io.insert-koin:koin-androidx-navigation:3.1.3"
-    }
+    // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
+    implementation platform('com.google.firebase:firebase-bom:28.3.0')
+
+    // Firebase Authentication (Kotlin)
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+
+    // Google Sign In SDK (only required for Google Sign In)
+    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+
+    // Internet
+    def retrofit_version = '2.9.0'
+    def okhttp3_version = '4.8.0'
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+
+    implementation("com.squareup.okhttp3:okhttp:$okhttp3_version")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3_version")
+
+    // Gson
+    implementation "com.google.code.gson:gson:2.8.6"
+
+    // Kotlin Android Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    // Room
+    def roomVersion = "2.3.0"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    // Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt "androidx.room:room-compiler:$roomVersion"
 }

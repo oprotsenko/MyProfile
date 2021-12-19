@@ -11,6 +11,7 @@ data class UserModel(
     val career: String,
     val address: String,
     val phone: String,
+    val birthday: String
 ) : Parcelable
 
 data class WrapperUserModel(

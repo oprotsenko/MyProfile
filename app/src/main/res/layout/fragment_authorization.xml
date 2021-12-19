@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.authorization.AuthorizationFragment">
+    tools:context=".ui.main.viewPager.authorization.AuthorizationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ParentLayoutMarginStyle"
@@ -38,15 +38,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAuthTitle" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/checkBoxAuthRememberMe"
-            style="@style/AuthCheckBoxStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auth_remember_me"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAuthPassword" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutAuthEmail"
@@ -84,6 +75,15 @@
                 android:layout_height="match_parent"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxAuthRememberMe"
+            style="@style/AuthCheckBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_remember_me"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAuthPassword" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewAuthForgotPass"

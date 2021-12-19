@@ -56,8 +56,10 @@
                 android:elevation="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewAddContactFragmentContactPhoto"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.511"
                 app:layout_constraintStart_toEndOf="@+id/imageViewAddContactFragmentContactPhoto"
-                app:layout_constraintTop_toTopOf="@+id/imageViewAddContactFragmentContactPhoto" />
+                app:layout_constraintTop_toTopOf="@+id/imageViewAddContactFragmentContactPhoto"
+                app:layout_constraintVertical_bias="0.465" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout

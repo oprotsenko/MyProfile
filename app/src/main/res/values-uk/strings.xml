@@ -54,4 +54,8 @@
     <string name="login_login">Увійти</string>
     <string name="login_do_not_have_account">Досі не зареєстрований?</string>
     <string name="login_sign_up">Зареєстуватися</string>
+    <string name="sing_up_your_profile_data">Дані твого профілю</string>
+    <string name="sign_up_mobile_phone">Мобільний телефон</string>
+    <string name="cancel">Відмінити</string>
+    <string name="forward">Далі</string>
 </resources>

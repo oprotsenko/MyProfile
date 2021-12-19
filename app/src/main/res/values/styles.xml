@@ -44,7 +44,7 @@
 
     <!-- Button styles -->
     <style name="BorderOrangeButtonStyle">
-        <item name="android:background">@drawable/auth_frame_orange</item>
+        <item name="android:background">@drawable/frame_orange</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="android:layout_marginBottom">@dimen/margin_12</item>
     </style>
@@ -56,9 +56,6 @@
         <item name="android:letterSpacing">0.2</item>
         <item name="android:paddingTop">@dimen/padding_15.5</item>
         <item name="android:paddingBottom">@dimen/padding_15.5</item>
-        <item name="android:layout_marginStart">@dimen/margin_16</item>
-        <item name="android:layout_marginEnd">@dimen/margin_16</item>
-        <item name="android:layout_marginBottom">@dimen/margin_16</item>
     </style>
 
     <!--    Auth activity   -->
@@ -221,7 +218,7 @@
     </style>
 
     <style name="EditProfile">
-        <item name="android:background">@drawable/main_frame_gray</item>
+        <item name="android:background">@drawable/frame_gray</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:paddingTop">@dimen/margin_8</item>
@@ -287,5 +284,16 @@
     <style name="Profile">
         <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:text">@string/contact_detail_view_profile</item>
+    </style>
+<!--    Sign Up   -->
+    <style name="CancelButtonStyle">
+        <item name="android:background">@drawable/frame_white</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:paddingTop">@dimen/margin_8</item>
+        <item name="android:paddingBottom">@dimen/margin_8</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12</item>
+        <item name="android:text">@string/cancel</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "28060155022",
+    "project_id": "my-profile-6133c",
+    "storage_bucket": "my-profile-6133c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28060155022:android:5cd95e8c75cd3f14d79ddf",
+        "android_client_info": {
+          "package_name": "com.protsolo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28060155022-nv83jn582skjsgpqt5qnjislut6pb20i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwjo9pPsnZtV6f43JYHI1f--DkdETc3mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28060155022-nv83jn582skjsgpqt5qnjislut6pb20i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

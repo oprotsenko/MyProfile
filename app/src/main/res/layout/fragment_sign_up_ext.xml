@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorPrimary"
+    android:padding="@dimen/margin_16">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/imageViewSignUpProfilePhoto"
+        style="@style/UserPhotoStyle"
+        android:layout_width="@dimen/profile_photo_size_113"
+        android:layout_height="@dimen/profile_photo_size_113"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSighUpYourData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonSignUpAddPhoto"
+        style="@style/ImageButtonAddPhotoStyle"
+        android:layout_width="@dimen/button_add_photo_size_55"
+        android:layout_height="@dimen/button_add_photo_size_55"
+        android:layout_marginStart="@dimen/margin_16"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewSignUpProfilePhoto"
+        app:layout_constraintStart_toEndOf="@+id/imageViewSignUpProfilePhoto"
+        app:layout_constraintTop_toTopOf="@+id/imageViewSignUpProfilePhoto" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewSighUpYourData"
+        style="@style/TitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24"
+        android:text="@string/sing_up_your_profile_data"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSignUpFillOutDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewSignUpProfilePhoto" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewSignUpFillOutDescription"
+        style="@style/DescriptionStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auth_fill_out_description"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayoutSignUpUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSighUpYourData" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSignUpUserName"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/all_username"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayoutSignUpPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSignUpFillOutDescription">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSignUpUserName"
+            style="@style/EditTextFieldStyle.Auth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSignUpPhone"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/sign_up_mobile_phone"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSignUpCancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSignUpUserName"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSignUpPhone"
+            style="@style/EditTextFieldStyle.Auth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonSignUpCancel"
+        style="@style/CancelButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/buttonSignUpForward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonSignUpForward"
+        style="@style/OrangeButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
