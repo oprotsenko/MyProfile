@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.app.item.WrapperUserModel
 import com.protsolo.databinding.ItemContactBinding
-import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment
 
 
 class ContactsAdapter(
@@ -35,7 +34,7 @@ class ContactsAdapter(
                     onItemClickListener.onItemLongClick(bindingAdapterPosition)
                     return@setOnLongClickListener true
                 }
-                if (ContactsFragment.selectionView) {
+                if (getItem(bindingAdapterPosition).isSelectionMode) {
                     root.setOnClickListener {
                         onItemClickListener.setUserSelected(bindingAdapterPosition)
                     }

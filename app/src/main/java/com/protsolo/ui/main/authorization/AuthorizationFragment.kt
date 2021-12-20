@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import com.protsolo.R
 import com.protsolo.app.base.BaseFragment
 import com.protsolo.app.utils.Constants
@@ -37,13 +38,6 @@ class AuthorizationFragment :
 
             registerPermissionState.observe(viewLifecycleOwner, { permissionIsAllowed ->
                 if (permissionIsAllowed) {
-                    binding.apply {
-                        writeToPreferenceStorage(
-                            editTextAuthEmailAddressField.text.toString(),
-                            editTextAuthPasswordField.text.toString(),
-                            checkBoxAuthRememberMe.isChecked
-                        )
-                    }
                     navigator.navigate(
                         ViewPagerFragmentDirections.actionViewPagerFragmentNavToProfileFragmentNav()
                     )
@@ -92,19 +86,32 @@ class AuthorizationFragment :
 
             root.setOnClickListener { root.hideKeyboard() }
 
+            editTextAuthEmailAddressField.doOnTextChanged { _, _, _, _ ->
+                textInputLayoutAuthEmail.isErrorEnabled = false
+            }
+
+            editTextAuthPasswordField.doOnTextChanged { _, _, _, _ ->
+                textInputLayoutAuthPassword.isErrorEnabled = false
+            }
+
             customButtonGoogle.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/")))
             }
+
             textViewAuthSignInUp.setOnClickListener {
                 val onPagerClickListener = parentFragment as ViewPagerFragment
                 onPagerClickListener.onPagerItemChange()
             }
+
             buttonAuthRegister.setOnClickListener {
                 binding.apply {
-                    viewModel.register(
-                        editTextAuthEmailAddressField.text.toString(),
-                        editTextAuthPasswordField.text.toString()
-                    )
+                    viewModel.apply {
+                        rememberMe = checkBoxAuthRememberMe.isChecked
+                        register(
+                            editTextAuthEmailAddressField.text.toString(),
+                            editTextAuthPasswordField.text.toString()
+                        )
+                    }
                 }
             }
         }

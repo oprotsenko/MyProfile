@@ -16,6 +16,7 @@ class AuthorizationViewModel(
     val registerPermissionState by lazy { SingleLiveEvent<Boolean>() }
     val emailValidationState by lazy { MutableLiveData<Boolean>() }
     val passValidationState by lazy { MutableLiveData<Boolean>() }
+    var rememberMe = false
 
     var setUpLoginPageView = true
 
@@ -36,11 +37,15 @@ class AuthorizationViewModel(
     fun register(email: String, pass: String) {
         emailValidationState.value = validator.isValidEmail(email)
         passValidationState.value = validator.isValidPassword(pass)
-        registerPermissionState.value =
+        val permissionAllowed =
             (emailValidationState.value == true && passValidationState.value == true)
+        if (permissionAllowed) {
+            writeToPreferenceStorage(email, pass, rememberMe)
+        }
+        registerPermissionState.value = permissionAllowed
     }
 
-    fun writeToPreferenceStorage(email: String, pass: String, isAutologin: Boolean) {
+    private fun writeToPreferenceStorage(email: String, pass: String, isAutologin: Boolean) {
         with(Constants) {
             preferenceStorage.save(
                 PREFERENCE_EMAIL_KEY,

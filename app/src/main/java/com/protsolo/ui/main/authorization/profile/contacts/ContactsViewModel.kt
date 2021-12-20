@@ -10,7 +10,7 @@ import com.protsolo.app.item.WrapperUserModel
 class ContactsViewModel : BaseViewModel() {
 
     val contactsData by lazy { MutableLiveData<List<WrapperUserModel>>() }
-    val isSelectionMood by lazy { MutableLiveData<Boolean>() }
+    val isSelectionMode by lazy { MutableLiveData<Boolean>() }
     val selectedContacts: MutableList<Pair<Int, UserModel>> = mutableListOf()
 
     init {
@@ -18,11 +18,15 @@ class ContactsViewModel : BaseViewModel() {
         contactsData.value = list.map { user ->
             WrapperUserModel(user)
         }
-        isSelectionMood.value = false
+        isSelectionMode.value = false
     }
 
-    fun setSelectionMood(selectionMood: Boolean) {
-        isSelectionMood.value = selectionMood
+    fun setSelectionMood(selectionMode: Boolean) {
+        val list = contactsData.value?.map {
+            it.copy(isSelectionMode = selectionMode)
+        }
+        contactsData.value = list
+        isSelectionMode.value = selectionMode
     }
 
     fun removeItem(position: Int) {
@@ -43,14 +47,14 @@ class ContactsViewModel : BaseViewModel() {
         if (contactsData.value?.get(position)?.isSelected == true) {
             list?.set(position, list[position].copy(isSelected = false))
             selectedContacts.remove(position to user)
-            if (selectedContacts.isEmpty()) {
-                setSelectionMood(false)
-            }
         } else {
             list?.set(position, list[position].copy(isSelected = true))
             user?.let { selectedContacts.add(position to it) }
         }
         contactsData.value = list
+        if (selectedContacts.isEmpty()) {
+            setSelectionMood(false)
+        }
     }
 
     fun deleteSelectedContacts() {

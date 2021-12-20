@@ -26,6 +26,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     }
 
     private var positionView = 0
+    private var isSelectionMode = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerInit()
@@ -98,7 +99,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     override fun onItemLongClick(position: Int) {
         viewModel.selectedContacts.clear()
-        if (!selectionView) {
+        if (!isSelectionMode) {
             viewModel.setSelectionMood(true)
         }
         setUserSelected(position)
@@ -166,9 +167,9 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
                 }
             })
 
-            isSelectionMood.observe(viewLifecycleOwner, {
-                selectionView = it
+            isSelectionMode.observe(viewLifecycleOwner, {
                 adapterContacts.notifyDataSetChanged()
+                this@ContactsFragment.isSelectionMode = it
                 binding.apply {
                     floatingButtonContactsUp.visibility = if (it) View.GONE else View.VISIBLE
                     floatingButtonContactsDelete.visibility = if (it) View.VISIBLE else View.GONE
@@ -181,9 +182,5 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
             ?.observe(viewLifecycleOwner) {
                 addItem(it, 0)
             }
-    }
-
-    companion object {
-        var selectionView = false
     }
 }

@@ -15,5 +15,6 @@ data class UserModel(
 
 data class WrapperUserModel(
     val user: UserModel,
-    var isSelected: Boolean = false
+    var isSelected: Boolean = false,
+    var isSelectionMode: Boolean = false
 )

@@ -7,7 +7,6 @@ import com.protsolo.R
 import com.protsolo.app.item.WrapperUserModel
 import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.databinding.ItemContactBinding
-import com.protsolo.ui.main.authorization.profile.contacts.ContactsFragment.Companion.selectionView
 
 class ContactsViewHolder(
     val binding: ItemContactBinding,
@@ -21,12 +20,12 @@ class ContactsViewHolder(
             imageViewContact.transitionName = wrapperUserModel.user.image
 
             root.background =
-                if (selectionView)
+                if (wrapperUserModel.isSelectionMode)
                     ContextCompat.getDrawable(root.context, R.drawable.item_selected_background)
                 else ContextCompat.getDrawable(root.context, R.drawable.item_frame_light_gray)
 
             imageViewItemContactIsSelected.visibility =
-                if (selectionView) View.VISIBLE
+                if (wrapperUserModel.isSelectionMode) View.VISIBLE
                 else View.GONE
 
             imageViewItemContactIsSelected.background =
@@ -35,7 +34,7 @@ class ContactsViewHolder(
                 else ContextCompat.getDrawable(root.context, R.drawable.ic_check_box_round)
 
             imageButtonDeleteContact.visibility =
-                if (selectionView) View.GONE
+                if (wrapperUserModel.isSelectionMode) View.GONE
                 else View.VISIBLE
         }
     }

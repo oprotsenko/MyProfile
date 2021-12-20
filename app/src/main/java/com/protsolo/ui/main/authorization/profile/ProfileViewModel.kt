@@ -6,11 +6,10 @@ import com.protsolo.app.utils.Constants
 import com.protsolo.app.utils.NameParser
 import com.protsolo.app.utils.PreferenceStorage
 
-class ProfileViewModel(preferenceStorage: PreferenceStorage) : BaseViewModel() {
+class ProfileViewModel(preferenceStorage: PreferenceStorage, nameParser: NameParser) :
+    BaseViewModel() {
 
     val userName by lazy { MutableLiveData<String>() }
-
-    private val nameParser by lazy { NameParser() }
 
     init {
         userName.value =

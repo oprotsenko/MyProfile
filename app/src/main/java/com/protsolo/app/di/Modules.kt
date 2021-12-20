@@ -1,5 +1,6 @@
 package com.protsolo.app.di
 
+import com.protsolo.app.utils.NameParser
 import com.protsolo.app.utils.PreferenceStorage
 import com.protsolo.app.utils.Validator
 import com.protsolo.ui.main.authorization.AuthorizationViewModel
@@ -15,9 +16,10 @@ val appModules = module {
     }
 
     viewModel {
-        ProfileViewModel(get())
+        ProfileViewModel(get(), get())
     }
 
     single { PreferenceStorage(androidContext()) }
     single { Validator() }
+    single { NameParser() }
 }
