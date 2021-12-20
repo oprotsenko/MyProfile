@@ -1,12 +1,10 @@
 package com.protsolo.data.remote
 
 import com.protsolo.app.utils.Constants
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.Multipart
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface IServiceApi {
 
@@ -14,9 +12,16 @@ interface IServiceApi {
     @Multipart
     @POST(Constants.POST_REGISTER_URL)
     suspend fun register(
-        @Body registerUserRequest: RegisterUserRequest,
+        @Part email: MultipartBody.Part,
+        @Part pass: MultipartBody.Part,
+        @Part name: MultipartBody.Part? = null,
+        @Part phone: MultipartBody.Part? = null,
+        @Part career: MultipartBody.Part? = null,
+        @Part address: MultipartBody.Part? = null,
+        @Part image: MultipartBody.Part? = null,
     ): Call<RegisterResponse>
 
+    @Headers("Content-Type: miltipart/form-data | application/json")
     @POST(Constants.POST_AUTHORIZE_URL)
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 }
