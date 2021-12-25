@@ -13,8 +13,8 @@
         <shape>
             <stroke android:color="?android:attr/textColorSecondary"
                 android:width="@dimen/border_width"/>
-            <gradient android:startColor="?android:attr/textColorSecondary"
-                android:endColor="?android:attr/textColorSecondary"
+            <gradient android:startColor="@color/gray_text"
+                android:endColor="@color/gray_text"
                 android:centerColor="@color/gray_4"/>
             <corners android:radius="@dimen/corner_radius"/>
         </shape>

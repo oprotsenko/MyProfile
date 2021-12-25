@@ -13,12 +13,13 @@ object Constants {
     // Authorization constants
     const val IS_LOGIN_PAGE = "is login page"
     const val PASSWORD_PATTERN = "[a-z0-9?:!#$%&]{8,}"
-
+    const val FAIL_LOGIN_MESSAGE = "Please register to login"
 
     // ContactsAdapter
     const val CONTACTS_ITEM_MARGIN = 16
 
     // Contacts Fragment constants
+    const val IS_ADD_CONTACTS_PAGE = "is add contacts page"
     const val UNDO = "UNDO"
     const val SNACK_BAR_ONE_CONTACT_REMOVED_MESSAGE = "'s contact has been removed"
     const val SNACK_BAR_SELECTED_CONTACTS_REMOVED_MESSAGE = " contacts has been removed"
@@ -34,6 +35,8 @@ object Constants {
     // ViewPager
     const val SIGN_IN = "Sign in"
     const val SIGN_UP = "Sign up"
+    const val CONTACTS = "Contacts"
+    const val USERS = "Users"
 
     // URLs
     const val BASE_URL = "http://188.40.127.78:7777"

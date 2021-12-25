@@ -20,8 +20,8 @@ object ContactsDataFake : KoinComponent {
             (0..15).forEach { i ->
                 list.add(
                     UserModel(
-                        i.toLong(), getRandomImage(),
-                        "$i name", "$i career", "$i address", "+3800000000",""
+                        i, "", "",
+                        "$i name", "+3800000000", "$i address", "$i career", "", getRandomImage(),
                     )
                 )
             }
@@ -61,10 +61,11 @@ object ContactsDataFake : KoinComponent {
                                 )
                             )
                             val user = UserModel(
-                                id.toLong(),
-                                getRandomImage(),
+                                id.toInt(),
+                                "",
+                                "",
                                 name,
-                                "", "", phoneNo, ""
+                                phoneNo,"", "",  "",getRandomImage(),
                             )
                             list.add(user)
                         }

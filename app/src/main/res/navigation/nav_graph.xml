@@ -7,13 +7,13 @@
 
     <activity
         android:id="@+id/mainActivityNav"
-        android:name="com.protsolo.ui.main.MainActivity"
+        android:name="com.protsolo.presentation.main.MainActivity"
         android:label="MainActivity"
         tools:layout="@layout/fragment_authorization"/>
 
     <fragment
         android:id="@+id/viewPagerFragmentNav"
-        android:name="com.protsolo.ui.main.viewPager.ViewPagerFragment"
+        android:name="com.protsolo.presentation.main.viewPager.ViewPagerAuthorizationFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_authorization">
         <action
@@ -34,48 +34,34 @@
 
     <fragment
         android:id="@+id/profileFragmentNav"
-        android:name="com.protsolo.ui.main.viewPager.authorization.profile.ProfileFragment"
+        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragmentNav_to_contactsFragmentNav"
-            app:destination="@id/contactsFragmentNav"
+            android:id="@+id/action_profileFragmentNav_to_viewPagerContactsFragmentNav"
+            app:destination="@id/viewPagerContactsFragmentNav"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_profileFragmentNav_to_editProfileFragmentNav"
+            app:destination="@id/editProfileFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
-        android:id="@+id/contactsFragmentNav"
-        android:name="com.protsolo.ui.main.viewPager.authorization.profile.contacts.ContactsFragment"
-        android:label="ContactsFragment"
-        tools:layout="@layout/fragment_contacts">
-        <action
-            android:id="@+id/action_ContactsFragmentNav_to_contactDetailViewFragmentNav"
-            app:destination="@id/contactDetailViewFragmentNav"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_contactsFragmentNav_to_addContactDialogFragmentNav"
-            app:destination="@id/addContactDialogFragmentNav"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addContactDialogFragmentNav"
-        android:name="com.protsolo.ui.main.viewPager.authorization.profile.contacts.dialog.AddContactDialogFragment"
+        android:id="@+id/editProfileFragmentNav"
+        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.edit.EditProfileFragment"
         android:label="AddContactDialogFragment"
-        tools:layout="@layout/dialog_fragment_add_contact"/>
+        tools:layout="@layout/fragment_edit_profile"/>
 
     <fragment
         android:id="@+id/contactDetailViewFragmentNav"
-        android:name="com.protsolo.ui.main.viewPager.authorization.profile.contacts.details.ContactDetailViewFragment"
+        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.viewPager.contacts.details.ContactDetailViewFragment"
         android:label="ContactDetailViewFragment"
         tools:layout="@layout/fragment_profile" >
         <argument
@@ -85,7 +71,7 @@
 
     <fragment
         android:id="@+id/signUpExtFragmentNav"
-        android:name="com.protsolo.ui.main.viewPager.authorization.signUp.SignUpExtFragment"
+        android:name="com.protsolo.presentation.main.viewPager.authorization.signUp.SignUpExtFragment"
         android:label="SignUpExtFragment"
         tools:layout="@layout/fragment_sign_up_ext">
         <argument
@@ -96,7 +82,24 @@
             app:argType="string" />
         <action
             android:id="@+id/action_signUpExtFragmentNav_to_profileFragmentNav"
-            app:destination="@id/profileFragmentNav" />
+            app:destination="@id/profileFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerContactsFragmentNav"
+        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.viewPager.ViewPagerContactsFragment"
+        android:label="ViewPagerContactsFragment"
+        tools:layout="@layout/fragment_contacts">
+        <action
+            android:id="@+id/action_viewPagerContactsFragmentNav_to_contactDetailViewFragmentNav"
+            app:destination="@id/contactDetailViewFragmentNav"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
 </navigation>

@@ -1,7 +1,10 @@
 package com.protsolo.app.di
 
 import com.protsolo.app.utils.Constants
-import com.protsolo.data.remote.IServiceApi
+import com.protsolo.app.utils.PreferenceStorage
+import com.protsolo.data.remote.IMyProfileApi
+import com.protsolo.data.remote.retrifit.RetrofitMyProfileDataSource
+import com.protsolo.domain.MyProfileRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -10,9 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val retrofitModule = module {
     single { provideInterceptor() }
-    single { provideOkHttpClient(get()) }
+    single { provideOkHttpClient(get(), get()) }
     single { provideRetrofit(get()) }
     single { provideDefinitionApi(get()) }
+    single { RetrofitMyProfileDataSource(get()) }
+    single { MyProfileRepository(get()) }
 }
 
 fun provideInterceptor(): HttpLoggingInterceptor {
@@ -20,16 +25,19 @@ fun provideInterceptor(): HttpLoggingInterceptor {
     return interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 }
 
-fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
+fun provideOkHttpClient(
+    interceptor: HttpLoggingInterceptor,
+    preferenceStorage: PreferenceStorage
+): OkHttpClient =
     OkHttpClient.Builder()
-
-//        .addInterceptor { chain ->
-//            val request = chain.request().body?.let {
-//                chain.request().newBuilder()
-//                    .patch(it).build()
-//            }
-//            return@addInterceptor chain.proceed(request as Request)
-//        }
+        .addInterceptor { chain ->
+            val request = chain.request().newBuilder().addHeader(
+                "Authorization",
+                "Bearer ${preferenceStorage.getString(Constants.ACCESS_TOKEN).orEmpty()}"
+            )
+                .build()
+            return@addInterceptor chain.proceed(request)
+        }
         .addInterceptor(interceptor).build()
 
 fun provideRetrofit(client: OkHttpClient): Retrofit =
@@ -39,5 +47,5 @@ fun provideRetrofit(client: OkHttpClient): Retrofit =
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-fun provideDefinitionApi(retrofit: Retrofit): IServiceApi =
-    retrofit.create(IServiceApi::class.java)
+fun provideDefinitionApi(retrofit: Retrofit): IMyProfileApi =
+    retrofit.create(IMyProfileApi::class.java)

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.viewPager.authorization.AuthorizationFragment">
+    tools:context=".presentation.main.viewPager.authorization.AuthorizationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ParentLayoutMarginStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AuthActivity">
+        tools:context=".presentation.AuthActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideLineAuthHorizontalTop"
@@ -95,7 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/checkBoxAuthRememberMe" />
 
-        <com.protsolo.ui.customViews.CustomButton
+        <com.protsolo.presentation.customViews.CustomButton
             android:id="@+id/customButtonGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

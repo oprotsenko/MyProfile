@@ -58,4 +58,6 @@
     <string name="sign_up_mobile_phone">Мобільний телефон</string>
     <string name="cancel">Відмінити</string>
     <string name="forward">Далі</string>
+    <string name="add_contact_users">Користувачі</string>
+    <string name="add">Додати</string>
 </resources>
