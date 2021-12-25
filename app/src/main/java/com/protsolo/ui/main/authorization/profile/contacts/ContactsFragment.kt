@@ -62,7 +62,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
                     viewModel.undoMultiRemove()
                 }.show()
 
-                viewModel.setSelectionMood(false)
+                viewModel.setSelectionMode(false)
             }
         }
     }
@@ -98,9 +98,9 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     }
 
     override fun onItemLongClick(position: Int) {
-        viewModel.selectedContacts.clear()
         if (!isSelectionMode) {
-            viewModel.setSelectionMood(true)
+            viewModel.selectedContacts.clear()
+            viewModel.setSelectionMode(true)
         }
         setUserSelected(position)
     }

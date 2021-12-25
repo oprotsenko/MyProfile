@@ -99,8 +99,7 @@ class AuthorizationFragment :
             }
 
             textViewAuthSignInUp.setOnClickListener {
-                val onPagerClickListener = parentFragment as ViewPagerFragment
-                onPagerClickListener.onPagerItemChange()
+                (parentFragment as ViewPagerFragment).onPagerItemChange()
             }
 
             buttonAuthRegister.setOnClickListener {

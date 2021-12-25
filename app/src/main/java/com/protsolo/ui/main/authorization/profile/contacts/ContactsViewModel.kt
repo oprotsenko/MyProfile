@@ -21,7 +21,7 @@ class ContactsViewModel : BaseViewModel() {
         isSelectionMode.value = false
     }
 
-    fun setSelectionMood(selectionMode: Boolean) {
+    fun setSelectionMode(selectionMode: Boolean) {
         val list = contactsData.value?.map {
             it.copy(isSelectionMode = selectionMode)
         }
@@ -53,7 +53,7 @@ class ContactsViewModel : BaseViewModel() {
         }
         contactsData.value = list
         if (selectedContacts.isEmpty()) {
-            setSelectionMood(false)
+            setSelectionMode(false)
         }
     }
 
