@@ -21,7 +21,7 @@ object Constants {
     // Contacts Fragment constants
     const val IS_ADD_CONTACTS_PAGE = "is add contacts page"
     const val UNDO = "UNDO"
-    const val SNACK_BAR_ONE_CONTACT_REMOVED_MESSAGE = "'s contact has been removed"
+    const val SNACK_BAR_ONE_CONTACT_REMOVED_MESSAGE = "'s contact will be removed"
     const val SNACK_BAR_SELECTED_CONTACTS_REMOVED_MESSAGE = " contacts has been removed"
 
     // Custom View

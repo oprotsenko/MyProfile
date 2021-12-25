@@ -6,6 +6,7 @@ import com.protsolo.data.remote.requests.LoginRequest
 import com.protsolo.data.remote.requests.RegisterUserRequest
 import com.protsolo.data.remote.responses.*
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface IMyProfileApi {
@@ -37,5 +38,5 @@ interface IMyProfileApi {
     fun deleteContact(@Field("contactId") contactId: Int) : Call<ContactsResponse>
 
     @GET(Constants.GET_USER_CONTACTS_URL)
-    fun getContacts() : Call<ContactsResponse>
+    suspend fun getContacts() : Response<ContactsResponse>
 }

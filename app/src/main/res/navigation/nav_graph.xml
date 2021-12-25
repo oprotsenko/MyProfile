@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/viewPagerFragmentNav"
-        android:name="com.protsolo.presentation.main.viewPager.ViewPagerAuthorizationFragment"
+        android:name="com.protsolo.presentation.main.viewPagerAuthorization.ViewPagerAuthorizationFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_authorization">
         <action
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/profileFragmentNav"
-        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.ProfileFragment"
+        android:name="com.protsolo.presentation.main.viewPagerAuthorization.authorization.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -55,13 +55,13 @@
 
     <fragment
         android:id="@+id/editProfileFragmentNav"
-        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.edit.EditProfileFragment"
+        android:name="com.protsolo.presentation.main.viewPagerAuthorization.authorization.profile.edit.EditProfileFragment"
         android:label="AddContactDialogFragment"
         tools:layout="@layout/fragment_edit_profile"/>
 
     <fragment
         android:id="@+id/contactDetailViewFragmentNav"
-        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.viewPager.contacts.details.ContactDetailViewFragment"
+        android:name="com.protsolo.presentation.main.viewPagerAuthorization.authorization.profile.viewPagerContacts.contacts.details.ContactDetailViewFragment"
         android:label="ContactDetailViewFragment"
         tools:layout="@layout/fragment_profile" >
         <argument
@@ -71,7 +71,7 @@
 
     <fragment
         android:id="@+id/signUpExtFragmentNav"
-        android:name="com.protsolo.presentation.main.viewPager.authorization.signUp.SignUpExtFragment"
+        android:name="com.protsolo.presentation.main.viewPagerAuthorization.authorization.signUp.SignUpExtFragment"
         android:label="SignUpExtFragment"
         tools:layout="@layout/fragment_sign_up_ext">
         <argument
@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerContactsFragmentNav"
-        android:name="com.protsolo.presentation.main.viewPager.authorization.profile.viewPager.ViewPagerContactsFragment"
+        android:name="com.protsolo.presentation.main.viewPagerAuthorization.authorization.profile.viewPagerContacts.ViewPagerContactsFragment"
         android:label="ViewPagerContactsFragment"
         tools:layout="@layout/fragment_contacts">
         <action

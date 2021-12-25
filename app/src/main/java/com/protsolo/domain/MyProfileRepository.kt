@@ -6,7 +6,9 @@ import com.protsolo.data.remote.requests.EditProfileRequest
 import com.protsolo.data.remote.requests.LoginRequest
 import com.protsolo.data.remote.requests.RegisterUserRequest
 import com.protsolo.data.remote.responses.*
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
+import retrofit2.Response
 
 class MyProfileRepository(private val remote: IRemoteDataSource) : IRepository  {
     override fun register(request: RegisterUserRequest): Call<AuthorizeResponse> =
@@ -21,7 +23,7 @@ class MyProfileRepository(private val remote: IRemoteDataSource) : IRepository  
     override fun editProfile(request: EditProfileRequest): Call<ProfileResponse> =
         remote.editProfile(request)
 
-    override fun getContacts(): Call<ContactsResponse> =
+    override suspend fun getContacts(): Flow<Response<ContactsResponse>> =
         remote.getContacts()
 
     override fun getAllUsers(): Call<UsersResponse> =
