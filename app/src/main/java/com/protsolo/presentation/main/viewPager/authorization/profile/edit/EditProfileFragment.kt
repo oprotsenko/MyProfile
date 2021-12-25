@@ -9,12 +9,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.protsolo.app.base.BaseFragment
 import com.protsolo.app.utils.Constants
 import com.protsolo.app.utils.IntentUtils
+import com.protsolo.app.utils.extensions.hideKeyboard
+import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.data.ContactsDataFake
 import com.protsolo.databinding.FragmentEditProfileBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class EditProfileFragment :

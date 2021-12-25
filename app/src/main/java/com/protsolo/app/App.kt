@@ -2,6 +2,7 @@ package com.protsolo.app
 
 import android.app.Application
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.protsolo.app.di.remoteModule
 import com.protsolo.app.di.retrofitModule
 import com.protsolo.app.di.useCasesModule
 import com.protsolo.app.di.viewModelsModules
@@ -16,7 +17,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(viewModelsModules, retrofitModule, useCasesModule))
+            modules(listOf(viewModelsModules, retrofitModule, useCasesModule, remoteModule))
         }
         Fresco.initialize(this)
     }

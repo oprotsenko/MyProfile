@@ -4,13 +4,13 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.protsolo.app.base.BaseViewModel
 import com.protsolo.data.remote.requests.EditProfileRequest
-import com.protsolo.data.remote.IMyProfileApi
 import com.protsolo.data.remote.responses.ProfileResponse
+import com.protsolo.domain.useCases.EditProfileUseCase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class EditProfileViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() {
+class EditProfileViewModel(private val editProfileUseCase: EditProfileUseCase) : BaseViewModel() {
 
     val editResponse by lazy { MutableLiveData<Response<ProfileResponse>>() }
 
@@ -23,7 +23,7 @@ class EditProfileViewModel(private val myProfileApi: IMyProfileApi) : BaseViewMo
         image: String
     ) {
         try {
-            val call = myProfileApi.editProfile(
+            val call = editProfileUseCase.editProfile(
                 EditProfileRequest(
                     userName,
                     phone,

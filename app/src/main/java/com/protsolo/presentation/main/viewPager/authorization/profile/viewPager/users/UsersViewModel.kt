@@ -4,17 +4,23 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.protsolo.app.base.BaseViewModel
 import com.protsolo.app.item.WrapperUserModel
+import com.protsolo.app.utils.SingleLiveEvent
 import com.protsolo.data.remote.responses.ContactsResponse
-import com.protsolo.data.remote.IMyProfileApi
 import com.protsolo.data.remote.responses.UsersResponse
+import com.protsolo.domain.useCases.AddContactUseCase
+import com.protsolo.domain.useCases.GetAllUsersUseCase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class UsersViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() {
+class UsersViewModel(
+    private val getAllUsersUseCase: GetAllUsersUseCase,
+    private val addContactUseCase: AddContactUseCase
+) : BaseViewModel() {
 
     val usersData by lazy { MutableLiveData<List<WrapperUserModel>>() }
+    val responseMessage by lazy { SingleLiveEvent<String>() }
 
     init {
         fetchAllUsers()
@@ -22,7 +28,7 @@ class UsersViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() 
 
     private fun fetchAllUsers() {
         try {
-            val call = myProfileApi.getAllUsers()
+            val call = getAllUsersUseCase.getAllUsers()
             call.enqueue(object : Callback<UsersResponse> {
                 override fun onResponse(
                     call: Call<UsersResponse>,
@@ -36,7 +42,7 @@ class UsersViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() 
                 }
 
                 override fun onFailure(call: Call<UsersResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    responseMessage.value = t.message.orEmpty()
                 }
 
             })
@@ -47,7 +53,7 @@ class UsersViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() 
 
     fun addContact(id: Int, position: Int) {
         try {
-            val call = myProfileApi.addContact(id)
+            val call = addContactUseCase.addContact(id)
             call.enqueue(object : Callback<ContactsResponse> {
                 override fun onResponse(
                     call: Call<ContactsResponse>,
@@ -61,7 +67,7 @@ class UsersViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() 
                 }
 
                 override fun onFailure(call: Call<ContactsResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    responseMessage.value = t.message.orEmpty()
                 }
 
             })

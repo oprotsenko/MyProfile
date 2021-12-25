@@ -9,8 +9,6 @@ import com.protsolo.app.utils.SingleLiveEvent
 import com.protsolo.app.utils.Validator
 import com.protsolo.data.remote.requests.LoginRequest
 import com.protsolo.data.remote.responses.AuthorizeResponse
-import com.protsolo.data.remote.responses.ProfileResponse
-import com.protsolo.data.remote.responses.RefreshTokenResponse
 import com.protsolo.domain.useCases.LoginUseCase
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +29,9 @@ class AuthorizationViewModel(
     var isLoginPageView = true
 
     init {
-        isAutologin()
+        if (preferenceStorage.getBoolean(Constants.PREFERENCE_AUTOLOGIN)) {
+            autologinState.value = true
+        }
     }
 
     fun isLoginPage(isLoginPage: Boolean) {
@@ -78,65 +78,6 @@ class AuthorizationViewModel(
             })
         } catch (e: Exception) {
             Log.d("LoginRequest", e.message.toString())
-        }
-    }
-
-    private fun getProfile() {
-        try {
-            val call = loginUseCase.getProfile()
-            call.enqueue(object : Callback<ProfileResponse> {
-                override fun onResponse(
-                    call: Call<ProfileResponse>,
-                    response: Response<ProfileResponse>
-                ) {
-                    responseState.value = response.isSuccessful
-                }
-
-                override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
-                    refreshToken()
-                }
-            })
-        } catch (e: Exception) {
-            Log.d("GetProfile", e.message.toString())
-        }
-    }
-
-    private fun refreshToken() {
-        try {
-            val call = loginUseCase.refreshToken(
-                "Bearer " + preferenceStorage.getString(Constants.REFRESH_TOKEN).orEmpty()
-            )
-            call.enqueue(object : Callback<RefreshTokenResponse> {
-                override fun onResponse(
-                    call: Call<RefreshTokenResponse>,
-                    response: Response<RefreshTokenResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        preferenceStorage.save(
-                            Constants.ACCESS_TOKEN,
-                            response.body()?.data?.accessToken.toString()
-                        )
-                        preferenceStorage.save(
-                            Constants.REFRESH_TOKEN,
-                            response.body()?.data?.refreshToken.toString()
-                        )
-                    }
-                    responseState.value = response.isSuccessful
-                }
-
-                override fun onFailure(call: Call<RefreshTokenResponse>, t: Throwable) {
-                    Log.d("RefreshToken", t.message.toString())
-                }
-
-            })
-        } catch (e: Exception) {
-            Log.d("RefreshToken", e.message.toString())
-        }
-    }
-
-    private fun isAutologin() {
-        if (preferenceStorage.getBoolean(Constants.PREFERENCE_AUTOLOGIN)) {
-            getProfile()
         }
     }
 }

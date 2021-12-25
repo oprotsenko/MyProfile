@@ -2,6 +2,7 @@ package com.protsolo.presentation.main.viewPager.authorization.profile.viewPager
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
@@ -104,6 +105,10 @@ class UsersFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsBind
                 it?.let {
                     adapterUsers.submitList(it)
                 }
+            })
+
+            responseMessage.observe(viewLifecycleOwner, {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             })
         }
     }

@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.protsolo.R
 import com.protsolo.app.item.WrapperUserModel
+import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.databinding.ItemContactBinding
 
 class ContactsViewHolder(
@@ -16,7 +17,7 @@ class ContactsViewHolder(
             textViewContactsListContactName.text = wrapperUserModel.user.name
             textViewContactsListContactCareer.text = wrapperUserModel.user.career
             wrapperUserModel.user.image?.let { imageViewContact.loadCircleImage(it) }
-            imageViewContact.transitionName = wrapperUserModel.user.image
+            imageViewContact.transitionName = wrapperUserModel.user.id.toString()
 
 //            root.background =
 //                if (selectionView)

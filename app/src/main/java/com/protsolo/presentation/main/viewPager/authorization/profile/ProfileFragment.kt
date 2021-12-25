@@ -33,9 +33,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 textViewMainHomeAddress.text = it.address
             }
         })
-//        viewModel.userName.observe(viewLifecycleOwner, { userName ->
-//            binding.textViewMainUserName.text = userName
-//        })
     }
 
     private fun setUpViews() {

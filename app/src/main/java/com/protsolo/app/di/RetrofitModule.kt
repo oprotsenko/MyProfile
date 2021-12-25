@@ -4,7 +4,6 @@ import com.protsolo.app.utils.Constants
 import com.protsolo.app.utils.PreferenceStorage
 import com.protsolo.data.remote.IMyProfileApi
 import com.protsolo.data.remote.retrifit.RetrofitMyProfileDataSource
-import com.protsolo.domain.MyProfileRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -17,7 +16,6 @@ val retrofitModule = module {
     single { provideRetrofit(get()) }
     single { provideDefinitionApi(get()) }
     single { RetrofitMyProfileDataSource(get()) }
-    single { MyProfileRepository(get()) }
 }
 
 fun provideInterceptor(): HttpLoggingInterceptor {

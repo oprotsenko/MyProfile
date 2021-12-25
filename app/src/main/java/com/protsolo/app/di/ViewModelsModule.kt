@@ -19,23 +19,23 @@ val viewModelsModules = module {
     }
 
     viewModel {
-        ProfileViewModel(get(), get(), get())
-    }
-
-    viewModel {
         SignUpViewModel(get(), get())
     }
 
     viewModel {
-        ContactsViewModel(get())
-    }
-
-    viewModel {
-        UsersViewModel(get())
+        ProfileViewModel(get(), get())
     }
 
     viewModel {
         EditProfileViewModel(get())
+    }
+
+    viewModel {
+        ContactsViewModel(get(), get(), get())
+    }
+
+    viewModel {
+        UsersViewModel(get(), get())
     }
 
     single { PreferenceStorage(androidContext()) }

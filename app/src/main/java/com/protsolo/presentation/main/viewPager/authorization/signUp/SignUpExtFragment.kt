@@ -24,7 +24,7 @@ class SignUpExtFragment :
                 if (registerSuccess) {
                     SignUpExtFragmentDirections.actionSignUpExtFragmentNavToProfileFragmentNav()
                 } else {
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), responseMessage, Toast.LENGTH_SHORT).show()
                 }
             })
         }

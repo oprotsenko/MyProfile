@@ -2,6 +2,7 @@ package com.protsolo.presentation.main.viewPager.authorization.profile.viewPager
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -81,7 +82,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     }
 
     override fun addItem(element: UserModel) {
-        viewModel.addItem(element)
+        viewModel.addItem(element.id)
     }
 
     override fun onItemClick(position: Int, view: View) {
@@ -177,7 +178,12 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
                     floatingButtonContactsDelete.visibility = if (it) View.VISIBLE else View.GONE
                 }
             })
+
+            responseMessage.observe(viewLifecycleOwner, {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            })
         }
+
 
         navigator.currentBackStackEntry?.savedStateHandle
             ?.getLiveData<UserModel>(Constants.USER_BUNDLE_KEY)

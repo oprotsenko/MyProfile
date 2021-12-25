@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.protsolo.R
 import com.protsolo.app.base.BaseFragment
+import com.protsolo.app.utils.extensions.loadCircleImage
 import com.protsolo.databinding.FragmentProfileBinding
 
 class ContactDetailViewFragment : BaseFragment<FragmentProfileBinding>(

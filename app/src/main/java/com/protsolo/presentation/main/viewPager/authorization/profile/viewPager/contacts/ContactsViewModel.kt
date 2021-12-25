@@ -5,18 +5,26 @@ import androidx.lifecycle.MutableLiveData
 import com.protsolo.app.base.BaseViewModel
 import com.protsolo.app.item.UserModel
 import com.protsolo.app.item.WrapperUserModel
+import com.protsolo.app.utils.SingleLiveEvent
 import com.protsolo.data.remote.responses.ContactsResponse
-import com.protsolo.data.remote.IMyProfileApi
+import com.protsolo.domain.useCases.AddContactUseCase
+import com.protsolo.domain.useCases.DeleteContactUseCase
+import com.protsolo.domain.useCases.GetContactsUseCase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class ContactsViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel() {
+class ContactsViewModel(
+    private val getContactsUseCase: GetContactsUseCase,
+    private val deleteContactUseCase: DeleteContactUseCase,
+    private val addContactUseCase: AddContactUseCase
+    ) : BaseViewModel() {
 
     val contactsData by lazy { MutableLiveData<List<WrapperUserModel>>() }
     val isSelectionMood by lazy { MutableLiveData<Boolean>() }
     val selectedContacts: MutableList<Pair<Int, UserModel>> = mutableListOf()
+    val responseMessage by lazy { SingleLiveEvent<String>() }
 
     init {
         fetchContacts()
@@ -24,7 +32,7 @@ class ContactsViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel
 
     fun fetchContacts() {
         try {
-            val call = myProfileApi.getContacts()
+            val call = getContactsUseCase.getContacts()
             call.enqueue(object : Callback<ContactsResponse> {
                 override fun onResponse(
                     call: Call<ContactsResponse>,
@@ -39,36 +47,12 @@ class ContactsViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel
                 }
 
                 override fun onFailure(call: Call<ContactsResponse>, t: Throwable) {
+                    responseMessage.value = t.message.orEmpty()
                 }
 
             })
         } catch (e: Exception) {
             Log.d("fetchContacts", e.message.toString())
-        }
-    }
-
-    fun addContact(id: Int, position: Int) {
-        try {
-            val call = myProfileApi.addContact(id)
-            call.enqueue(object : Callback<ContactsResponse> {
-                override fun onResponse(
-                    call: Call<ContactsResponse>,
-                    response: Response<ContactsResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val list = contactsData.value?.toMutableList()
-                        list?.set(position, list[position].copy(isAdded = true))
-                        contactsData.value = list
-                    }
-                }
-
-                override fun onFailure(call: Call<ContactsResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-        } catch (e: Exception) {
-            Log.d("addContact", e.message.toString())
         }
     }
 
@@ -78,36 +62,30 @@ class ContactsViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel
 
     fun removeItem(element: UserModel, position: Int) {
         try {
-            val call = myProfileApi.deleteContact(element.id)
+            val call = deleteContactUseCase.deleteContact(element.id)
             call.enqueue(object : Callback<ContactsResponse> {
                 override fun onResponse(
                     call: Call<ContactsResponse>,
                     response: Response<ContactsResponse>
                 ) {
                     if (response.isSuccessful) {
-                        val list = contactsData.value?.toMutableList()
-        list?.removeAt(position)
-        contactsData.value = list
+                        fetchContacts()
                     }
                 }
 
                 override fun onFailure(call: Call<ContactsResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    responseMessage.value = t.message.orEmpty()
                 }
 
             })
         } catch (e: Exception) {
             Log.d("removeContact", e.message.toString())
         }
-//        val list = contactsData.value?.toMutableList()
-//        list?.removeAt(position)
-//        contactsData.value = list
     }
 
-    fun addItem(userModel: UserModel) {
-        val list = contactsData.value?.toMutableList()
-        list?.add(WrapperUserModel(userModel))
-        contactsData.value = list
+    fun addItem(contactId: Int) {
+        addContactUseCase.addContact(contactId)
+        fetchContacts()
     }
 
     fun setUserSelected(position: Int) {
@@ -127,11 +105,12 @@ class ContactsViewModel(private val myProfileApi: IMyProfileApi) : BaseViewModel
     }
 
     fun deleteSelectedContacts() {
-        val list = contactsData.value?.toMutableList()
-        list?.removeIf {
-            it.isSelected
+        contactsData.value?.map {
+            if (it.isSelected) {
+                deleteContactUseCase.deleteContact(it.user.id)
+            }
         }
-        contactsData.value = list
+        fetchContacts()
     }
 
     fun undoMultiRemove() {
